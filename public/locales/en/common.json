@@ -3,5 +3,12 @@
   "description": "Upload a photo of the damage — AI will identify the elements, damage, and the estimated repair price.",
   "button": {
     "upload_photo": "Upload photo"
+  },
+  "nav": {
+    "upload_photo": "Upload Photo"
+  },
+  "404": {
+    "title": "404 - Page Not Found!",
+    "go_home": "Go to the <home>Home</home> page"
   }
 }
