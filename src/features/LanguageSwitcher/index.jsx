@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, startTransition } from 'react';
 import { ListItemIcon, ListItemText, Typography, Box } from '@mui/material';
 import { Translate as TranslateIcon, Check as CheckIcon } from '@mui/icons-material';
 import { LanguageButton, LanguageMenu, LanguageMenuItem } from './styled';
+
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,7 +23,9 @@ export const LanguageSwitcher = () => {
   };
 
   const handleChangeLanguage = code => {
-    i18n.changeLanguage(code);
+    startTransition(() => {
+      i18n.changeLanguage(code);
+    });
     setAnchorEl(null);
   };
 

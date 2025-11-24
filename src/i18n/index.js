@@ -3,7 +3,7 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-i18n
+export const i18nPromise = i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -19,7 +19,7 @@ i18n
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     react: {
-      useSuspense: false,
+      useSuspense: true,
     },
   });
 
