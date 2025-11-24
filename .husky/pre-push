@@ -1,0 +1,14 @@
+npm run build
+
+check_tests () {
+  if [ $? -eq 0 ]; then
+    echo "The script ran ok"
+  else
+    echo "The script failed" >&2
+    exit 1
+  fi
+}
+
+npm run lint
+check_tests
+

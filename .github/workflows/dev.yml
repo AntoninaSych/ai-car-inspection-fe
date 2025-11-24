@@ -1,0 +1,12 @@
+name: dev
+
+on:
+  pull_request:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  dev-qa-checks:
+    uses: ./.github/workflows/qa-checks.yml
+    with:
+      ENV: dev
