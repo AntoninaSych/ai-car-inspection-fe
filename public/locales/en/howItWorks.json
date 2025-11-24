@@ -1,0 +1,10 @@
+{
+  "title": "How it works",
+  "description": "Upload photos of your vehicle, and our AI will analyze damaged areas, detect body parts affected, and provide a quick, preliminary repair cost estimate.",
+  "steps": [
+    "Upload photos of the car (left, right, front, rear).",
+    "AI analyzes damage and identifies affected body parts.",
+    "Get an instant estimate with a price range, required work, and parts."
+  ],
+  "footer": "Fast. Accurate. Easy to use."
+}

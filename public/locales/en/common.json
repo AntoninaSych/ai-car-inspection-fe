@@ -1,0 +1,7 @@
+{
+  "title": "AI Car Repair Estimator",
+  "description": "Upload a photo of the damage — AI will identify the elements, damage, and the estimated repair price.",
+  "button": {
+    "upload_photo": "Upload photo"
+  }
+}

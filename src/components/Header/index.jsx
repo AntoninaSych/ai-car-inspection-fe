@@ -1,5 +1,6 @@
 import { Container, Toolbar, Box } from '@mui/material';
 import { Nav, Brand } from './components';
+import { LanguageSwitcher } from '../../features';
 import { StyledAppBar } from './styled';
 
 export const Header = () => {
@@ -10,6 +11,7 @@ export const Header = () => {
           <Brand />
           <Box sx={{ flexGrow: 1 }} />
           <Nav />
+          <LanguageSwitcher />
         </Toolbar>
       </Container>
     </StyledAppBar>

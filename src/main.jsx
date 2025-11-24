@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { store, persistor } from './redux/store';
 import { ROOT_CONTAINER } from './constants';
 import { router } from './router/routes';
+import './i18n';
 import './styles/index.css';
 
 createRoot(document.querySelector(ROOT_CONTAINER)).render(

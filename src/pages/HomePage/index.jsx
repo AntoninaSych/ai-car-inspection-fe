@@ -1,26 +1,28 @@
 import { Container, List, ListItem, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import Hero from './components/Hero';
 
 const HomePage = () => {
+  const { t } = useTranslation('howItWorks');
+  const steps = t('steps', { returnObjects: true });
+
   return (
     <>
       <Hero />
       <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Typography sx={{ mb: 4 }}>
-          Upload photos of your vehicle, and our AI will analyze damaged areas, detect body parts affected, and provide
-          a quick, preliminary repair cost estimate.
-        </Typography>
+        <Typography sx={{ mb: 4 }}>{t('description')}</Typography>
         <Typography variant="h3" sx={{ mb: 2 }}>
-          How it works
+          {t('title')}
         </Typography>
         <List component="ol" sx={{ listStyle: 'decimal', pl: 2, mb: 3 }}>
-          <ListItem sx={{ display: 'list-item' }}>Upload photos of the car (left, right, front, rear).</ListItem>
-          <ListItem sx={{ display: 'list-item' }}>AI analyzes damage and identifies affected body parts.</ListItem>
-          <ListItem sx={{ display: 'list-item' }}>
-            Get an instant estimate with a price range, required work, and parts.
-          </ListItem>
+          {steps &&
+            steps.map((step, index) => (
+              <ListItem key={index} sx={{ display: 'list-item' }}>
+                {step}
+              </ListItem>
+            ))}
         </List>
-        <strong>Fast. Accurate. Easy to use.</strong>
+        <strong>{t('footer')}</strong>
       </Container>
     </>
   );
