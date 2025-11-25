@@ -1,16 +1,17 @@
 import { Container, Typography } from '@mui/material';
-import { Hero } from './components';
+import { useTranslation } from 'react-i18next';
+import { UploadWizard } from '../../features';
 
 const UploadPage = () => {
+  const { t } = useTranslation();
+
   return (
-    <>
-      <Container maxWidth="lg" sx={{ py: 2 }}>
-        <Typography variant="h1" align="center" sx={{ pb: 2 }}>
-          Upload Page
-        </Typography>
-      </Container>
-      <Hero />
-    </>
+    <Container maxWidth="lg" sx={{ py: 2 }}>
+      <Typography variant="h1" align="center" sx={{ pb: 2 }}>
+        {t('upload-page.title')}
+      </Typography>
+      <UploadWizard />
+    </Container>
   );
 };
 
