@@ -10,5 +10,31 @@
   "404": {
     "title": "404 - Page Not Found!",
     "go_home": "Go to the <home>Home</home> page"
+  },
+  "uploadWizard": {
+    "title": "Upload photos of your car",
+    "subtitle": "We will use these photos to estimate repair costs. Please upload clear images of each side.",
+    "steps": {
+      "front": { "label": "Front view" },
+      "rear": { "label": "Rear view" },
+      "left": { "label": "Left side" },
+      "right": { "label": "Right side" },
+      "summary": { "label": "Summary" }
+    },
+    "summary": {
+      "title": "Check your photos",
+      "description": "Please check your photos and optionally leave your email to receive the estimate.",
+      "emailLabel": "Email (optional)",
+      "sending": "Sending...",
+      "sendButton": "Send for AI analysis",
+      "missingPhotos": "Please upload all required photos before sending."
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Next"
+    }
+  },
+  "upload-page": {
+    "title": "Upload images for preliminary evaluation"
   }
 }

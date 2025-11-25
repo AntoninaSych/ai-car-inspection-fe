@@ -13,6 +13,11 @@ import './i18n';
 import { i18nPromise } from './i18n';
 import './styles/index.css';
 
+if (import.meta.env.DEV) {
+  const { worker } = await import('./mocks/browser');
+  await worker.start();
+}
+
 i18nPromise.then(() => {
   createRoot(document.querySelector(ROOT_CONTAINER)).render(
     <StrictMode>
