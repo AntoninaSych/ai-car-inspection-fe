@@ -1,19 +1,19 @@
-import { ThemeName } from './types';
+import { ThemeName } from './constants';
 import { THEME_STORAGE_KEY, safeLocalStorage } from './storage';
 
 const DEFAULT_THEME = ThemeName.Dark;
 
-export function detectSystemDark(): boolean {
+export function detectSystemDark() {
   if (typeof window === 'undefined' || !window.matchMedia) return false;
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-const isThemeName = (value: string): value is ThemeName => {
-  return Object.values(ThemeName).includes(value as ThemeName);
+const isThemeName = value => {
+  return Object.values(ThemeName).includes(value);
 };
 
-export const getInitialThemeName = (): ThemeName => {
-  const saved = safeLocalStorage.get(THEME_STORAGE_KEY) as ThemeName | null;
+export const getInitialThemeName = () => {
+  const saved = safeLocalStorage.get(THEME_STORAGE_KEY);
   if (isThemeName(saved)) {
     return saved;
   }

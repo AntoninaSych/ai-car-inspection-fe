@@ -1,6 +1,4 @@
-import { ThemeName } from '../theme/types';
-
-const neutral = {
+export const neutral = {
   50: '#F8F9FA',
   100: '#F3F4F6',
   200: '#E5E7EB',
@@ -14,7 +12,24 @@ const neutral = {
 };
 
 export const basePalette = {
-  mode: ThemeName.Dark,
+  neutral,
+  primary: {
+    main: '#6750A4',
+    light: '#9382c2',
+    dark: '#483873',
+    contrastText: '#ffffff',
+  },
+  secondary: {
+    main: '#9c27b0',
+    light: '#d05ce3',
+    dark: '#6a0080',
+    contrastText: '#ffffff',
+  },
+  text: {
+    primary: '#F8F9FA',
+    secondary: '#F8F9FA',
+    disabled: '#9DA4AE',
+  },
   action: {
     active: '#6750A4',
     disabled: '#9DA4AE',
@@ -28,19 +43,8 @@ export const basePalette = {
     paper: '#FFFFFF',
     secondary: '#434954',
   },
-  text: {
-    primary: '#F8F9FA',
-    secondary: '#F8F9FA',
-    disabled: '#9DA4AE',
-  },
-  neutral,
-  divider: '#4D5761',
+  divider: neutral[600],
   loader: '#ffffff',
-  primary: {
-    light: '#9382c2',
-    main: '#6750A4',
-    dark: '#483873',
-  },
   error: {
     main: '#F04438',
   },

@@ -8,9 +8,10 @@ const PhotoStepRoot = styled(Stack)(({ theme }) => ({
 
 const PreviewCard = styled(Card)(() => ({
   maxWidth: 320,
+  margin: '0 auto',
 }));
 
-export const PhotoStep = ({ name, label, helperText, value, setValue, error }) => {
+export const PhotoStep = ({ name, label, helperText, value, setValue, t, error }) => {
   const previewUrl = useMemo(() => {
     if (!value) return null;
     return URL.createObjectURL(value);
@@ -28,21 +29,21 @@ export const PhotoStep = ({ name, label, helperText, value, setValue, error }) =
         {helperText || `Upload a clear photo of the ${label.toLowerCase()} of your car.`}
       </Typography>
 
-      <Button variant="outlined" component="label">
-        Choose photo
-        <input type="file" hidden accept="image/*" onChange={handleFileChange} />
-      </Button>
-
       {previewUrl && (
         <PreviewCard>
           <CardMedia component="img" image={previewUrl} alt={label} />
-          <CardContent>
-            <Typography variant="body2" color="text.secondary">
-              Preview — {name}
+          <CardContent sx={{ py: 3 }}>
+            <Typography variant="body2" color="primary.main" fontWeight="600" align="center">
+              {t('uploadWizard.preview', 'Preview')}
             </Typography>
           </CardContent>
         </PreviewCard>
       )}
+
+      <Button variant="outlined" component="label">
+        {t('uploadWizard.buttons.choose_photo', 'Choose photo')}
+        <input type="file" accept="image/*" onChange={handleFileChange} hidden />
+      </Button>
 
       {error && (
         <Typography variant="caption" color="error">

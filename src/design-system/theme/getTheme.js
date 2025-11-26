@@ -2,9 +2,9 @@ import { deepmerge } from '@mui/utils';
 import { createTheme } from '@mui/material/styles';
 import { createBaseTheme } from './base';
 import { lightVariant, darkVariant } from './variants';
-import { ThemeName } from './types';
+import { ThemeName } from './constants';
 
-const pickVariant = (name: ThemeName) => {
+const pickVariant = name => {
   switch (name) {
     case ThemeName.Light:
       return lightVariant;
@@ -15,7 +15,7 @@ const pickVariant = (name: ThemeName) => {
   }
 };
 
-export const getTheme = (name: ThemeName) => {
+export const getTheme = name => {
   const base = createBaseTheme();
   const variant = pickVariant(name);
   // IMPORTANT: deepmerge via plain object, then createTheme,

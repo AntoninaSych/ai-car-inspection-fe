@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { sendEstimates } from '../../api/estimatesApi';
-import { uploadSteps, defaultValues, UPLOAD_STEPS } from './config';
-import { uploadWizardSchema } from './validation/schema';
+import { uploadSteps, defaultValues, STEPS } from './config';
+import { createUploadWizardSchema } from './validation/schema';
 import { WizardHeader } from './components/WizardHeader';
 import { PhotoStep } from './components/PhotoStep';
 import { SummaryStep } from './components/SummaryStep';
 import { WizardRoot, NavRow, ContentCard, ContentInner, DragOverlay } from './styled';
+import { useDropZone } from './hooks/useDropZone';
 
 export const UploadWizard = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
-
+  const uploadWizardSchema = useMemo(() => createUploadWizardSchema(t), [t]);
   const {
     handleSubmit,
     setValue,
@@ -28,16 +28,20 @@ export const UploadWizard = () => {
     resolver: yupResolver(uploadWizardSchema),
     defaultValues,
   });
-
   const values = watch();
-
   const stepsWithLabels = uploadSteps.map(step => ({
     ...step,
     label: t(step.labelKey),
   }));
-
   const activeStepConfig = stepsWithLabels[activeStep];
-  const isSummary = activeStepConfig.id === UPLOAD_STEPS.SUMMARY;
+  const isSummary = activeStepConfig.id === STEPS.SUMMARY;
+  const { dropRef, isDragging } = useDropZone({
+    isEnabled: !isSummary,
+    onDropFile: file => {
+      const fieldName = activeStepConfig.id;
+      setValue(fieldName, file, { shouldValidate: true });
+    },
+  });
 
   const handleEmailChange = value => {
     setValue('email', value, { shouldValidate: true });
@@ -77,53 +81,13 @@ export const UploadWizard = () => {
     setActiveStep(prev => Math.max(prev - 1, 0));
   };
 
-  const handleDragOver = event => {
-    if (isSummary) {
-      return;
-    }
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'copy';
-  };
-
-  const handleDragEnter = event => {
-    if (isSummary) {
-      return;
-    }
-    event.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = event => {
-    if (isSummary) {
-      return;
-    }
-    event.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleDrop = event => {
-    if (isSummary) {
-      return;
-    }
-    event.preventDefault();
-    setIsDragging(false);
-
-    const file = event.dataTransfer.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    // front | rear | left | right
-    const fieldName = activeStepConfig.id;
-    setValue(fieldName, file, { shouldValidate: true });
-  };
-
   const renderStepContent = () => {
     if (isSummary) {
       return (
         <SummaryStep
           values={values}
           errors={errors}
+          stepsWithLabels={stepsWithLabels}
           isSubmitting={isSubmitting}
           onEmailChange={handleEmailChange}
           onSubmit={handleSubmit(onSubmit)}
@@ -145,27 +109,10 @@ export const UploadWizard = () => {
         value={values[id]}
         setValue={setValue}
         error={errors[id]}
+        t={t}
       />
     );
   };
-
-  useEffect(() => {
-    const handleWindowDragOver = event => {
-      event.preventDefault();
-    };
-
-    const handleWindowDrop = event => {
-      event.preventDefault();
-    };
-
-    window.addEventListener('dragover', handleWindowDragOver);
-    window.addEventListener('drop', handleWindowDrop);
-
-    return () => {
-      window.removeEventListener('dragover', handleWindowDragOver);
-      window.removeEventListener('drop', handleWindowDrop);
-    };
-  }, []);
 
   return (
     <WizardRoot>
@@ -173,7 +120,7 @@ export const UploadWizard = () => {
         {t('uploadWizard.title', 'Upload photos of your car')}
       </Typography>
 
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         {t(
           'uploadWizard.subtitle',
           'We will use these photos to estimate repair costs. Please upload clear images of each side.'
@@ -182,32 +129,26 @@ export const UploadWizard = () => {
 
       <WizardHeader steps={stepsWithLabels} activeStep={activeStep} />
 
-      <ContentCard
-        variant="outlined"
-        onDragOver={handleDragOver}
-        onDragEnter={handleDragEnter}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <ContentInner data-dragging={isDragging ? 'true' : 'false'}>
+      <ContentCard variant="outlined">
+        <ContentInner ref={dropRef} data-dragging={isDragging ? 'true' : 'false'}>
           {isDragging && !isSummary && (
             <DragOverlay>
-              <Typography variant="subtitle1">Перетягніть фото сюди</Typography>
-              <Typography variant="body2" color="text.secondary">
-                або натисніть «Choose photo»
+              <Typography variant="subtitle1">{t('uploadWizard.dragOverlay.title', 'Drag photo here')}</Typography>
+              <Typography variant="body2">
+                {t('uploadWizard.dragOverlay.subtitle', 'or click "Choose Photo"')}
               </Typography>
             </DragOverlay>
           )}
           {renderStepContent()}
         </ContentInner>
 
-        <NavRow>
+        <NavRow sx={{ p: 2 }}>
           <Button variant="text" disabled={activeStep === 0} onClick={handleBack}>
             {t('uploadWizard.buttons.back', 'Back')}
           </Button>
 
           {activeStepConfig.id !== 'summary' && (
-            <Button variant="contained" onClick={handleNext}>
+            <Button variant="contained" onClick={handleNext} disabled={!values[activeStepConfig.id]}>
               {t('uploadWizard.buttons.next', 'Next')}
             </Button>
           )}

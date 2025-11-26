@@ -1,24 +1,3 @@
-export const userTypography = {
-  'h1/medium': {
-    fontSize: 38,
-    fontFamily: 'Inter, sans-serif',
-    paragraphIndent: 0,
-    paragraphSpacing: 0,
-    fontWeight: 500,
-    letterSpacing: '0%',
-    lineHeight: '46px',
-  },
-  'h2/medium': {
-    fontSize: 30,
-    fontFamily: 'Normalidad Bold Var, sans-serif',
-    paragraphIndent: 0,
-    paragraphSpacing: 0,
-    fontWeight: 400,
-    letterSpacing: '0%',
-    lineHeight: '40px',
-  },
-};
-
 export const baseTypography = {
   fontFamily: 'saira, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
   body1: {
@@ -33,7 +12,6 @@ export const baseTypography = {
   },
   button: {
     fontWeight: 600,
-    borderRadius: '2px',
   },
   caption: {
     fontSize: '0.75rem',

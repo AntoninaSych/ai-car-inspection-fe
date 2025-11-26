@@ -1,4 +1,4 @@
-export const UPLOAD_STEPS = {
+export const STEPS = {
   SUMMARY: 'summary',
   FRONT: 'front',
   REAR: 'rear',
@@ -7,9 +7,11 @@ export const UPLOAD_STEPS = {
 };
 
 export const uploadSteps = [
-  { id: UPLOAD_STEPS.FRONT, labelKey: 'uploadWizard.steps.front.label' },
-  { id: UPLOAD_STEPS.REAR, labelKey: 'uploadWizard.steps.rear.label' },
-  { id: UPLOAD_STEPS.LEFT, labelKey: 'uploadWizard.steps.left.label' },
-  { id: UPLOAD_STEPS.RIGHT, labelKey: 'uploadWizard.steps.right.label' },
-  { id: UPLOAD_STEPS.SUMMARY, labelKey: 'uploadWizard.steps.summary.label' },
+  { id: STEPS.FRONT, labelKey: 'uploadWizard.steps.front.label' },
+  { id: STEPS.REAR, labelKey: 'uploadWizard.steps.rear.label' },
+  { id: STEPS.LEFT, labelKey: 'uploadWizard.steps.left.label' },
+  { id: STEPS.RIGHT, labelKey: 'uploadWizard.steps.right.label' },
+  { id: STEPS.SUMMARY, labelKey: 'uploadWizard.steps.summary.label' },
 ];
+
+export const REQUIRED_STEPS = [STEPS.FRONT, STEPS.REAR, STEPS.LEFT, STEPS.RIGHT];

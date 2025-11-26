@@ -12,13 +12,17 @@
     "go_home": "Go to the <home>Home</home> page"
   },
   "uploadWizard": {
-    "title": "Upload photos of your car",
-    "subtitle": "We will use these photos to estimate repair costs. Please upload clear images of each side.",
+    "title": "Upload Your Car Photos",
+    "subtitle": "We’ll use these photos to generate a preliminary repair estimate. Please upload clear images of each side of the vehicle.",
+    "dragOverlay": {
+      "title": "Drag & drop your photo here",
+      "subtitle": "or click \"Choose Photo\""
+    },
     "steps": {
-      "front": { "label": "Front view" },
-      "rear": { "label": "Rear view" },
-      "left": { "label": "Left side" },
-      "right": { "label": "Right side" },
+      "front": { "label": "Front View", "helper": "Upload a clear photo of the front of the vehicle." },
+      "rear": { "label": "Rear View", "helper": "Upload a clear photo of the rear of the vehicle." },
+      "left": { "label": "Left Side", "helper": "Upload a clear photo of the vehicle’s left side." },
+      "right": { "label": "Right Side", "helper": "Upload a clear photo of the vehicle’s right side." },
       "summary": { "label": "Summary" }
     },
     "summary": {
@@ -27,14 +31,25 @@
       "emailLabel": "Email (optional)",
       "sending": "Sending...",
       "sendButton": "Send for AI analysis",
-      "missingPhotos": "Please upload all required photos before sending."
+      "missingPhotos": "Please upload all required photos before sending.",
+      "errorsTitle": "Please fix errors"
     },
     "buttons": {
       "back": "Back",
-      "next": "Next"
-    }
+      "next": "Next",
+      "choose_photo": "Choose Photo"
+    },
+    "preview": "Preview"
   },
   "upload-page": {
     "title": "Upload images for preliminary evaluation"
+  },
+  "errors": {
+    "upload": {
+      "fileSize": "Maximum file size: {{size}} MB.",
+      "fileFormat": "Only JPG, PNG are supported.",
+      "invalidEmail": "Enter the correct Email format.",
+      "required": "Required"
+    }
   }
 }
