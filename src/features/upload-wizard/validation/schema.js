@@ -6,7 +6,7 @@ export const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png'];
 
-const createFileSchema = (t, fieldKey) =>
+const createFileSchema = t =>
   yup
     .mixed()
     .required(t(`errors.upload.required`))
@@ -25,10 +25,5 @@ export const createUploadWizardSchema = t =>
     rear: createFileSchema(t, 'rear'),
     left: createFileSchema(t, 'left'),
     right: createFileSchema(t, 'right'),
-    email: yup
-      .string()
-      .nullable()
-      .optional()
-      .email(t('errors.upload.invalidEmail'))
-      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, t('errors.upload.invalidEmail')),
+    email: yup.string().nullable().optional().email(t('errors.upload.invalidEmail')),
   });

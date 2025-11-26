@@ -12,6 +12,7 @@ import { PhotoStep } from './components/PhotoStep';
 import { SummaryStep } from './components/SummaryStep';
 import { WizardRoot, NavRow, ContentCard, ContentInner, DragOverlay } from './styled';
 import { useDropZone } from './hooks/useDropZone';
+import { ROUTERS } from '../../constants';
 
 export const UploadWizard = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -61,9 +62,9 @@ export const UploadWizard = () => {
       const data = await sendEstimates(formData);
 
       if (data.estimateId) {
-        navigate(`/estimate/${data.estimateId}`);
+        navigate(`${ROUTERS.RESULT}/${data.estimateId}`);
       } else {
-        navigate('/thank-you');
+        navigate(ROUTERS.THANK_YOU);
       }
     } catch (error) {
       setError('root', {
