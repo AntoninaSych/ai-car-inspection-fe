@@ -1,9 +1,18 @@
 import { FiLoader } from 'react-icons/fi';
-import { TYPES, VARIANTS } from './const';
+import { VARIANTS, COLORS } from './const';
 import { useNavigate } from 'react-router-dom';
 import { StyledButton } from './styled';
 
-export const Button = ({ onClick, children, to, isLoading, type = TYPES.BUTTON, disabled = false }) => {
+export const Button = ({
+  onClick,
+  children,
+  to,
+  isLoading,
+  variant = VARIANTS.contained,
+  color = COLORS.primary,
+  disabled = false,
+  ...props
+}) => {
   const navigate = useNavigate();
 
   const handlerOnClick = event => {
@@ -18,11 +27,11 @@ export const Button = ({ onClick, children, to, isLoading, type = TYPES.BUTTON, 
   };
 
   return (
-    <StyledButton type={type} onClick={handlerOnClick} disabled={disabled}>
+    <StyledButton variant={variant} onClick={handlerOnClick} color={color} disabled={disabled} {...props}>
       {isLoading ? <FiLoader /> : children}
     </StyledButton>
   );
 };
 
 Button.variants = Object.assign({}, VARIANTS);
-Button.types = Object.assign({}, TYPES);
+Button.colors = Object.assign({}, COLORS);

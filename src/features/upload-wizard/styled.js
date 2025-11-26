@@ -16,7 +16,7 @@ export const ContentInner = styled(CardContent)(({ theme }) => ({
   transition: 'background-color 0.15s ease, border 0.15s ease',
   '&[data-dragging="true"]': {
     backgroundColor: theme.palette.action.hover,
-    border: `2px dashed ${theme.palette.primary.main}`,
+    border: `2px dashed ${theme.palette.action.hover}`,
   },
 }));
 
@@ -26,14 +26,15 @@ export const DragOverlay = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   border: `2px dashed ${theme.palette.primary.main}`,
   backgroundColor: theme.palette.background.paper,
-  opacity: 0.9,
+  opacity: 0.95,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  pointerEvents: 'none', // щоб drop спрацьовував на контейнер
+  pointerEvents: 'none',
   zIndex: 1,
+  color: theme.palette.primary.dark,
 }));
 
 export const NavRow = styled(Stack)(({ theme }) => ({

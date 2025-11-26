@@ -1,29 +1,41 @@
-import { Stack, Typography, TextField, Button, Card, CardMedia, CardContent } from '@mui/material';
+import { Stack, Typography, TextField, Button, Card, CardMedia, CardContent, Alert, AlertTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { UPLOAD_STEPS } from '../config';
+import { REQUIRED_STEPS } from '../config';
 
 const SummaryRoot = styled(Stack)(({ theme }) => ({
-  gap: theme.spacing(3),
+  gap: theme.spacing(2),
 }));
 
 const PhotosRow = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   flexWrap: 'wrap',
   gap: theme.spacing(2),
+  margin: theme.spacing(2, 0),
 }));
 
 const PreviewCard = styled(Card)(() => ({
   maxWidth: 200,
 }));
 
-const EmailField = styled(TextField)(({ theme }) => ({
+const EmailField = styled(TextField)(() => ({
   maxWidth: 360,
 }));
 
-const allSteps = [UPLOAD_STEPS.FRONT, UPLOAD_STEPS.REAR, UPLOAD_STEPS.LEFT, UPLOAD_STEPS.RIGHT];
+const ImageWrapper = styled('div')({
+  width: 200,
+  height: 150,
+  overflow: 'hidden',
+});
 
-export const SummaryStep = ({ values, errors, isSubmitting, onEmailChange, onSubmit, t }) => {
+const StyledCardMedia = styled(CardMedia)({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
+
+export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onEmailChange, onSubmit, t }) => {
   const requiredPhotosFilled = values.front && values.rear && values.left && values.right;
+  const hasErrors = REQUIRED_STEPS.some(step => !!errors[step]);
 
   return (
     <SummaryRoot>
@@ -37,18 +49,23 @@ export const SummaryStep = ({ values, errors, isSubmitting, onEmailChange, onSub
       </Typography>
 
       <PhotosRow>
-        {allSteps.map(side => {
+        {REQUIRED_STEPS.map(side => {
           const file = values[side];
-          if (!file) return null;
+          if (!file) {
+            return null;
+          }
 
+          const label = stepsWithLabels.find(({ id }) => id === side)?.label;
           const previewUrl = URL.createObjectURL(file);
 
           return (
             <PreviewCard key={side}>
-              <CardMedia component="img" image={previewUrl} alt={side} />
+              <ImageWrapper>
+                <StyledCardMedia component="img" image={previewUrl} alt={label} />
+              </ImageWrapper>
               <CardContent>
-                <Typography variant="body2" textTransform="capitalize">
-                  {side}
+                <Typography variant="body2" textTransform="capitalize" color="primary.main" fontWeight="600">
+                  {label}
                 </Typography>
               </CardContent>
             </PreviewCard>
@@ -67,16 +84,37 @@ export const SummaryStep = ({ values, errors, isSubmitting, onEmailChange, onSub
       />
 
       <Stack gap={1}>
-        <Button variant="contained" onClick={onSubmit} disabled={isSubmitting || !requiredPhotosFilled}>
+        <Button variant="contained" onClick={onSubmit} disabled={isSubmitting || hasErrors || !requiredPhotosFilled}>
           {isSubmitting
             ? t('uploadWizard.summary.sending', 'Sending...')
             : t('uploadWizard.summary.sendButton', 'Send for AI analysis')}
         </Button>
 
         {!requiredPhotosFilled && (
-          <Typography variant="caption" color="warning.main">
-            {t('uploadWizard.summary.missingPhotos', 'Please upload all required photos before sending.')}
-          </Typography>
+          <Alert severity="warning">
+            <AlertTitle>
+              {t('uploadWizard.summary.missingPhotos', 'Please upload all required photos before sending.')}
+            </AlertTitle>
+          </Alert>
+        )}
+
+        {hasErrors && (
+          <Alert severity="error">
+            <AlertTitle>{t('uploadWizard.summary.errorsTitle', 'Please fix photo errors')}</AlertTitle>
+            <ul>
+              {Object.keys(errors).map(side => {
+                const message = errors[side]?.message;
+                const hasStepError = REQUIRED_STEPS.includes(side);
+                if (message && hasStepError) {
+                  return (
+                    <li key={side}>
+                      <strong>{t(`uploadWizard.steps.${side}.label`)}:</strong> {message}
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </Alert>
         )}
       </Stack>
     </SummaryRoot>

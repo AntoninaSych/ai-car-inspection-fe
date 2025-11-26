@@ -1,11 +1,14 @@
 export const VARIANTS = {
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  ICON_BUTTON: 'icon-button',
+  contained: 'contained',
+  text: 'text',
+  outlined: 'outlined',
 };
 
-export const TYPES = {
-  BUTTON: 'button',
-  SUBMIT: 'submit',
-  RESET: 'reset',
+export const COLORS = {
+  primary: 'primary',
+  secondary: 'secondary',
+  success: 'success',
+  error: 'error',
+  info: 'info',
+  warning: 'warning',
 };

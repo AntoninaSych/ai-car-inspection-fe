@@ -1,11 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import {
-  filledInputClasses,
-  inputLabelClasses,
-  outlinedInputClasses,
-  paperClasses,
-  tableCellClasses,
-} from '@mui/material';
+import { filledInputClasses, inputLabelClasses, outlinedInputClasses, paperClasses } from '@mui/material';
 import { basePalette } from '../../tokens/colors';
 
 const muiTheme = createTheme();
@@ -59,24 +53,6 @@ export const baseComponents = {
     styleOverrides: {
       root: {
         padding: '32px 24px',
-        '&:last-child': {
-          paddingBottom: '32px',
-        },
-      },
-    },
-  },
-  MuiCardHeader: {
-    defaultProps: {
-      titleTypographyProps: {
-        variant: 'h6',
-      },
-      subheaderTypographyProps: {
-        variant: 'body2',
-      },
-    },
-    styleOverrides: {
-      root: {
-        padding: '32px 24px 16px',
       },
     },
   },
@@ -153,10 +129,11 @@ export const baseComponents = {
         borderStyle: 'solid',
         borderWidth: 1,
         overflow: 'hidden',
-        borderColor: basePalette.neutral[200],
+        borderColor: basePalette.primary.main,
         transition: muiTheme.transitions.create(['border-color', 'box-shadow']),
         '&:hover': {
-          backgroundColor: basePalette.action.hover,
+          backgroundColor: 'transparent',
+          borderColor: basePalette.action.hover,
         },
         '&:before': {
           display: 'none',
@@ -170,11 +147,11 @@ export const baseComponents = {
         [`&.${filledInputClasses.focused}`]: {
           backgroundColor: 'transparent',
           borderColor: basePalette.primary.main,
-          boxShadow: `${basePalette.primary.main} 0 0 0 2px`,
+          boxShadow: `${basePalette.primary.main} 0 0 0 1px`,
         },
         [`&.${filledInputClasses.error}`]: {
           borderColor: basePalette.error.main,
-          boxShadow: `${basePalette.error.main} 0 0 0 2px`,
+          boxShadow: `${basePalette.error.main} 0 0 0 1px`,
         },
       },
       input: {
@@ -188,7 +165,7 @@ export const baseComponents = {
     styleOverrides: {
       root: {
         '&:hover': {
-          backgroundColor: basePalette.action.hover,
+          // backgroundColor: basePalette.action.hover,
           [`& .${outlinedInputClasses.notchedOutline}`]: {
             borderColor: basePalette.neutral[200],
           },
@@ -256,49 +233,9 @@ export const baseComponents = {
       },
     },
   },
-  MuiTableHead: {
-    styleOverrides: {
-      root: {
-        borderBottom: 'none',
-        [`& .${tableCellClasses.root}`]: {
-          fontSize: 12,
-          fontWeight: 600,
-          lineHeight: 1,
-          letterSpacing: 0.5,
-          textTransform: 'uppercase',
-        },
-        [`& .${tableCellClasses.paddingCheckbox}`]: {
-          paddingTop: 4,
-          paddingBottom: 4,
-        },
-      },
-    },
-  },
   MuiTextField: {
     defaultProps: {
       variant: 'filled',
-    },
-  },
-  MuiDataGrid: {
-    styleOverrides: {
-      withBorderColor: {
-        border: 0,
-      },
-      columnHeader: {
-        fontWeight: 600,
-        fontSize: '14px',
-        border: 0,
-      },
-      cell: {
-        border: 0,
-        '&:focus': {
-          outline: 'none',
-        },
-      },
-      root: {
-        border: 0,
-        withBorderColor: 'none',
-      },
     },
   },
 };

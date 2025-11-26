@@ -1,12 +1,15 @@
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 const EstimatePage = () => {
   return (
-    <div>
-      <div>
-        <Container>coming soon...</Container>
-      </div>
-    </div>
+    <Container>
+      <Typography variant="h1" align="center">
+        Estimate Page
+      </Typography>
+      <Typography variant="h2" align="center">
+        coming soon...
+      </Typography>
+    </Container>
   );
 };
 
