@@ -1,7 +1,6 @@
 export const ROUTERS = {
   HOME: '/',
   UPLOAD: '/upload',
-  HISTORY: '/history',
   RESULT: '/result',
   THANK_YOU: '/thank-you',
 };
