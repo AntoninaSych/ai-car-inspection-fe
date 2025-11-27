@@ -1,6 +1,5 @@
 import { Stack, Box, Typography, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import CheckIcon from '@mui/icons-material/Check';
 
 const HeaderRoot = styled(Stack)(({ theme }) => ({
   flexDirection: 'column',
@@ -34,6 +33,10 @@ const StepCircle = styled(Box)(() => ({
 }));
 
 export const WizardHeader = ({ steps, activeStep, onClick }) => {
+  const handleOnClick = index => e => {
+    e.preventDefault();
+    onClick(index);
+  };
   return (
     <HeaderRoot>
       {steps.map((step, index) => {
@@ -45,10 +48,10 @@ export const WizardHeader = ({ steps, activeStep, onClick }) => {
         return (
           <StepWrapper key={step.id} direction="row" sx={{ opacity }}>
             <StepCircle sx={{ borderColor: color, color }}>
-              {isCompleted ? <CheckIcon sx={{ fontSize: 16 }} /> : <Box component="span">{index + 1}</Box>}
+              <Box component="span">{index + 1}</Box>
             </StepCircle>
             <Typography variant="body2">
-              <Link href="#" onClick={() => onClick(index)} sx={{ color, textDecoration: 'none' }}>
+              <Link href="#" onClick={handleOnClick(index)} sx={{ color, textDecoration: 'none' }}>
                 {step.label}
               </Link>
             </Typography>

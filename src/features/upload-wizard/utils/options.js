@@ -1,3 +1,5 @@
+import { MAKE_OPTIONS } from '../constants';
+
 const currentYear = new Date().getFullYear();
 
 export const getYearOptions = (startYear = 1980) => {
@@ -8,4 +10,8 @@ export const getYearOptions = (startYear = 1980) => {
       value: `${year}`,
     };
   });
+};
+
+export const getMakeOptions = () => {
+  return [...MAKE_OPTIONS].sort((a, b) => a.label.localeCompare(b.label));
 };

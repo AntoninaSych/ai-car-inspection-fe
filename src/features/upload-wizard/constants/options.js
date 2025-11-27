@@ -1,0 +1,18 @@
+export const MAKE_OPTIONS = [
+  { label: 'Audi', value: 'Audi' },
+  { label: 'BMW', value: 'BMW' },
+  { label: 'Chevrolet', value: 'Chevrolet' },
+  { label: 'Ford', value: 'Ford' },
+  { label: 'Honda', value: 'Honda' },
+  { label: 'Hyundai', value: 'Hyundai' },
+  { label: 'Jeep', value: 'Jeep' },
+  { label: 'Kia', value: 'Kia' },
+  { label: 'Lexus', value: 'Lexus' },
+  { label: 'Mercedes-Benz', value: 'Mercedes-Benz' },
+  { label: 'Nissan', value: 'Nissan' },
+  { label: 'Subaru', value: 'Subaru' },
+  { label: 'Opel', value: 'Subaru' },
+  { label: 'Tesla', value: 'Tesla' },
+  { label: 'Toyota', value: 'Toyota' },
+  { label: 'Volkswagen', value: 'Volkswagen' },
+];

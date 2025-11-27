@@ -9,14 +9,17 @@ const formats = SUPPORTED_FORMATS.join(', ');
 const createFileSchema = t =>
   yup
     .mixed()
-    .required(t(`errors.upload.required`))
+    .nullable()
+    .optional()
     .test('fileSize', t('errors.upload.fileSize', { size: MAX_FILE_SIZE_MB }), file => {
-      if (!file) return false;
+      if (!file) {
+        return true;
+      }
       return file.size <= MAX_FILE_SIZE;
     })
     .test('fileFormat', t('errors.upload.fileFormat', { formats }), file => {
       if (!file) {
-        return false;
+        return true;
       }
       return SUPPORTED_FORMATS.includes(file.type);
     });
