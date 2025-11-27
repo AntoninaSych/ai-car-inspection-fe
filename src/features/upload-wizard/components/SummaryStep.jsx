@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Stack, Typography, TextField, Button, Card, CardMedia, CardContent, Alert, AlertTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -34,7 +35,7 @@ const StyledCardMedia = styled(CardMedia)({
 
 export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onEmailChange, onSubmit, t }) => {
   const requiredPhotos = ['front', 'rear', 'left', 'right'];
-  const requiredPhotosFilled = requiredPhotos.every(photo => !!values[photo]);
+  const requiredPhotosFilled = requiredPhotos.some(photo => !!values[photo]);
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
@@ -79,6 +80,7 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
         onChange={e => onEmailChange(e.target.value)}
         error={Boolean(errors.email)}
         helperText={errors.email?.message}
+        required
       />
 
       <Stack gap={1}>
@@ -102,7 +104,7 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
             <ul>
               {Object.keys(errors).map(fieldName => {
                 const message = errors[fieldName]?.message;
-                if (message && !requiredPhotos.includes(fieldName)) {
+                if (message) {
                   return (
                     <li key={fieldName}>
                       <strong>{t(`uploadWizard.fields.${fieldName}.label`)}:</strong> {message}

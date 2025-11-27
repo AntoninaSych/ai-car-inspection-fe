@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, alpha } from '@mui/material/styles';
 import { filledInputClasses, inputLabelClasses, outlinedInputClasses, paperClasses } from '@mui/material';
 import { basePalette } from '../../tokens/colors';
 
@@ -37,6 +37,24 @@ export const baseComponents = {
       textSizeLarge: {
         padding: '12px 16px',
       },
+    },
+  },
+  MuiAutocomplete: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+      }),
+      option: ({ theme }) => ({
+        color: theme.palette.text.primary,
+        '&.Mui-focused': {
+          backgroundColor: alpha(theme.palette.primary.main, 0.15),
+        },
+        '&[aria-selected="true"]': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+      }),
     },
   },
   MuiMenu: {

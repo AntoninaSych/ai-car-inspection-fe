@@ -1,22 +1,32 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { Stack, Typography, Card, CardContent, CardMedia, IconButton, Alert, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Trans } from 'react-i18next';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDropZone } from '../hooks/useDropZone';
-import { ContentInner, DragContentInner } from '../styled';
 import { MAX_FILE_SIZE_MB } from '../validation/schema';
+import { ContentInner, DragContentInner } from '../styled';
 
 const PhotoStepRoot = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
 const PreviewCard = styled(Card)(() => ({
-  maxWidth: 320,
   margin: '0 auto',
   position: 'relative',
 }));
+
+const ImageWrapper = styled('div')({
+  height: 150,
+  overflow: 'hidden',
+});
+
+const StyledCardMedia = styled(CardMedia)({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
 
 const RemoveBtn = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
@@ -32,9 +42,13 @@ const RemoveBtn = styled(IconButton)(({ theme }) => ({
 }));
 
 export const PhotoStep = ({ name, label, helperText, value, setValue, t, error }) => {
+  const inputRef = useRef(null);
   const { dropRef, isDragging } = useDropZone({
     onDropFile: file => {
       setValue(name, file, { shouldValidate: true });
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
     },
   });
   const previewUrl = useMemo(() => {
@@ -49,6 +63,9 @@ export const PhotoStep = ({ name, label, helperText, value, setValue, t, error }
 
   const handleOnRemove = () => {
     setValue(name, null, { shouldValidate: true });
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   };
 
   const handleFileClick = () => {
@@ -67,7 +84,7 @@ export const PhotoStep = ({ name, label, helperText, value, setValue, t, error }
 
       <DragContentInner ref={dropRef} data-dragging={isDragging ? 'true' : 'false'} onClick={handleFileClick}>
         <ContentInner>
-          <input id="photo-input" type="file" accept="image/*" onChange={handleFileChange} hidden />
+          <input ref={inputRef} id="photo-input" type="file" accept="image/*" onChange={handleFileChange} hidden />
           <CloudUploadIcon sx={{ fontSize: 46 }} />
           <Typography variant="body1" color="text.secondary" align="center">
             <Trans i18nKey="uploadWizard.dragOverlay.title">
@@ -88,7 +105,9 @@ export const PhotoStep = ({ name, label, helperText, value, setValue, t, error }
           <RemoveBtn size="small" onClick={handleOnRemove}>
             <CloseIcon fontSize="small" />
           </RemoveBtn>
-          <CardMedia component="img" image={previewUrl} alt={label} />
+          <ImageWrapper>
+            <StyledCardMedia component="img" image={previewUrl} alt={label} />
+          </ImageWrapper>
           <CardContent sx={{ py: 3 }}>
             <Typography variant="body2" color="primary.main" fontWeight="600" align="center">
               {t('uploadWizard.preview', 'Preview')}
