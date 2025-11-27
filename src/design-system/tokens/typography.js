@@ -38,25 +38,25 @@ export const baseTypography = {
   h1: {
     fontFamily: "saira, 'Plus Jakarta Sans', sans-serif",
     fontWeight: 700,
-    fontSize: '3.5rem',
+    fontSize: '3rem',
     lineHeight: 1.2,
   },
   h2: {
     fontFamily: "saira, 'Plus Jakarta Sans', sans-serif",
     fontWeight: 700,
-    fontSize: '3rem',
+    fontSize: '2.5rem',
     lineHeight: 1.2,
   },
   h3: {
     fontFamily: "saira, 'Plus Jakarta Sans', sans-serif",
     fontWeight: 700,
-    fontSize: '2.25rem',
+    fontSize: '2rem',
     lineHeight: 1.2,
   },
   h4: {
     fontFamily: "saira, 'Plus Jakarta Sans', sans-serif",
     fontWeight: 700,
-    fontSize: '2rem',
+    fontSize: '1.8rem',
     lineHeight: 1.2,
   },
   h5: {

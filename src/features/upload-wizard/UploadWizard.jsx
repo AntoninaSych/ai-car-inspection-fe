@@ -5,14 +5,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { sendEstimates } from '../../api/estimatesApi';
-import { uploadSteps, defaultValues, STEPS } from './config';
+import { WIZARD_STEPS, defaultValues, STEPS } from './config';
 import { createUploadWizardSchema } from './validation/schema';
 import { WizardHeader } from './components/WizardHeader';
 import { PhotoStep } from './components/PhotoStep';
 import { SummaryStep } from './components/SummaryStep';
-import { WizardRoot, NavRow, ContentCard, ContentInner, DragOverlay } from './styled';
-import { useDropZone } from './hooks/useDropZone';
 import { ROUTERS } from '../../constants';
+import { WizardRoot, NavRow, ContentCard, ContentInner } from './styled';
+import { CarDetailsStep } from './components/CarDetailsStep';
 
 export const UploadWizard = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -24,25 +24,20 @@ export const UploadWizard = () => {
     setValue,
     watch,
     setError,
+    register,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(uploadWizardSchema),
     defaultValues,
   });
   const values = watch();
-  const stepsWithLabels = uploadSteps.map(step => ({
+  const stepsWithLabels = WIZARD_STEPS.map(step => ({
     ...step,
     label: t(step.labelKey),
   }));
   const activeStepConfig = stepsWithLabels[activeStep];
   const isSummary = activeStepConfig.id === STEPS.SUMMARY;
-  const { dropRef, isDragging } = useDropZone({
-    isEnabled: !isSummary,
-    onDropFile: file => {
-      const fieldName = activeStepConfig.id;
-      setValue(fieldName, file, { shouldValidate: true });
-    },
-  });
+  const isDetails = activeStepConfig.id === STEPS.DETAILS;
 
   const handleEmailChange = value => {
     setValue('email', value, { shouldValidate: true });
@@ -55,6 +50,15 @@ export const UploadWizard = () => {
       formData.append('rear', values.rear);
       formData.append('left', values.left);
       formData.append('right', values.right);
+      formData.append('make', values.make);
+      formData.append('model', values.model);
+      formData.append('year', values.year);
+      if (values.mileage) {
+        formData.append('mileage', values.mileage);
+      }
+      if (values.damageContext) {
+        formData.append('damageContext', values.damageContext);
+      }
       if (values.email) {
         formData.append('email', values.email);
       }
@@ -75,7 +79,11 @@ export const UploadWizard = () => {
   };
 
   const handleNext = () => {
-    setActiveStep(prev => Math.min(prev + 1, uploadSteps.length - 1));
+    setActiveStep(prev => Math.min(prev + 1, WIZARD_STEPS.length - 1));
+  };
+
+  const handleStepClick = index => {
+    setActiveStep(index);
   };
 
   const handleBack = () => {
@@ -83,6 +91,8 @@ export const UploadWizard = () => {
   };
 
   const renderStepContent = () => {
+    const id = activeStepConfig.id;
+
     if (isSummary) {
       return (
         <SummaryStep
@@ -97,30 +107,30 @@ export const UploadWizard = () => {
       );
     }
 
-    const id = activeStepConfig.id;
+    if (isDetails) {
+      return <CarDetailsStep values={values} errors={errors} register={register} setValue={setValue} t={t} />;
+    }
 
     return (
-      <PhotoStep
-        name={id}
-        label={activeStepConfig.label}
-        helperText={t(
-          `uploadWizard.steps.${id}.helper`,
-          `Upload a clear photo of the ${activeStepConfig.label.toLowerCase()}.`
-        )}
-        value={values[id]}
-        setValue={setValue}
-        error={errors[id]}
-        t={t}
-      />
+      <>
+        <PhotoStep
+          name={id}
+          label={activeStepConfig.label}
+          helperText={t(
+            `uploadWizard.steps.${id}.helper`,
+            `Upload a clear photo of the ${activeStepConfig.label.toLowerCase()}.`
+          )}
+          value={values[id]}
+          setValue={setValue}
+          error={errors[id]}
+          t={t}
+        />
+      </>
     );
   };
 
   return (
     <WizardRoot>
-      <Typography variant="h4" sx={{ mb: 2 }}>
-        {t('uploadWizard.title', 'Upload photos of your car')}
-      </Typography>
-
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         {t(
           'uploadWizard.subtitle',
@@ -128,28 +138,18 @@ export const UploadWizard = () => {
         )}
       </Typography>
 
-      <WizardHeader steps={stepsWithLabels} activeStep={activeStep} />
+      <WizardHeader steps={stepsWithLabels} activeStep={activeStep} onClick={handleStepClick} />
 
       <ContentCard variant="outlined">
-        <ContentInner ref={dropRef} data-dragging={isDragging ? 'true' : 'false'}>
-          {isDragging && !isSummary && (
-            <DragOverlay>
-              <Typography variant="subtitle1">{t('uploadWizard.dragOverlay.title', 'Drag photo here')}</Typography>
-              <Typography variant="body2">
-                {t('uploadWizard.dragOverlay.subtitle', 'or click "Choose Photo"')}
-              </Typography>
-            </DragOverlay>
-          )}
-          {renderStepContent()}
-        </ContentInner>
+        <ContentInner>{renderStepContent()}</ContentInner>
 
         <NavRow sx={{ p: 2 }}>
           <Button variant="text" disabled={activeStep === 0} onClick={handleBack}>
             {t('uploadWizard.buttons.back', 'Back')}
           </Button>
 
-          {activeStepConfig.id !== 'summary' && (
-            <Button variant="contained" onClick={handleNext} disabled={!values[activeStepConfig.id]}>
+          {!isSummary && (
+            <Button variant="contained" onClick={handleNext}>
               {t('uploadWizard.buttons.next', 'Next')}
             </Button>
           )}

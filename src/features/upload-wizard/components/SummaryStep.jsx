@@ -1,6 +1,5 @@
 import { Stack, Typography, TextField, Button, Card, CardMedia, CardContent, Alert, AlertTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { REQUIRED_STEPS } from '../config';
 
 const SummaryRoot = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(2),
@@ -34,8 +33,9 @@ const StyledCardMedia = styled(CardMedia)({
 });
 
 export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onEmailChange, onSubmit, t }) => {
-  const requiredPhotosFilled = values.front && values.rear && values.left && values.right;
-  const hasErrors = REQUIRED_STEPS.some(step => !!errors[step]);
+  const requiredPhotos = ['front', 'rear', 'left', 'right'];
+  const requiredPhotosFilled = requiredPhotos.every(photo => !!values[photo]);
+  const hasErrors = Object.keys(errors).length > 0;
 
   return (
     <SummaryRoot>
@@ -49,32 +49,30 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
       </Typography>
 
       <PhotosRow>
-        {REQUIRED_STEPS.map(side => {
-          const file = values[side];
-          if (!file) {
-            return null;
+        {Object.keys(values).map(fieldName => {
+          const file = values[fieldName];
+          if (file instanceof File) {
+            const label = stepsWithLabels.find(({ id }) => id === fieldName)?.label;
+            const previewUrl = URL.createObjectURL(file);
+
+            return (
+              <PreviewCard key={fieldName}>
+                <ImageWrapper>
+                  <StyledCardMedia component="img" image={previewUrl} alt={label} />
+                </ImageWrapper>
+                <CardContent>
+                  <Typography variant="body2" textTransform="capitalize" color="primary.main" fontWeight="600">
+                    {label}
+                  </Typography>
+                </CardContent>
+              </PreviewCard>
+            );
           }
-
-          const label = stepsWithLabels.find(({ id }) => id === side)?.label;
-          const previewUrl = URL.createObjectURL(file);
-
-          return (
-            <PreviewCard key={side}>
-              <ImageWrapper>
-                <StyledCardMedia component="img" image={previewUrl} alt={label} />
-              </ImageWrapper>
-              <CardContent>
-                <Typography variant="body2" textTransform="capitalize" color="primary.main" fontWeight="600">
-                  {label}
-                </Typography>
-              </CardContent>
-            </PreviewCard>
-          );
         })}
       </PhotosRow>
 
       <EmailField
-        label={t('uploadWizard.summary.emailLabel', 'Email (optional)')}
+        label={t('uploadWizard.fields.email.label', 'Email')}
         type="email"
         size="small"
         value={values.email || ''}
@@ -84,7 +82,7 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
       />
 
       <Stack gap={1}>
-        <Button variant="contained" onClick={onSubmit} disabled={isSubmitting || hasErrors || !requiredPhotosFilled}>
+        <Button variant="contained" onClick={onSubmit} disabled={isSubmitting || hasErrors}>
           {isSubmitting
             ? t('uploadWizard.summary.sending', 'Sending...')
             : t('uploadWizard.summary.sendButton', 'Send for AI analysis')}
@@ -99,16 +97,15 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
         )}
 
         {hasErrors && (
-          <Alert severity="error">
-            <AlertTitle>{t('uploadWizard.summary.errorsTitle', 'Please fix photo errors')}</AlertTitle>
+          <Alert severity="warning">
+            <AlertTitle>{t('uploadWizard.summary.errorsTitle', 'Please fix the following errors')}</AlertTitle>
             <ul>
-              {Object.keys(errors).map(side => {
-                const message = errors[side]?.message;
-                const hasStepError = REQUIRED_STEPS.includes(side);
-                if (message && hasStepError) {
+              {Object.keys(errors).map(fieldName => {
+                const message = errors[fieldName]?.message;
+                if (message && !requiredPhotos.includes(fieldName)) {
                   return (
-                    <li key={side}>
-                      <strong>{t(`uploadWizard.steps.${side}.label`)}:</strong> {message}
+                    <li key={fieldName}>
+                      <strong>{t(`uploadWizard.fields.${fieldName}.label`)}:</strong> {message}
                     </li>
                   );
                 }

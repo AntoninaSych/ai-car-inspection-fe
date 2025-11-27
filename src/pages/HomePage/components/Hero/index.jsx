@@ -8,7 +8,7 @@ const Hero = () => {
 
   return (
     <Box component="section" sx={{ backgroundColor: theme => theme.palette.background.secondary }}>
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="md" sx={{ py: 8 }}>
         <Stack spacing={1} alignItems="center">
           <Typography variant="h1" align="center">
             {t('title')}
@@ -16,7 +16,7 @@ const Hero = () => {
           <Typography align="center">{t('description')}</Typography>
         </Stack>
         <Box sx={{ textAlign: 'center', mt: 4 }}>
-          <Button to={ROUTERS.UPLOAD}>{t('button.upload_photo')}</Button>
+          <Button to={ROUTERS.UPLOAD}>{t('buttons.upload_photo')}</Button>
         </Box>
       </Container>
     </Box>
