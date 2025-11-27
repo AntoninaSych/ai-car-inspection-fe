@@ -8,7 +8,9 @@ export const i18nPromise = i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'ua',
+    fallbackLng: 'en',
+    supportedLngs: ['en', 'ua'],
+    load: 'languageOnly',
     debug: import.meta.env.DEV,
     ns: ['common', 'howItWorks'],
     defaultNS: 'common',

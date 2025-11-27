@@ -10,8 +10,8 @@ export const LanguageSwitcher = () => {
   const open = Boolean(anchorEl);
 
   const languages = [
-    { code: 'ua', label: 'Українська' },
     { code: 'en', label: 'English' },
+    { code: 'ua', label: 'Українська' },
   ];
 
   const handleOpen = event => {
@@ -29,7 +29,7 @@ export const LanguageSwitcher = () => {
     setAnchorEl(null);
   };
 
-  const currentLang = languages.find(lng => lng.code === i18n.language) ?? languages[0];
+  const currentLang = languages.find(lng => lng.code === i18n.resolvedLanguage) ?? languages[0];
 
   return (
     <Box sx={{ ml: 2 }}>
