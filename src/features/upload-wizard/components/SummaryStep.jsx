@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Stack, Typography, TextField, Button, Card, CardMedia, CardContent, Alert, AlertTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { requiredPhotoFields } from '../constants';
 
 const SummaryRoot = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(2),
@@ -11,6 +12,7 @@ const PhotosRow = styled(Stack)(({ theme }) => ({
   flexWrap: 'wrap',
   gap: theme.spacing(2),
   margin: theme.spacing(2, 0),
+  justifyContent: 'center',
 }));
 
 const PreviewCard = styled(Card)(() => ({
@@ -21,11 +23,15 @@ const EmailField = styled(TextField)(() => ({
   maxWidth: 360,
 }));
 
-const ImageWrapper = styled('div')({
-  width: 200,
+const ImageWrapper = styled('div')(({ theme }) => ({
   height: 150,
+  width: 200,
   overflow: 'hidden',
-});
+
+  [theme.breakpoints.up('md')]: {
+    width: 175,
+  },
+}));
 
 const StyledCardMedia = styled(CardMedia)({
   width: '100%',
@@ -34,8 +40,9 @@ const StyledCardMedia = styled(CardMedia)({
 });
 
 export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onEmailChange, onSubmit, t }) => {
-  const requiredPhotos = ['front', 'rear', 'left', 'right'];
-  const requiredPhotosFilled = requiredPhotos.some(photo => !!values[photo]);
+  const requiredPhotosFilled = useMemo(() => {
+    return requiredPhotoFields.some(photo => !!values[photo]);
+  }, [values]);
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
