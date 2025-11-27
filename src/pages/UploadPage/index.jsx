@@ -6,8 +6,8 @@ const UploadPage = () => {
   const { t } = useTranslation();
 
   return (
-    <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h1" align="center" sx={{ pb: 2 }}>
+    <Container maxWidth="md" sx={{ py: 8 }}>
+      <Typography variant="h1" align="center">
         {t('upload-page.title')}
       </Typography>
       <UploadWizard />

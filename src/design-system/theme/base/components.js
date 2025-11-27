@@ -39,6 +39,35 @@ export const baseComponents = {
       },
     },
   },
+  MuiMenu: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+      }),
+    },
+  },
+  MuiMenuItem: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '&.Mui-selected': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.white,
+          '&:hover': {
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.common.white,
+          },
+        },
+        '&:hover': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+        '&.Mui-selected.Mui-focusVisible': {
+          backgroundColor: theme.palette.primary.main,
+        },
+      }),
+    },
+  },
   MuiCard: {
     styleOverrides: {
       root: {
@@ -102,6 +131,7 @@ export const baseComponents = {
       input: {
         '&::placeholder': {
           opacity: 1,
+          color: basePalette.neutral[600],
         },
       },
       root: {

@@ -6,19 +6,19 @@ const HeaderRoot = styled(Stack)(({ theme }) => ({
   flexDirection: 'column',
   columnGap: theme.spacing(2),
   rowGap: theme.spacing(1),
+  justifyContent: 'center',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
 
   marginBottom: theme.spacing(3),
-  justifyContent: 'center',
 }));
 
 const StepWrapper = styled(Stack)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(0.5),
-  opacity: 0.5,
 }));
 
 const StepCircle = styled(Box)(() => ({
@@ -33,7 +33,7 @@ const StepCircle = styled(Box)(() => ({
   fontSize: 14,
 }));
 
-export const WizardHeader = ({ steps, activeStep }) => {
+export const WizardHeader = ({ steps, activeStep, onClick }) => {
   return (
     <HeaderRoot>
       {steps.map((step, index) => {
@@ -47,7 +47,11 @@ export const WizardHeader = ({ steps, activeStep }) => {
             <StepCircle sx={{ borderColor: color, color }}>
               {isCompleted ? <CheckIcon sx={{ fontSize: 16 }} /> : <Box component="span">{index + 1}</Box>}
             </StepCircle>
-            <Typography variant="body2">{step.label}</Typography>
+            <Typography variant="body2">
+              <Link href="#" onClick={() => onClick(index)} sx={{ color, textDecoration: 'none' }}>
+                {step.label}
+              </Link>
+            </Typography>
           </StepWrapper>
         );
       })}

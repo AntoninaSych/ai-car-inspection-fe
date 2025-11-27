@@ -1,7 +1,7 @@
 {
   "title": "AI Car Repair Estimator",
-  "description": "Upload a photo of the damage — AI will identify the elements, damage, and the estimated repair price.",
-  "button": {
+  "description": "Upload photos of the damage — AI will identify the elements, damage, and the estimated repair price.",
+  "buttons": {
     "upload_photo": "Upload photo"
   },
   "nav": {
@@ -12,44 +12,82 @@
     "go_home": "Go to the <home>Home</home> page"
   },
   "uploadWizard": {
-    "title": "Upload Your Car Photos",
-    "subtitle": "We’ll use these photos to generate a preliminary repair estimate. Please upload clear images of each side of the vehicle.",
+    "subtitle": "We use your vehicle information and photos to generate a more accurate preliminary repair estimate. Please provide the details and upload the required images.",
     "dragOverlay": {
-      "title": "Drag & drop your photo here",
-      "subtitle": "or click \"Choose Photo\""
+      "title": "<0>Click to upload</0> or Drag a photo here",
+      "subtitle": "Maximum file size {{size}}MB."
     },
     "steps": {
+      "details": { "label": "Vehicle Information" },
       "front": { "label": "Front View", "helper": "Upload a clear photo of the front of the vehicle." },
       "rear": { "label": "Rear View", "helper": "Upload a clear photo of the rear of the vehicle." },
       "left": { "label": "Left Side", "helper": "Upload a clear photo of the vehicle’s left side." },
       "right": { "label": "Right Side", "helper": "Upload a clear photo of the vehicle’s right side." },
       "summary": { "label": "Summary" }
     },
+    "fields": {
+      "front": { "label": "Front View" },
+      "rear": { "label": "Rear View" },
+      "left": { "label": "Left Side" },
+      "right": { "label": "Right Side" },
+      "make": { "label": "Make" },
+      "model": { "label": "Model" },
+      "year": { "label": "Year" },
+      "mileage": { "label": "Mileage" },
+      "email": { "label": "Email" },
+      "damageContext": { "label": "Damage Context" }
+    },
     "summary": {
       "title": "Check your photos",
       "description": "Please check your photos and optionally leave your email to receive the estimate.",
-      "emailLabel": "Email (optional)",
       "sending": "Sending...",
       "sendButton": "Send for AI analysis",
       "missingPhotos": "Please upload all required photos before sending.",
-      "errorsTitle": "Please fix errors"
+      "errorsTitle": "Please fix the following errors:"
     },
     "buttons": {
       "back": "Back",
       "next": "Next",
       "choose_photo": "Choose Photo"
     },
-    "preview": "Preview"
+    "preview": "Preview",
+    "details": {
+      "title": "Car details",
+      "description": "Providing these details helps our AI generate a more accurate estimate.",
+      "make": {
+        "label": "Make"
+      },
+      "model": {
+        "label": "Model"
+      },
+      "year": {
+        "label": "Year"
+      },
+      "mileage": {
+        "label": "Mileage (optional)",
+        "placeholder": "e.g., 50000"
+      },
+      "damageContext": {
+        "label": "Damage context (optional)",
+        "placeholder": "e.g., \"The car was hit in a parking lot. The dent is on the rear passenger door.\""
+      }
+    }
   },
   "upload-page": {
-    "title": "Upload images for preliminary evaluation"
+    "title": "Submit Vehicle Details for a Preliminary Estimate"
   },
   "errors": {
     "upload": {
       "fileSize": "Maximum file size: {{size}} MB.",
-      "fileFormat": "Only JPG, PNG are supported.",
+      "fileFormat": "Only supported {{formats}}.",
       "invalidEmail": "Enter the correct Email format.",
-      "required": "Required"
+      "required": "Required",
+      "onlyNumber": "Must be a number",
+      "max": "Maximum {{value}} characters",
+      "min": "Minimum {{value}} characters",
+      "maxPhotos": "Maximum {{value} extra photos",
+      "integer": "Must be an integer",
+      "positive": "Must be an positive"
     }
   }
 }
