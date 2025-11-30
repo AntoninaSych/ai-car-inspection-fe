@@ -1,12 +1,27 @@
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-  http.post('/api/estimates', async ({ request }) => {
-    const formData = await request.formData();
-    const front = formData.get('front');
+  // http.get('/api/users/current', async ({ request }) => {
+  //   const auth = request.headers.get('Authorization');
+  //
+  //   if (!auth || !auth.startsWith('Bearer')) {
+  //     return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  //   }
+  //
+  //   await new Promise(resolve => setTimeout(resolve, 800));
+  //   return HttpResponse.json(
+  //     {
+  //       id: 12,
+  //       email: 'email@gmail.com',
+  //       name: 'Roman',
+  //       avatarURL: 'https://avatar.com/avatar.png',
+  //     },
+  //     { status: 200 }
+  //   );
+  // }),
 
-    console.log(front);
-
+  // send form
+  http.post('/api/estimates', async () => {
     await new Promise(resolve => setTimeout(resolve, 800));
 
     return HttpResponse.json(

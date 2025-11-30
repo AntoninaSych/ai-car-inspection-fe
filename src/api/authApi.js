@@ -1,5 +1,4 @@
-import api from './default';
-import { setAuthHeader } from './utils';
+import api from './axiosInstance';
 
 export const usersSignup = async user => {
   const { data } = await api.post('/users/register', user);
@@ -11,23 +10,11 @@ export const usersLogin = async user => {
   return data;
 };
 
-export const usersLogout = async token => {
-  await api.post(
-    '/users/logout',
-    {},
-    {
-      headers: {
-        Authorization: setAuthHeader(token),
-      },
-    }
-  );
+export const usersLogout = async () => {
+  await api.post('/users/logout', {});
 };
 
-export const fetchCurrentUser = async token => {
-  const { data } = await api.get('/users/current', {
-    headers: {
-      Authorization: setAuthHeader(token),
-    },
-  });
+export const fetchCurrentUser = async () => {
+  const { data } = await api.get('/users/current');
   return data;
 };

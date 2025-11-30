@@ -3,9 +3,8 @@ import { login, logout, refreshUser, register } from './operations';
 
 const initialState = {
   user: null,
-  userDetails: null,
-  token: null,
-  isLoggedIn: false,
+  accessToken: null,
+  isAuthorized: false,
   isRefreshing: false,
 };
 
@@ -13,8 +12,8 @@ const authorizationCase = (state, action) => {
   const { token, user } = action.payload;
   if (token) {
     state.user = user;
-    state.token = token;
-    state.isLoggedIn = true;
+    state.accessToken = token;
+    state.isAuthorized = true;
   }
 };
 
@@ -28,15 +27,15 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, authorizationCase)
       .addCase(logout.fulfilled, state => {
         state.user = null;
-        state.token = null;
-        state.isLoggedIn = false;
+        state.accessToken = null;
+        state.isAuthorized = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoggedIn = true;
+        state.isAuthorized = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {

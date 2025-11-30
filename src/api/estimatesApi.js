@@ -1,4 +1,4 @@
-import api from './default';
+import api from './axiosInstance';
 
 export const sendEstimates = async estimatesData => {
   const { data } = await api.post('/estimates', estimatesData, {
