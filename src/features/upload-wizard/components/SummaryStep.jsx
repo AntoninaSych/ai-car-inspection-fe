@@ -90,7 +90,7 @@ export const SummaryStep = ({ values, errors, isSubmitting, stepsWithLabels, onE
         required
       />
 
-      <Stack gap={1}>
+      <Stack spacing={1}>
         <Button variant="contained" onClick={onSubmit} disabled={isSubmitting || hasErrors}>
           {isSubmitting
             ? t('uploadWizard.summary.sending', 'Sending...')

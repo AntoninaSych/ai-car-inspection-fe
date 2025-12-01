@@ -20,8 +20,9 @@ export const useAppTheme = () => {
   const theme = useMuiTheme();
   const { themeName, setThemeName } = useThemeSwitcher();
   const toggle = () => setThemeName(themeName === ThemeName.Dark ? ThemeName.Light : ThemeName.Dark);
+  const isDark = themeName === ThemeName.Dark;
 
-  return { theme, themeName, setThemeName, toggle };
+  return { theme, themeName, setThemeName, isDark, toggle };
 };
 
 export const DesignSystemThemeProvider = ({ children }) => {

@@ -11,13 +11,13 @@ const createFileSchema = t =>
     .mixed()
     .nullable()
     .optional()
-    .test('fileSize', t('errors.upload.fileSize', { size: MAX_FILE_SIZE_MB }), file => {
+    .test('fileSize', t('validation.fileSize', { size: MAX_FILE_SIZE_MB }), file => {
       if (!file) {
         return true;
       }
       return file.size <= MAX_FILE_SIZE;
     })
-    .test('fileFormat', t('errors.upload.fileFormat', { formats }), file => {
+    .test('fileFormat', t('validation.fileFormat', { formats }), file => {
       if (!file) {
         return true;
       }
@@ -26,25 +26,25 @@ const createFileSchema = t =>
 
 export const createUploadWizardSchema = t =>
   yup.object({
-    make: yup.string().required(t(`errors.upload.required`)),
-    model: yup.string().required(t(`errors.upload.required`)),
+    make: yup.string().required(t(`validation.required`)),
+    model: yup.string().required(t(`validation.required`)),
     year: yup
       .number()
-      .required(t(`errors.upload.required`))
-      .typeError(t(`errors.upload.required`))
-      .integer(t(`errors.upload.integer`))
-      .positive(t(`errors.upload.positive`))
+      .required(t(`validation.required`))
+      .typeError(t(`validation.required`))
+      .integer(t(`validation.integer`))
+      .positive(t(`validation.positive`))
       .min(1980)
       .max(new Date().getFullYear() + 1),
     mileage: yup.string().optional().nullable(),
     damageContext: yup
       .string()
-      .max(1000, t(`errors.upload.max`, { value: 1000 }))
+      .max(1000, t(`validation.max`, { value: 1000 }))
       .nullable()
       .optional(),
     front: createFileSchema(t),
     rear: createFileSchema(t),
     left: createFileSchema(t),
     right: createFileSchema(t),
-    email: yup.string().required(t(`errors.upload.required`)).email(t('errors.upload.invalidEmail')),
+    email: yup.string().required(t(`validation.required`)).email(t('validation.invalidEmail')),
   });
