@@ -40,7 +40,13 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
 
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, { rejectWithValue }) => {
   try {
-    return await fetchCurrentUser();
+    const data = await fetchCurrentUser();
+
+    if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+      return rejectWithValue('Invalid response format');
+    }
+
+    return data;
   } catch ({ message }) {
     return rejectWithValue(message);
   }
