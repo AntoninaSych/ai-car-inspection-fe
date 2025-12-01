@@ -4,7 +4,7 @@ import { Typography, Button, AlertTitle, Alert } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-import { sendEstimates } from '../../api/estimatesApi';
+import { sendTask } from '../../api/tasksApi';
 import { ROUTERS } from '../../constants';
 import { WIZARD_STEPS, defaultValues, STEPS } from './constants';
 import { createUploadWizardSchema } from './validation/schema';
@@ -50,7 +50,7 @@ export const UploadWizard = () => {
       Object.keys(values).forEach(fieldName => {
         formData.append(fieldName, values[fieldName]);
       });
-      const data = await sendEstimates(formData);
+      const data = await sendTask(formData);
 
       if (data.estimateId) {
         navigate(`${ROUTERS.RESULT}/${data.estimateId}`);

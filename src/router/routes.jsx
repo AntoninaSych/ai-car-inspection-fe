@@ -1,9 +1,11 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import { PrivateRoute } from '../components/PrivateRoute';
 import { Layout } from '../layouts';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const UploadPage = lazy(() => import('../pages/UploadPage'));
+const ProfilePage = lazy(() => import('../pages/ProfilePage'));
 const ResultPage = lazy(() => import('../pages/ResultPage'));
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -14,9 +16,17 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'upload', element: <UploadPage /> },
-      { path: 'result/:id', element: <ResultPage /> },
-      { path: 'thank-you', element: <ThankYouPage /> },
+
+      // 🔐 private routes
+      {
+        element: <PrivateRoute />,
+        children: [
+          { path: 'upload', element: <UploadPage /> },
+          { path: 'profile', element: <ProfilePage /> },
+          { path: 'result/:id', element: <ResultPage /> },
+          { path: 'thank-you', element: <ThankYouPage /> },
+        ],
+      },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

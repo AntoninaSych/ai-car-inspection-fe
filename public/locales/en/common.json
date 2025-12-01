@@ -1,9 +1,6 @@
 {
   "title": "AI Car Repair Estimator",
   "description": "Upload photos of the damage — AI will identify the elements, damage, and the estimated repair price.",
-  "buttons": {
-    "upload_photo": "Upload photo"
-  },
   "nav": {
     "upload_photo": "Upload Photo"
   },
@@ -88,18 +85,49 @@
   "upload-page": {
     "title": "Submit Vehicle Details for a Preliminary Estimate"
   },
-  "errors": {
-    "upload": {
-      "fileSize": "Maximum file size: {{size}} MB.",
-      "fileFormat": "Only supported {{formats}}.",
-      "invalidEmail": "Enter the correct Email format.",
-      "required": "Required field",
-      "onlyNumber": "Must be a number",
-      "max": "Maximum {{value}} characters",
-      "min": "Minimum {{value}} characters",
-      "maxPhotos": "Maximum {{value} extra photos",
-      "integer": "Must be an integer",
-      "positive": "Must be an positive"
+  "labels": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name"
+  },
+  "validation": {
+    "fileSize": "Maximum file size: {{size}} MB.",
+    "fileFormat": "Only supported {{formats}}.",
+    "invalidEmail": "Enter the correct Email format.",
+    "required": "Required field",
+    "onlyNumber": "Must be a number",
+    "max": "Maximum {{value}} characters",
+    "min": "Minimum {{value}} characters",
+    "maxPhotos": "Maximum {{value} extra photos",
+    "integer": "Must be an integer",
+    "positive": "Must be an positive"
+  },
+  "modals": {
+    "login": {
+      "title": "Login",
+      "description": "Login to access the service and personal settings.",
+      "footer": " Do not have an account? <1>Sign up</1>"
+    },
+    "register": {
+      "title": "Create an account",
+      "description": "Create an account to have full access to the service.",
+      "footer": "Already have an account? <1>Sign in</1>"
+    },
+    "logout": {
+      "title": "Log Out",
+      "description": "You can always log back in at any time."
     }
+  },
+  "buttons": {
+    "upload_photo": "Upload photo",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Log Out",
+    "cancel": "Cancel"
+  },
+  "mode": {
+    "switch-label": "Switch appearance",
+    "dark-label": "Dark mode",
+    "light-label": "Light mode"
   }
 }

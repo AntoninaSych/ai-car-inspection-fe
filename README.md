@@ -19,7 +19,7 @@ Set up Prettier and ESLint with autosave on your IDE before starting to work wit
 ### Env Variables
 
 Add `.env` to the project root directory, taking `env.example` as an example.
-- `VITE_APP_BASE_API_URL` - API backend url;
+- `VITE_API_PROXY_TARGET` - API backend url (e.g., http://localhost:5001/api);
 
 ### How to start
 

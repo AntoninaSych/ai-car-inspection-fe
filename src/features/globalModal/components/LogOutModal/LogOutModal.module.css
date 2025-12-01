@@ -1,0 +1,30 @@
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.actions {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .description {
+    margin-bottom: 40px;
+  }
+  .actions {
+    gap: 20px;
+  }
+}
+

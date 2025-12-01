@@ -6,15 +6,19 @@ import { Toaster } from 'react-hot-toast';
 import { DesignSystemThemeProvider } from './design-system/theme/ThemeProvider';
 import { Loader } from './components';
 import { store, persistor } from './redux/store';
-import { ROOT_CONTAINER } from './constants';
+import { GlobalModal } from './features/globalModal';
+import { setupAxiosInterceptors } from './api/axiosInstance';
+import { App } from './App';
 import './i18n';
 import { i18nPromise } from './i18n';
-import { App } from './App';
+import { ROOT_CONTAINER } from './constants';
 
 if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser');
   await worker.start();
 }
+
+setupAxiosInterceptors(store);
 
 i18nPromise.then(() => {
   createRoot(document.querySelector(ROOT_CONTAINER)).render(
@@ -24,6 +28,7 @@ i18nPromise.then(() => {
           <PersistGate loading={null} persistor={persistor}>
             <DesignSystemThemeProvider>
               <App />
+              <GlobalModal />
               <Toaster position="top-right" />
             </DesignSystemThemeProvider>
           </PersistGate>

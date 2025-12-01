@@ -1,0 +1,24 @@
+import { styled } from '@mui/material/styles';
+
+export const NavWrapper = styled('nav')(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(3),
+  fontSize: '16px',
+
+  '& a': {
+    textDecoration: 'none',
+    color: theme.palette.text.primary,
+    opacity: 0.7,
+    fontWeight: 600,
+  },
+
+  '& a:hover': {
+    color: theme.palette.primary.main,
+  },
+
+  '& a.active': {
+    color: theme.palette.primary.main,
+    opacity: 1,
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+  },
+}));

@@ -1,17 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from './auth/slice';
-import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/slice';
+import { globalModalReducer } from './modal/slice';
 
 const persistAuthConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistAuthConfig, authReducer),
+    globalModal: globalModalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
