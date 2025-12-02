@@ -1,5 +1,12 @@
 import api from './axiosInstance';
 
+const formatCreateTaskResponse = data => {
+  return {
+    ...data,
+    taskId: data.task_id,
+  };
+};
+
 export const sendTask = async task => {
   const { data } = await api.post('/tasks', task, {
     headers: {
@@ -7,5 +14,5 @@ export const sendTask = async task => {
     },
   });
 
-  return data;
+  return formatCreateTaskResponse(data);
 };

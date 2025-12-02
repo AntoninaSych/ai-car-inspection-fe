@@ -1,48 +1,37 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Button, AlertTitle, Alert } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { Typography, Button, CardContent } from '@mui/material';
+import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { sendTask } from '../../api/tasksApi';
 import { ROUTERS } from '../../constants';
-import { WIZARD_STEPS, defaultValues, STEPS } from './constants';
+import { WIZARD_STEPS, STEPS, VALIDATION_BY_STEP } from './constants';
+import { defaultValues } from './config';
 import { createUploadWizardSchema } from './validation/schema';
-import { WizardHeader } from './components/WizardHeader';
-import { PhotoStep } from './components/PhotoStep';
+import { WizardStepper } from './components/WizardStepper';
 import { SummaryStep } from './components/SummaryStep';
-import { CarDetailsStep } from './components/CarDetailsStep';
-import { WizardRoot, NavRow, ContentCard, ContentInner } from './styled';
+import { DetailsStep } from './components/DetailsStep';
+import { errorNotification } from '../../utils/notification';
+import { PhotosStep } from './components/PhotosStep';
+import { WizardRoot, NavRow, StyledCard } from './styled';
 
 export const UploadWizard = () => {
   const [activeStep, setActiveStep] = useState(0);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('wizard');
   const uploadWizardSchema = useMemo(() => createUploadWizardSchema(t), [t]);
-  const {
-    handleSubmit,
-    setValue,
-    watch,
-    setError,
-    register,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm({
+  const methods = useForm({
     resolver: yupResolver(uploadWizardSchema),
     defaultValues,
   });
-  const values = watch();
+  const { handleSubmit, trigger } = methods;
   const stepsWithLabels = WIZARD_STEPS.map(step => ({
     ...step,
-    label: t(step.labelKey),
+    label: t(step.i18nKey),
   }));
   const activeStepConfig = stepsWithLabels[activeStep];
-  const isSummary = activeStepConfig.id === STEPS.SUMMARY;
-  const isDetails = activeStepConfig.id === STEPS.DETAILS;
-
-  const handleEmailChange = value => {
-    setValue('email', value, { shouldValidate: true });
-  };
+  const isLastStep = activeStep === stepsWithLabels.length - 1;
 
   const onSubmit = async values => {
     try {
@@ -52,107 +41,73 @@ export const UploadWizard = () => {
       });
       const data = await sendTask(formData);
 
-      if (data.estimateId) {
-        navigate(`${ROUTERS.RESULT}/${data.estimateId}`);
+      if (data.ok && data.taskId) {
+        navigate(`${ROUTERS.PAY}/${data.taskId}`);
       } else {
         navigate(ROUTERS.THANK_YOU);
       }
     } catch (error) {
-      setError('root', {
-        type: 'server',
-        message: error?.message || 'Unknown error',
-      });
+      errorNotification(error?.message);
     }
   };
 
-  const handleNext = () => {
-    setActiveStep(prev => Math.min(prev + 1, WIZARD_STEPS.length - 1));
-  };
+  const handleNext = async event => {
+    event.preventDefault();
+    // validate only fields for the current step
+    const fieldsToValidate = VALIDATION_BY_STEP[activeStepConfig.id] || [];
 
-  const handleStepClick = index => {
-    setActiveStep(index);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prev => Math.max(prev - 1, 0));
-  };
-
-  const renderStepContent = () => {
-    const id = activeStepConfig.id;
-
-    if (isSummary) {
-      return (
-        <SummaryStep
-          values={values}
-          errors={errors}
-          stepsWithLabels={stepsWithLabels}
-          isSubmitting={isSubmitting}
-          onEmailChange={handleEmailChange}
-          onSubmit={handleSubmit(onSubmit)}
-          t={t}
-        />
-      );
+    if (fieldsToValidate.length) {
+      const valid = await trigger(fieldsToValidate);
+      if (!valid) {
+        return;
+      }
     }
 
-    if (isDetails) {
-      return (
-        <CarDetailsStep
-          values={values}
-          errors={errors}
-          register={register}
-          control={control}
-          setValue={setValue}
-          t={t}
-        />
-      );
-    }
+    setActiveStep(prev => prev + 1);
+  };
 
-    return (
-      <PhotoStep
-        name={id}
-        label={activeStepConfig.label}
-        helperText={t(`uploadWizard.steps.${id}.helper`, 'Upload a clear photo.')}
-        value={values[id]}
-        setValue={setValue}
-        error={errors[id]}
-        t={t}
-      />
-    );
+  const handleBack = event => {
+    event.preventDefault();
+    setActiveStep(prev => prev - 1);
   };
 
   return (
     <WizardRoot>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        {t(
-          'uploadWizard.subtitle',
-          'We will use these photos to estimate repair costs. Please upload clear images of each side.'
-        )}
-      </Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            {t('subtitle', 'We will use these photos to estimate repair costs. Please upload clear images.')}
+          </Typography>
 
-      <WizardHeader steps={stepsWithLabels} activeStep={activeStep} onClick={handleStepClick} />
+          <WizardStepper steps={stepsWithLabels} activeStep={activeStep} t={t} />
 
-      <ContentCard variant="outlined">
-        <ContentInner>
-          {renderStepContent()}
-          {errors.root && (
-            <Alert severity="error" sx={{ mt: 3 }}>
-              <AlertTitle>{errors.root.message}</AlertTitle>
-            </Alert>
-          )}
-        </ContentInner>
+          <StyledCard variant="outlined">
+            <CardContent>
+              {activeStepConfig.id === STEPS.DETAILS && <DetailsStep t={t} />}
+              {activeStepConfig.id === STEPS.PHOTOS && <PhotosStep t={t} />}
+              {activeStepConfig.id === STEPS.SUMMARY && <SummaryStep t={t} />}
+            </CardContent>
 
-        <NavRow sx={{ p: 2 }}>
-          <Button variant="text" disabled={activeStep === 0} onClick={handleBack}>
-            {t('uploadWizard.buttons.back', 'Back')}
-          </Button>
+            <NavRow>
+              <Button variant="text" type="button" disabled={activeStep === 0} onClick={handleBack}>
+                {t('buttons.back', 'Back')}
+              </Button>
 
-          {!isSummary && (
-            <Button variant="contained" onClick={handleNext}>
-              {t('uploadWizard.buttons.next', 'Next')}
-            </Button>
-          )}
-        </NavRow>
-      </ContentCard>
+              {!isLastStep ? (
+                <Button variant="contained" type="button" onClick={handleNext}>
+                  {t('buttons.next', 'Next')}
+                </Button>
+              ) : (
+                <Button variant="contained" type="submit" disabled={methods.formState.isSubmitting}>
+                  {methods.formState.isSubmitting
+                    ? t('buttons.sending', 'Sending...')
+                    : t('buttons.sendAiButton', 'Send for AI analysis')}
+                </Button>
+              )}
+            </NavRow>
+          </StyledCard>
+        </form>
+      </FormProvider>
     </WizardRoot>
   );
 };

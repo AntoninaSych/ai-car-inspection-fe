@@ -1,38 +1,31 @@
 import { Stack, Typography, TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { styled } from '@mui/material/styles';
 import { getMakeOptions, getYearOptions } from '../utils/options';
 
-const Root = styled(Stack)(({ theme }) => ({
-  gap: theme.spacing(3),
-}));
-
 const FieldsRow = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
-  gap: theme.spacing(2),
 
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
   },
 }));
 
-export const CarDetailsStep = ({ errors, register, control, t }) => {
+export const DetailsStep = ({ t }) => {
+  const { control, register, formState } = useFormContext();
+  const { errors } = formState;
   const yearOptions = getYearOptions();
   const makeOptions = getMakeOptions();
 
   return (
-    <Root>
-      <Typography variant="h6">{t('uploadWizard.details.title', 'Car details')}</Typography>
-
+    <Stack gap={2}>
+      <Typography variant="h6">{t('details.title', 'Car details')}</Typography>
       <Typography variant="body2" color="text.secondary">
-        {t(
-          'uploadWizard.details.description',
-          'Providing these details helps our AI generate a more accurate estimate.'
-        )}
+        {t('details.description', 'Providing these details helps our AI generate a more accurate estimate.')}
       </Typography>
 
-      <FieldsRow>
+      <FieldsRow gap={2}>
         <Controller
           name="make"
           control={control}
@@ -45,7 +38,7 @@ export const CarDetailsStep = ({ errors, register, control, t }) => {
               renderInput={params => (
                 <TextField
                   {...params}
-                  label={t('uploadWizard.details.make.label', 'Марка')}
+                  label={t('details.fields.make.label', 'Марка')}
                   error={!!errors.make}
                   helperText={errors.make?.message}
                   fullWidth
@@ -59,7 +52,7 @@ export const CarDetailsStep = ({ errors, register, control, t }) => {
 
         <TextField
           fullWidth
-          label={t('uploadWizard.details.model.label', 'Model')}
+          label={t('details.fields.model.label', 'Model')}
           required
           {...register('model')}
           error={Boolean(errors.model)}
@@ -78,7 +71,7 @@ export const CarDetailsStep = ({ errors, register, control, t }) => {
               renderInput={params => (
                 <TextField
                   {...params}
-                  label={t('uploadWizard.details.year.label', 'Рік')}
+                  label={t('details.fields.year.label', 'Рік')}
                   error={!!errors.year}
                   helperText={errors.year?.message}
                   required
@@ -91,11 +84,11 @@ export const CarDetailsStep = ({ errors, register, control, t }) => {
         />
       </FieldsRow>
 
-      <FieldsRow sx={{ mt: 2 }}>
+      <FieldsRow>
         <TextField
           fullWidth
-          label={t('uploadWizard.details.mileage.label', 'Mileage (optional)')}
-          placeholder={t('uploadWizard.details.mileage.placeholder', 'e.g., 50000')}
+          label={t('details.fields.mileage.label', 'Mileage (optional)')}
+          placeholder={t('details.fields.mileage.placeholder', 'e.g., 50000')}
           {...register('mileage')}
           error={Boolean(errors.mileage)}
           helperText={errors.mileage?.message}
@@ -106,15 +99,15 @@ export const CarDetailsStep = ({ errors, register, control, t }) => {
         fullWidth
         multiline
         minRows={3}
-        label={t('uploadWizard.details.damageContext.label', 'Damage context (optional)')}
+        label={t('details.fields.description.label', 'Damage context (optional)')}
         placeholder={t(
-          'uploadWizard.details.damageContext.placeholder',
+          'details.fields.description.placeholder',
           'e.g., "The car was hit in a parking lot. The dent is on the rear passenger door."'
         )}
-        {...register('damageContext')}
-        error={Boolean(errors.damageContext)}
-        helperText={errors.damageContext?.message}
+        {...register('description')}
+        error={Boolean(errors.description)}
+        helperText={errors.description?.message}
       />
-    </Root>
+    </Stack>
   );
 };

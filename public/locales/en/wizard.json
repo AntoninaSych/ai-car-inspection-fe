@@ -1,0 +1,88 @@
+{
+  "subtitle": "We use your vehicle information and photos to generate a more accurate preliminary repair estimate. Please provide the details and upload the required images.",
+  "dragOverlay": {
+    "title": "Click to upload",
+    "subtitle": "Maximum file size {{size}}MB."
+  },
+  "steps": {
+    "details": { "label": "Vehicle Information" },
+    "photos": { "label": "Photos" },
+    "summary": { "label": "Summary" }
+  },
+  "photos": {
+    "title": "Upload photos of your car",
+    "subtitle": "We will use these photos to estimate the cost of repairs. Please upload at least one photo — this helps the system detect damage and determine the required work.",
+    "steps": {
+      "front": {
+        "label": "Front View",
+        "helper": "Upload a clear photo of the front of your car. Make sure the headlights, bumper, hood, and license plate (if any) are visible."
+      },
+      "rear": {
+        "label": "Rear View",
+        "helper": "Upload a clear photo of the rear of your car, taken straight from behind. The rear bumper, trunk/boot, tail lights, and license plate (if any) should be visible."
+      },
+      "left": {
+        "label": "Left Side",
+        "helper": "Upload a photo of the left side of your car taken at a slight angle. Try to capture the entire side, from the front fender to the rear fender."
+      },
+      "right": {
+        "label": "Right Side",
+        "helper": "Upload a photo of the right side of your car taken at a slight angle, with the whole side clearly visible in the frame."
+      },
+      "extra": {
+        "label": "Additional photo",
+        "helper": "Upload a close-up photo of the damage (optional)."
+      }
+    }
+  },
+  "summary": {
+    "title": "Review your information",
+    "description": "Please make sure that the provided details and uploaded photos are correct.",
+    "sections": {
+      "details": {
+        "title": "Vehicle Information"
+      },
+      "photos": {
+        "title": "Photos"
+      }
+    }
+  },
+  "buttons": {
+    "back": "Back",
+    "next": "Next",
+    "choose_photo": "Choose Photo"
+  },
+  "preview": "Preview",
+  "details": {
+    "title": "Car details",
+    "description": "Providing these details helps AI generate a more accurate estimate.",
+    "fields": {
+      "make": {
+        "label": "Make"
+      },
+      "model": {
+        "label": "Model"
+      },
+      "year": {
+        "label": "Year"
+      },
+      "mileage": {
+        "label": "Mileage (optional)",
+        "placeholder": "e.g., 50000"
+      },
+      "description": {
+        "label": "Damage context (optional)",
+        "placeholder": "e.g., scratch on the front bumper or dent on the left door"
+      }
+    }
+  },
+  "validation": {
+    "fileSize": "Maximum file size: {{size}} MB.",
+    "fileFormat": "Only supported {{formats}}.",
+    "required": "Required field",
+    "max": "Maximum {{value}} characters",
+    "integer": "Must be an integer",
+    "positive": "Must be an positive",
+    "oneImageRequired": "Please upload at least one photo."
+  }
+}

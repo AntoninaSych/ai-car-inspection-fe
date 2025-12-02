@@ -3,10 +3,10 @@ export const defaultValues = {
   model: '',
   year: '',
   mileage: '',
-  damageContext: '',
-  email: '',
+  description: '',
   front: null,
   rear: null,
   left: null,
   right: null,
+  extra: null,
 };
