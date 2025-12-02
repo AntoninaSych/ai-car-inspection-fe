@@ -1,8 +1,9 @@
-import { Stack, Typography, TextField } from '@mui/material';
+import { Stack, Typography, TextField, CircularProgress } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styled } from '@mui/material/styles';
-import { getMakeOptions, getYearOptions } from '../utils/options';
+import { getYearOptions } from '../utils/options';
+import { useLoadCars } from '../hooks/useLoadCars';
 
 const FieldsRow = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
@@ -13,10 +14,14 @@ const FieldsRow = styled(Stack)(({ theme }) => ({
 }));
 
 export const DetailsStep = ({ t }) => {
-  const { control, register, formState } = useFormContext();
+  const { control, register, formState, watch } = useFormContext();
   const { errors } = formState;
-  const yearOptions = getYearOptions();
-  const makeOptions = getMakeOptions();
+  const selectedBrand = watch('make');
+  const selectedModel = watch('model');
+  const { isBrandsLoading, isModelsLoading, modelOptions, brandOptions, yearOptions } = useLoadCars({
+    selectedBrand,
+    selectedModel,
+  });
 
   return (
     <Stack gap={2}>
@@ -31,16 +36,27 @@ export const DetailsStep = ({ t }) => {
           control={control}
           render={({ field }) => (
             <Autocomplete
-              options={makeOptions}
+              options={brandOptions}
               getOptionLabel={option => option.label ?? ''}
-              value={makeOptions.find(opt => opt.label === field.value) || null}
-              onChange={(_, option) => field.onChange(option?.value || '')}
+              value={brandOptions.find(opt => opt.id === field.value.id) || null}
+              onChange={(_, option) => field.onChange(option || '')}
               renderInput={params => (
                 <TextField
                   {...params}
                   label={t('details.fields.make.label', 'Марка')}
                   error={!!errors.make}
                   helperText={errors.make?.message}
+                  slotProps={{
+                    input: {
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {isBrandsLoading && <CircularProgress color="inherit" size={20} />}
+                          {params.InputProps?.endAdornment}
+                        </>
+                      ),
+                    },
+                  }}
                   fullWidth
                   required
                 />
@@ -50,14 +66,49 @@ export const DetailsStep = ({ t }) => {
           )}
         />
 
-        <TextField
-          fullWidth
-          label={t('details.fields.model.label', 'Model')}
-          required
-          {...register('model')}
-          error={Boolean(errors.model)}
-          helperText={errors.model?.message}
+        <Controller
+          name="model"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={modelOptions}
+              getOptionLabel={option => option.label ?? ''}
+              value={modelOptions.find(opt => opt.id === field.value.id) || null}
+              onChange={(_, option) => field.onChange(option || '')}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label={t('details.fields.model.label', 'Model')}
+                  error={!!errors.model}
+                  helperText={errors.model?.message}
+                  slotProps={{
+                    input: {
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {isModelsLoading && <CircularProgress color="inherit" size={20} />}
+                          {params.InputProps?.endAdornment}
+                        </>
+                      ),
+                    },
+                  }}
+                  required
+                  fullWidth
+                />
+              )}
+              fullWidth
+            />
+          )}
         />
+
+        {/*<TextField*/}
+        {/*  fullWidth*/}
+        {/*  label={t('details.fields.model.label', 'Model')}*/}
+        {/*  required*/}
+        {/*  {...register('model')}*/}
+        {/*  error={Boolean(errors.model)}*/}
+        {/*  helperText={errors.model?.message}*/}
+        {/*/>*/}
 
         <Controller
           name="year"
@@ -66,8 +117,8 @@ export const DetailsStep = ({ t }) => {
             <Autocomplete
               options={yearOptions}
               getOptionLabel={option => option.label ?? ''}
-              value={yearOptions.find(opt => opt.value === field.value) || null}
-              onChange={(_, option) => field.onChange(option?.value || '')}
+              value={yearOptions.find(opt => opt.id === field.value.id) || null}
+              onChange={(_, option) => field.onChange(option || '')}
               renderInput={params => (
                 <TextField
                   {...params}

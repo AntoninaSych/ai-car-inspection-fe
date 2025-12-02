@@ -24,6 +24,7 @@
     "@mui/material": "^7.0.2",
     "@mui/utils": "^7.3.5",
     "@reduxjs/toolkit": "2.2.7",
+    "@tanstack/react-query": "^5.90.11",
     "axios": "1.7.7",
     "clsx": "2.1.1",
     "i18next": "^25.6.3",

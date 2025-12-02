@@ -36,9 +36,22 @@ export const UploadWizard = () => {
   const onSubmit = async values => {
     try {
       const formData = new FormData();
-      Object.keys(values).forEach(fieldName => {
-        formData.append(fieldName, values[fieldName]);
-      });
+      formData.append('brand_id', values.make?.id);
+      formData.append('model_id', values.model?.id);
+      formData.append('year', values.year?.id);
+      formData.append('front', values.front);
+      formData.append('back', values.rear);
+      formData.append('left', values.left);
+      formData.append('right', values.right);
+      formData.append('issue', values.extra);
+
+      if (values.mileage) {
+        formData.append('mileage', values.mileage);
+      }
+      if (values.description) {
+        formData.append('description', values.description);
+      }
+
       const data = await sendTask(formData);
 
       if (data.ok && data.taskId) {
