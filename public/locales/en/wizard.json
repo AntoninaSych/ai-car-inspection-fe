@@ -50,7 +50,8 @@
   "buttons": {
     "back": "Back",
     "next": "Next",
-    "choose_photo": "Choose Photo"
+    "sending": "Sending...",
+    "sendAiButton": "Send for AI analysis"
   },
   "preview": "Preview",
   "details": {
