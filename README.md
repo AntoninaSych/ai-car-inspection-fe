@@ -8,6 +8,7 @@ Set up Prettier and ESLint with autosave on your IDE before starting to work wit
 - [@mui/material](https://www.npmjs.com/package/@mui/material)
 - @reduxjs/toolkit
 - react-redux
+- react-query
 - redux-persist
 - react-hot-toast
 - [react-icons](https://www.npmjs.com/package/react-icons)
