@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const MAX_FILE_SIZE_MB = 5;
+export const MAX_FILE_SIZE_MB = 2;
 export const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -37,7 +37,7 @@ export const createUploadWizardSchema = t =>
       .min(1980)
       .max(new Date().getFullYear() + 1),
     mileage: yup.string().optional().nullable(),
-    damageContext: yup
+    description: yup
       .string()
       .max(1000, t(`validation.max`, { value: 1000 }))
       .nullable()
@@ -46,5 +46,10 @@ export const createUploadWizardSchema = t =>
     rear: createFileSchema(t),
     left: createFileSchema(t),
     right: createFileSchema(t),
-    email: yup.string().required(t(`validation.required`)).email(t('validation.invalidEmail')),
+    extra: createFileSchema(t),
+    photosGroup: yup.mixed().test('at-least-one-photo', t('validation.oneImageRequired'), function () {
+      const { front, rear, left, right, extra } = this.parent;
+      const files = [front, rear, left, right, extra];
+      return files.some(field => field instanceof File);
+    }),
   });

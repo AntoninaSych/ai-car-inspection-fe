@@ -8,6 +8,7 @@ const UploadPage = lazy(() => import('../pages/UploadPage'));
 const ProfilePage = lazy(() => import('../pages/ProfilePage'));
 const ResultPage = lazy(() => import('../pages/ResultPage'));
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'));
+const PayPage = lazy(() => import('../pages/PayPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const router = createBrowserRouter([
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
           { path: 'upload', element: <UploadPage /> },
           { path: 'profile', element: <ProfilePage /> },
           { path: 'result/:id', element: <ResultPage /> },
+          { path: 'pay/:id', element: <PayPage /> },
           { path: 'thank-you', element: <ThankYouPage /> },
         ],
       },

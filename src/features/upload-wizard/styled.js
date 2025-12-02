@@ -1,34 +1,36 @@
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, CardContent } from '@mui/material';
+import { Box, Card, CardMedia, Stack } from '@mui/material';
 
 export const WizardRoot = styled(Box)(({ theme }) => ({
   maxWidth: 800,
   margin: `${theme.spacing(4)} auto ${theme.spacing(6)}`,
 }));
 
-export const ContentCard = styled(Card)(() => ({
+export const StyledCard = styled(Card)(() => ({
   backgroundColor: 'transparent',
 }));
 
-export const ContentInner = styled(CardContent)(() => ({}));
+export const StyledCardMedia = styled(CardMedia)({
+  objectFit: 'cover',
+  height: 180,
+});
 
-export const DragContentInner = styled(Box)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
-  border: `2px dashed ${theme.palette.divider}`,
-  textAlign: 'center',
-  cursor: 'pointer',
-  backgroundColor: theme.palette.background.default,
+export const StyledPreviewCard = styled(Card)(({ theme }) => ({
   position: 'relative',
-  minHeight: 145,
-  transition: 'background-color 0.15s ease, border 0.15s ease',
-  '&[data-dragging="true"]': {
-    backgroundColor: theme.palette.action.hover,
-  },
+  width: '100%',
+  height: '100%',
+  borderRadius: theme.shape.borderRadius * 2,
 }));
 
 export const NavRow = styled(Stack)(({ theme }) => ({
-  marginTop: theme.spacing(3),
-  flexDirection: 'row',
+  padding: theme.spacing(4),
+  marginTop: theme.spacing(2),
+  flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
+
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 }));
