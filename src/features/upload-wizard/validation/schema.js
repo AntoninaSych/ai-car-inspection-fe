@@ -26,16 +26,24 @@ const createFileSchema = t =>
 
 export const createUploadWizardSchema = t =>
   yup.object({
-    make: yup.string().required(t(`validation.required`)),
-    model: yup.string().required(t(`validation.required`)),
+    make: yup
+      .object({
+        id: yup.mixed().required(),
+        label: yup.string().required(),
+      })
+      .required(t(`validation.required`)),
+    model: yup
+      .object({
+        id: yup.mixed().required(),
+        label: yup.string().required(),
+      })
+      .required(t(`validation.required`)),
     year: yup
-      .number()
-      .required(t(`validation.required`))
-      .typeError(t(`validation.required`))
-      .integer(t(`validation.integer`))
-      .positive(t(`validation.positive`))
-      .min(1980)
-      .max(new Date().getFullYear() + 1),
+      .object({
+        id: yup.mixed().required(),
+        label: yup.string().required(),
+      })
+      .required(t(`validation.required`)),
     mileage: yup.string().optional().nullable(),
     description: yup
       .string()

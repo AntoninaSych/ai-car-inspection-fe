@@ -1,4 +1,5 @@
 import { StrictMode, Suspense } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -19,21 +20,24 @@ if (import.meta.env.DEV) {
 }
 
 setupAxiosInterceptors(store);
+const queryClient = new QueryClient();
 
 i18nPromise.then(() => {
   createRoot(document.querySelector(ROOT_CONTAINER)).render(
     <StrictMode>
-      <Suspense fallback={<Loader />}>
+      <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <DesignSystemThemeProvider>
-              <App />
-              <GlobalModal />
-              <Toaster position="top-right" />
+              <Suspense fallback={<Loader />}>
+                <App />
+                <GlobalModal />
+                <Toaster position="top-right" />
+              </Suspense>
             </DesignSystemThemeProvider>
           </PersistGate>
         </Provider>
-      </Suspense>
+      </QueryClientProvider>
     </StrictMode>
   );
 });

@@ -33,9 +33,9 @@ export const SummaryStep = ({ t }) => {
         <Typography variant="h6" gutterBottom>
           {t('summary.sections.details.title', 'Vehicle Information')}
         </Typography>
-        <SummaryRow label={t('details.fields.make.label', 'Make')} value={values.make} />
-        <SummaryRow label={t('details.fields.model.label', 'Make')} value={values.model} />
-        <SummaryRow label={t('details.fields.year.label', 'Year')} value={values.year} />
+        <SummaryRow label={t('details.fields.make.label', 'Make')} value={values.make?.label} />
+        <SummaryRow label={t('details.fields.model.label', 'Make')} value={values.model?.label} />
+        <SummaryRow label={t('details.fields.year.label', 'Year')} value={values.year?.label} />
         {values.mileage && <SummaryRow label={t('details.fields.mileage.label', 'Mileage')} value={values.mileage} />}
         {values.description && (
           <SummaryRow label={t('details.fields.description.label', 'Damage context')} value={values.description} />

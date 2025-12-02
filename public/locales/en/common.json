@@ -37,9 +37,7 @@
     "login": "Login",
     "register": "Register",
     "logout": "Log Out",
-    "cancel": "Cancel",
-    "sending": "Sending...",
-    "sendAiButton": "Send for AI analysis"
+    "cancel": "Cancel"
   },
   "mode": {
     "switch-label": "Switch appearance",
