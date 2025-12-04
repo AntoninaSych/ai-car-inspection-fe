@@ -14,6 +14,12 @@
   "payment-page": {
     "title": "Payment page"
   },
+  "success-page": {
+    "title": "Thank You!",
+    "description": "The operation was completed successfully. Everything is ready.",
+    "paymentSuccess": "Your payment has been successfully processed. Please check your email for the evaluation details and next steps.",
+    "generic": "Thank you for using the service."
+  },
   "labels": {
     "email": "Email",
     "password": "Password",

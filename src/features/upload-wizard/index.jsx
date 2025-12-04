@@ -55,9 +55,9 @@ export const UploadWizard = () => {
       const data = await sendTask(formData);
 
       if (data.ok && data.taskId) {
-        navigate(`${ROUTERS.PAY}/${data.taskId}`);
+        navigate(`${ROUTERS.TASKS_PAY}/${data.taskId}`);
       } else {
-        navigate(ROUTERS.THANK_YOU);
+        navigate(ROUTERS.SUCCESS);
       }
     } catch (error) {
       errorNotification(error?.message);

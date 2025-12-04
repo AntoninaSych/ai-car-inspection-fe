@@ -9,6 +9,7 @@ import { Loader } from '../../components';
 import { PaymentForm } from './components';
 import { errorHandler } from '../../utils/notification';
 import { defaultValues } from './config';
+import { ROUTERS } from '../../constants';
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
@@ -29,14 +30,14 @@ export const PaymentWizard = () => {
       const response = await payTask(taskId, values);
 
       if (response.ok && response.taskId === taskId) {
-        navigate('/thank-you', {
+        navigate(ROUTERS.SUCCESS, {
           state: {
             from: 'payment',
             taskId,
           },
         });
       } else {
-        navigate('/thank-you');
+        navigate(ROUTERS.SUCCESS);
       }
     } catch (error) {
       errorHandler(error, t('payment:unknownError', 'Something went wrong during payment. Please try again.'));

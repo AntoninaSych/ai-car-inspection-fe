@@ -2,8 +2,8 @@ export const ROUTERS = {
   HOME: '/',
   UPLOAD: '/upload',
   RESULT: '/result',
-  PAY: '/pay',
+  TASKS_PAY: '/tasks/pay',
   PROFILE: '/profile',
-  THANK_YOU: '/thank-you',
+  SUCCESS: '/success',
 };
 export const ROOT_CONTAINER = '#root';
