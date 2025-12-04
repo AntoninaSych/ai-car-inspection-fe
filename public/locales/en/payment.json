@@ -1,0 +1,77 @@
+{
+  "title": "Payment",
+  "description": "Please fill in the payment details. After a successful payment you will receive an email with your estimate.",
+  "noTaskId": "Task ID not found",
+  "paid": "Payment has already been received. Wait for an email with the details of the assessment.",
+  "method": {
+    "label": "Payment method",
+    "card": "Bank card",
+    "transfer": "Bank transfer"
+  },
+  "button": {
+    "submit": "Pay",
+    "processing": "Processing payment…"
+  },
+  "fields": {
+    "fullName": {
+      "label": "Full name"
+    },
+    "email": {
+      "label": "Email for receipt"
+    },
+    "amount": {
+      "label": "Amount to pay, {{currency}}"
+    }
+  },
+  "errors": {
+    "fullNameRequired": "Full name is required",
+    "fullNameShort": "Name is too short",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "amountRequired": "Amount is required",
+    "amountInvalid": "Enter a valid amount"
+  },
+  "card": {
+    "title": "Bank card details",
+    "description": "We do not store your card details. Please use a card that supports online payments.",
+    "cardHolder": {
+      "label": "Card holder name"
+    },
+    "cardNumber": {
+      "label": "Card number"
+    },
+    "cardExpiry": {
+      "label": "Expiry date (MM/YY)"
+    },
+    "cardCvv": {
+      "label": "CVV"
+    },
+    "brand": {
+      "label": "Card type"
+    },
+    "errors": {
+      "cardHolderRequired": "Card holder name is required",
+      "cardNumberRequired": "Card number is required",
+      "cardNumberInvalid": "Invalid card number",
+      "cardExpiryRequired": "Expiry date is required",
+      "cardExpiryInvalid": "Use MM/YY format",
+      "cardCvvRequired": "CVV is required",
+      "cardCvvInvalid": "Invalid CVV"
+    }
+  },
+  "transfer": {
+    "info": "After confirmation we will send you bank transfer details to the email you provided.",
+    "payerName": {
+      "label": "Payer name"
+    },
+    "payerIban": {
+      "label": "Payer IBAN (optional)"
+    },
+    "errors": {
+      "payerNameRequired": "Payer name is required",
+      "payerIbanInvalid": "Invalid IBAN"
+    }
+  },
+  "unknownError": "Something went wrong during payment. Please try again.",
+  "serverError": "An error occurred. Please try again later."
+}

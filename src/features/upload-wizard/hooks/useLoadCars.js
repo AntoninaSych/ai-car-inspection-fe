@@ -38,7 +38,6 @@ export const useLoadCars = ({ selectedBrand = null, selectedModel = null, search
   }));
 
   const foundModel = models.find(model => model.id === selectedModelId);
-  console.log(foundModel);
   const yearOptions = foundModel ? getYearOptions(foundModel.yearFrom, foundModel.yearTo) : [];
 
   return {

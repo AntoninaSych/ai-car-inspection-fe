@@ -1,0 +1,77 @@
+{
+  "title": "Оплата заявки",
+  "description": "Будь ласка, заповніть дані для оплати. Після успішної оплати ви отримаєте лист з деталями оцінки.",
+  "noTaskId": "Не знайдено ідентифікатора заявки",
+  "paid": "Оплату вже отримано. Чекайте лист на електронну адресу з деталями оцінки.",
+  "method": {
+    "label": "Метод оплати",
+    "card": "Банківська карта",
+    "transfer": "Банківський переказ"
+  },
+  "button": {
+    "submit": "Сплатити",
+    "processing": "Обробка оплати…"
+  },
+  "fields": {
+    "fullName": {
+      "label": "Повне імʼя"
+    },
+    "email": {
+      "label": "Email для квитанції"
+    },
+    "amount": {
+      "label": "Сума до оплати, {{currency}}"
+    }
+  },
+  "errors": {
+    "fullNameRequired": "Ім’я є обовʼязковим",
+    "fullNameShort": "Занадто коротке імʼя",
+    "emailRequired": "Email є обовʼязковим",
+    "emailInvalid": "Некоректний формат email",
+    "amountRequired": "Сума є обовʼязковою",
+    "amountInvalid": "Вкажіть коректну суму"
+  },
+  "card": {
+    "title": "Дані банківської картки",
+    "description": "Ми не зберігаємо дані вашої картки. Використовуйте карту, що підтримує інтернет-платежі.",
+    "cardHolder": {
+      "label": "Ім’я власника картки"
+    },
+    "cardNumber": {
+      "label": "Номер картки"
+    },
+    "cardExpiry": {
+      "label": "Термін дії (MM/YY)"
+    },
+    "cardCvv": {
+      "label": "CVV"
+    },
+    "brand": {
+      "label": "Тип картки"
+    },
+    "errors": {
+      "cardHolderRequired": "Вкажіть імʼя власника картки",
+      "cardNumberRequired": "Вкажіть номер картки",
+      "cardNumberInvalid": "Некоректний номер картки",
+      "cardExpiryRequired": "Вкажіть термін дії",
+      "cardExpiryInvalid": "Формат MM/YY",
+      "cardCvvRequired": "Вкажіть CVV",
+      "cardCvvInvalid": "Некоректний CVV"
+    }
+  },
+  "transfer": {
+    "info": "Після підтвердження ми надішлемо вам реквізити для банківського переказу на вказаний email.",
+    "payerName": {
+      "label": "Ім’я платника"
+    },
+    "payerIban": {
+      "label": "IBAN платника (необовʼязково)"
+    },
+    "errors": {
+      "payerNameRequired": "Вкажіть ім’я платника",
+      "payerIbanInvalid": "Некоректний IBAN"
+    }
+  },
+  "unknownError": "Сталася помилка при оплаті. Спробуйте ще раз.",
+  "serverError": "Сталася помилка. Спробуйте ще раз пізніше."
+}

@@ -146,12 +146,18 @@ export const baseComponents = {
   },
   MuiInputBase: {
     styleOverrides: {
-      input: {
+      input: ({ theme }) => ({
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 1000px transparent inset',
+          WebkitTextFillColor: theme.palette.text.primary,
+          caretColor: theme.palette.text.primary,
+          transition: 'background-color 9999s ease-out 0s',
+        },
         '&::placeholder': {
           opacity: 1,
           color: basePalette.neutral[600],
         },
-      },
+      }),
       root: {
         margin: '5px 0',
       },
@@ -202,11 +208,17 @@ export const baseComponents = {
           boxShadow: `${basePalette.error.main} 0 0 0 1px`,
         },
       },
-      input: {
+      input: ({ theme }) => ({
         fontSize: 14,
         fontWeight: 500,
         lineHeight: '24px',
-      },
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 1000px transparent inset',
+          WebkitTextFillColor: theme.palette.text.primary,
+          caretColor: theme.palette.text.primary,
+          transition: 'background-color 9999s ease-out 0s',
+        },
+      }),
     },
   },
   MuiOutlinedInput: {
@@ -232,11 +244,17 @@ export const baseComponents = {
           },
         },
       },
-      input: {
+      input: ({ theme }) => ({
         fontSize: 14,
         fontWeight: 500,
         lineHeight: '24px',
-      },
+        '&:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0 1000px transparent inset',
+          WebkitTextFillColor: theme.palette.text.primary,
+          caretColor: theme.palette.text.primary,
+          transition: 'background-color 9999s ease-out 0s',
+        },
+      }),
       notchedOutline: {
         borderColor: basePalette.neutral[200],
         transition: muiTheme.transitions.create(['border-color', 'box-shadow']),

@@ -5,7 +5,7 @@ const initialState = {
   user: null,
   accessToken: null,
   isAuthorized: false,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 const authorizationCase = (state, action) => {

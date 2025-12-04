@@ -1,11 +1,5 @@
 import api from './axiosInstance';
-
-const formatCreateTaskResponse = data => {
-  return {
-    ...data,
-    taskId: data.task_id,
-  };
-};
+import { formatToCamelCase } from './utils';
 
 export const sendTask = async task => {
   const { data } = await api.post('/tasks', task, {
@@ -13,6 +7,15 @@ export const sendTask = async task => {
       'Content-Type': 'multipart/form-data',
     },
   });
+  return formatToCamelCase(data);
+};
 
-  return formatCreateTaskResponse(data);
+export const payTask = async (taskId, values) => {
+  const { data } = await api.post(`/tasks/${taskId}/pay`, values);
+  return formatToCamelCase(data);
+};
+
+export const getTaskDetails = async taskId => {
+  const { data } = await api.get(`/tasks/${taskId}`);
+  return formatToCamelCase(data);
 };
