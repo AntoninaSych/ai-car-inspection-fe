@@ -11,6 +11,9 @@
   "upload-page": {
     "title": "Submit Vehicle Details for a Preliminary Estimate"
   },
+  "payment-page": {
+    "title": "Payment page"
+  },
   "labels": {
     "email": "Email",
     "password": "Password",
