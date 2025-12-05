@@ -1,4 +1,5 @@
 import axios from 'axios';
+import i18n from '../i18n';
 
 const api = axios.create({
   baseURL: '/api',
@@ -14,6 +15,9 @@ export const setupAxiosInterceptors = store => {
       if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
+
+      // 👇 Додаємо поточну мову
+      config.headers['Accept-Language'] = i18n.resolvedLanguage || 'en';
 
       return config;
     },

@@ -78,7 +78,7 @@ export const PaymentWizard = () => {
     return <PaymentProcessing t={t} />;
   }
 
-  if (paymentDetails && !paymentDetails.task?.isPaid) {
+  if (paymentDetails && paymentDetails.task?.isPaid) {
     return (
       <Alert severity="success" sx={{ mt: 3 }}>
         <AlertTitle>{t('paid', 'Has already paid, thank you!')}</AlertTitle>
