@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { PaymentContent, BasicContent } from './components';
 
@@ -20,7 +20,7 @@ const SuccessPage = () => {
       <Typography variant="h3" mt={6} gutterBottom>
         {t('success-page:title', 'Thank you!')}
       </Typography>
-      {renderContent()}
+      <Box sx={{ mt: 4 }}>{renderContent()}</Box>
     </Container>
   );
 };

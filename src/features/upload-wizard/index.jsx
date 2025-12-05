@@ -88,10 +88,6 @@ export const UploadWizard = () => {
     <WizardRoot>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-            {t('subtitle', 'We will use these photos to estimate repair costs. Please upload clear images.')}
-          </Typography>
-
           <WizardStepper steps={stepsWithLabels} activeStep={activeStep} t={t} />
 
           <StyledCard variant="outlined">

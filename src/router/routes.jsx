@@ -6,7 +6,7 @@ import { Layout } from '../layouts';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const UploadPage = lazy(() => import('../pages/UploadPage'));
 const ProfilePage = lazy(() => import('../pages/ProfilePage'));
-const ResultPage = lazy(() => import('../pages/ResultPage'));
+const ReportsPage = lazy(() => import('../pages/ReportsPage'));
 const SuccessPage = lazy(() => import('../pages/SuccessPage'));
 const PaymentPage = lazy(() => import('../pages/PaymentPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         children: [
           { path: 'upload', element: <UploadPage /> },
           { path: 'profile', element: <ProfilePage /> },
-          { path: 'result/:id', element: <ResultPage /> },
+          { path: 'reports/:reportId', element: <ReportsPage /> },
           { path: 'tasks/pay/:taskId', element: <PaymentPage /> },
         ],
       },

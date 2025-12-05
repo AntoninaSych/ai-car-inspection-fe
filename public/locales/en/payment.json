@@ -60,7 +60,7 @@
     }
   },
   "transfer": {
-    "info": "After confirmation we will send you bank transfer details to the email you provided.",
+    "info": "After confirmation we will send you bank transfer details.",
     "payerName": {
       "label": "Payer name"
     },
@@ -73,5 +73,10 @@
     }
   },
   "unknownError": "Something went wrong during payment. Please try again.",
-  "serverError": "An error occurred. Please try again later."
+  "serverError": "An error occurred. Please try again later.",
+  "processing": {
+    "title": "Processing your payment…",
+    "description": "This may take a few seconds. Please do not close or refresh the page.",
+    "helper": "We are verifying your payment and will inform you about the next steps."
+  }
 }

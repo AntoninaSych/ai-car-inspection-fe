@@ -2,9 +2,8 @@ import { PAYMENT_METHODS } from '../constants';
 
 export const defaultValues = {
   fullName: '',
-  email: '',
   paymentMethod: PAYMENT_METHODS.TRANSFER,
-  amount: '15.00',
+  amount: '1.50',
   // card fields
   cardHolder: '',
   cardNumber: '',

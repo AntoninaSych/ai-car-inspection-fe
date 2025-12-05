@@ -1,27 +1,26 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Box, Typography } from '@mui/material';
+import { Reports } from '../../features';
 import { useTranslation } from 'react-i18next';
-import { UploadWizard } from '../../features';
 
-const UploadPage = () => {
+const ReportsPage = () => {
   const { t } = useTranslation();
-
   return (
     <>
       <Container maxWidth="md" sx={{ py: 8 }}>
         <Typography variant="h1" align="center">
-          {t('upload-page.title')}
+          {t('reports-page.title')}
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
-          {t('upload-page.subtitle')}
+          {t('reports-page.subtitle')}
         </Typography>
       </Container>
       <Container>
         <Box sx={{ mt: 4 }}>
-          <UploadWizard />
+          <Reports />
         </Box>
       </Container>
     </>
   );
 };
 
-export default UploadPage;
+export default ReportsPage;
