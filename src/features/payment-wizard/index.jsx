@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Box, Button, Container, Typography, Alert, AlertTitle } from '@mui/material';
+import { Button, Container, Typography, Alert, AlertTitle } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { payTask } from '../../api/tasksApi';
 import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
-import { PaymentForm } from './components';
+import { PaymentForm, PaymentProcessing } from './components';
 import { errorHandler } from '../../utils/notification';
 import { defaultValues } from './config';
 import { ROUTERS } from '../../constants';
@@ -14,7 +14,7 @@ import { ROUTERS } from '../../constants';
 export const PaymentWizard = () => {
   const { taskId } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation(['payment', 'common']);
+  const { t } = useTranslation('payment');
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
   const methods = useForm({
     defaultValues,
@@ -23,24 +23,26 @@ export const PaymentWizard = () => {
   const { handleSubmit, setValue, formState } = methods;
   const { isSubmitting } = formState;
 
-  console.log(error);
-
   const onSubmit = async values => {
     try {
       const response = await payTask(taskId, values);
 
-      if (response.ok && response.taskId === taskId) {
-        navigate(ROUTERS.SUCCESS, {
+      if (response?.reportId) {
+        const { reportId } = response;
+        navigate(`${ROUTERS.REPORTS}/${reportId}`, {
           state: {
             from: 'payment',
-            taskId,
           },
         });
       } else {
-        navigate(ROUTERS.SUCCESS);
+        navigate(ROUTERS.SUCCESS, {
+          state: {
+            from: 'payment',
+          },
+        });
       }
     } catch (error) {
-      errorHandler(error, t('payment:unknownError', 'Something went wrong during payment. Please try again.'));
+      errorHandler(error, t('unknownError', 'Something went wrong during payment. Please try again.'));
     }
   };
 
@@ -58,7 +60,7 @@ export const PaymentWizard = () => {
     return (
       <Container maxWidth="sm">
         <Typography variant="h4" mt={4}>
-          {t('payment:noTaskId', 'Task not found')}
+          {t('noTaskId', 'Task not found')}
         </Typography>
       </Container>
     );
@@ -67,42 +69,47 @@ export const PaymentWizard = () => {
   if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
-        <AlertTitle>{t('payment:serverError', 'An error occurred. Please try again later.')}</AlertTitle>
+        <AlertTitle>{t('serverError', 'An error occurred. Please try again later.')}</AlertTitle>
       </Alert>
     );
+  }
+
+  if (isSubmitting) {
+    return <PaymentProcessing t={t} />;
   }
 
   if (paymentDetails && paymentDetails.task?.isPaid) {
     return (
       <Alert severity="success" sx={{ mt: 3 }}>
-        <AlertTitle>{t('payment:paid', 'Has already paid, thank you!')}</AlertTitle>
+        <AlertTitle>{t('paid', 'Has already paid, thank you!')}</AlertTitle>
       </Alert>
     );
   }
 
   return (
-    <Container maxWidth="sm">
-      <Box mt={6}>
-        <Typography variant="h4" gutterBottom>
-          {t('payment:title', 'Payment')}
-        </Typography>
-        <Typography variant="body1" color="text.secondary" mb={3}>
-          {t(
-            'payment:description',
-            'Please fill in the payment details. After a successful payment you will receive an email with your estimate.'
-          )}
-        </Typography>
+    <>
+      <Typography variant="h4" gutterBottom>
+        {t('title', 'Payment')}
+      </Typography>
+      <Typography variant="body2" color="text.secondary" mb={2}>
+        {paymentDetails?.task?.brand}, {paymentDetails?.task?.model} ({paymentDetails?.task?.year})
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mb={3}>
+        {t(
+          'description',
+          'Please fill in the payment details. After a successful payment you will receive an email with your estimate.'
+        )}
+      </Typography>
 
-        <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <PaymentForm />
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <PaymentForm />
 
-            <Button type="submit" variant="contained" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
-              {isSubmitting ? t('payment:button.processing', 'Processing payment…') : t('payment:button.submit', 'Pay')}
-            </Button>
-          </form>
-        </FormProvider>
-      </Box>
-    </Container>
+          <Button type="submit" variant="contained" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
+            {isSubmitting ? t('button.processing', 'Processing payment…') : t('button.submit', 'Pay')}
+          </Button>
+        </form>
+      </FormProvider>
+    </>
   );
 };

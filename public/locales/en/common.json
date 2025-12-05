@@ -9,10 +9,15 @@
     "go_home": "Go to the <home>Home</home> page"
   },
   "upload-page": {
-    "title": "Submit Vehicle Details for a Preliminary Estimate"
+    "title": "Submit Vehicle Details for a Preliminary Estimate",
+    "subtitle": "We use your vehicle information and photos to generate a more accurate preliminary repair estimate. Please provide the details and upload the required images."
   },
   "payment-page": {
     "title": "Payment page"
+  },
+  "reports-page": {
+    "title": "Damage Assessment Report",
+    "subtitle": "Based on the uploaded photos, we analyzed the vehicle's condition and estimated the preliminary repair cost."
   },
   "success-page": {
     "title": "Thank You!",

@@ -9,22 +9,19 @@ export const TransferPaymentMethod = ({ t }) => {
     <>
       <Box mt={2}>
         <Alert severity="info" sx={{ mb: 2 }}>
-          {t(
-            'payment:transfer.info',
-            'After confirmation we will send you bank transfer details to the email you provided.'
-          )}
+          {t('transfer.info', 'After confirmation we will send you bank transfer details.')}
         </Alert>
 
         <Controller
           name="payerName"
           control={control}
           rules={{
-            required: t('payment:transfer.errors.payerNameRequired', 'Payer name is required'),
+            required: t('transfer.errors.payerNameRequired', 'Payer name is required'),
           }}
           render={({ field }) => (
             <TextField
               {...field}
-              label={t('payment:transfer.payerName.label', 'Payer name')}
+              label={t('transfer.payerName.label', 'Payer name')}
               margin="normal"
               fullWidth
               required
@@ -40,13 +37,13 @@ export const TransferPaymentMethod = ({ t }) => {
           rules={{
             pattern: {
               value: /^[A-Z]{2}[0-9A-Z]{13,30}$/i,
-              message: t('payment:transfer.errors.payerIbanInvalid', 'Invalid IBAN'),
+              message: t('transfer.errors.payerIbanInvalid', 'Invalid IBAN'),
             },
           }}
           render={({ field }) => (
             <TextField
               {...field}
-              label={t('payment:transfer.payerIban.label', 'Payer IBAN (optional)')}
+              label={t('transfer.payerIban.label', 'Payer IBAN (optional)')}
               margin="normal"
               fullWidth
               error={!!errors.payerIban}

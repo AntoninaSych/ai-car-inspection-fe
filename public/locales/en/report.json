@@ -1,0 +1,24 @@
+{
+  "noReportId": "Report ID not found",
+  "loading": "Loading report...",
+  "damageDetected": "Damage has been detected. Below are the details and the estimated repair costs.",
+  "noDamageDetected": "No significant damage detected based on the provided photos.",
+  "summaryTitle": "AI Summary",
+  "costSummaryTitle": "Preliminary Cost Estimate",
+  "totalLabor": "Labor",
+  "totalPartsOriginal": "Parts (original)",
+  "totalPartsAlternative": "Parts (alternative)",
+  "damagesTitle": "Detected Damages",
+  "damage": {
+    "labor": "Labor",
+    "partsOriginal": "Parts (original)",
+    "partsAlternative": "Parts (alternative)"
+  },
+  "severity": {
+    "minor": "Minor",
+    "moderate": "Moderate",
+    "severe": "Severe"
+  },
+  "recommendationsTitle": "Recommended Next Steps",
+  "serverError": "An error occurred. Please try again later."
+}

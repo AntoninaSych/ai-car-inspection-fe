@@ -1,5 +1,4 @@
 {
-  "subtitle": "We use your vehicle information and photos to generate a more accurate preliminary repair estimate. Please provide the details and upload the required images.",
   "dragOverlay": {
     "title": "Click to upload",
     "subtitle": "Maximum file size {{size}}MB."

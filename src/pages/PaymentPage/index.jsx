@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import { PaymentWizard } from '../../features';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +10,9 @@ const PaymentPage = () => {
       <Typography variant="h1" align="center">
         {t('payment-page.title')}
       </Typography>
-      <PaymentWizard />
+      <Box sx={{ mt: 4 }}>
+        <PaymentWizard />
+      </Box>
     </Container>
   );
 };
