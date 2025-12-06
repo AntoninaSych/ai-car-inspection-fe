@@ -1,123 +1,149 @@
-# AI-Car
+# Frontend Documentation — AI Car Damage Estimator
+
+## Overview
+
+This repository contains the frontend for the AI-powered car damage estimation platform.
+It is built using Vite + React, with modern tooling for state management, forms, UI, and API integration.
+
+## 🔒 License
+
+This project is **proprietary**. All rights reserved.
+
+Unauthorized copying, use, modification, or distribution of this project, in whole or in part, is strictly prohibited without explicit written permission from all contributors.
 
 ## Development
 Set up Prettier and ESLint with autosave on your IDE before starting to work with the Project!
 
-### Technologies
+### Technology Stack
 
-- [@mui/material](https://www.npmjs.com/package/@mui/material)
-- @reduxjs/toolkit
-- react-redux
-- react-query
-- redux-persist
-- react-hot-toast
-- [react-icons](https://www.npmjs.com/package/react-icons)
-- react-loader-spinner
-- [react-hook-form](https://react-hook-form.com/)
-- axios
-- yup
+#### Core
 
-### Env Variables
+- Vite – Dev server & build tool
+- React – UI library
+- React Router – Routing system
 
-Add `.env` to the project root directory, taking `env.example` as an example.
-- `VITE_API_PROXY_TARGET` - API backend url (e.g., http://localhost:5001);
+#### State Management
 
-### How to start
+- Redux Toolkit – Global app state
+- React-Redux – React bindings for Redux
+- Axios – API HTTP client
+- React Query
 
-Use `npm run dev` to run the application locally in the development environment.
+#### UI / Styling
+
+- MUI (Material UI) – Component library and theming
+- Custom shared components (form fields, buttons, layouts)
+
+#### Forms & Validation
+
+- react-hook-form – Form state management
+- Yup – Schema validation
+
+#### Internationalization
+
+- i18next + react-i18next – Multi-language support
+
+#### Development Tools
+
+- MSW (Mock Service Worker) – API mocking in development
+- ESLint – Linting
+- Prettier – Formatting
+- Husky + lint-staged – Git hooks for code quality enforcement
+
+### Environment Variables
+
+| Variable                | Description                                          |
+| ----------------------- | ---------------------------------------------------- |
+| `VITE_API_PROXY_TARGET` | Backend API target for Vite proxy during development |
+
+Example `.env`
+```
+VITE_API_PROXY_TARGET=http://localhost:5001
+```
+
+
+### Running the Project Locally
+#### Requirements
+
+- Node.js (LTS recommended)
+- npm / yarn
+
+#### Installation Steps
+
+1. Clone the repository:
+
+```
+git clone https://github.com/AntoninaSych/ai-car-inspection-fe
+cd frontend
+```
+
+
+2. Install dependencies:
+
+```
+npm install
+# or yarn
+```
+
+#### Create `.env`:
+
+```
+VITE_API_PROXY_TARGET=http://localhost:5001
+```
+
+#### Run the development server:
+
+```
+npm run dev
+```
+
+#### Build production bundle:
+
+```
+npm run build
+```
+
+#### Preview production build:
+```
+npm run preview
+```
+
+#### Useful npm Scripts
+```jsonc
+{
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+        "test": "vitest"
+    }
+}
+```
 
 ### How to commit your changes
 We follow the rules of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to create clean and more understandable commits.
 
-The commit message should be structured as follows and type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test]:
-```
-<type>[optional scope]: <description>
-```
 
-Examples:
-```
-feat: add header
-```
+## Application Pages & Routes
 
-```
-feat(lang): add Polish language
-```
+| Route                    | Description                                       |
+| ------------------------ | ------------------------------------------------- |
+| `"/"`                    | Home page                                         |
+| `"/upload"`              | Form to create a new damage assessment request    |
+| `"/tasks/pay/:taskId"`   | Payment page for the created request              |
+| `"/reports/:reportId"`   | AI-generated damage report viewer                 |
+| *(Planned)* `"/profile"` | User's personal page with task history & payments |
 
-You can use the `chore` type for anything, but using a type more appropriate to your commit is more welcome.
 
-## Текстовий UI-макет у Figma стилі (brain storm)
-### Home сторінка
-**Header**
-- Логотип (або текст): AI Car Repair Estimator
-- Навігація:
-  - Upload
-  - Language Switcher
+## User Flow Description
 
-**Hero Section**
-- Заголовок:
-“Оціни вартість ремонту за фото”
+1. User lands on the Home Page.
+2. If a user goes to a protected route → If unauthenticated → show modal form with login/registration.
+3. After successful login/registration → proceed to use service.
+4. Completes the form and uploads photos → submits the task.
+5. Navigated to the Payment Page where the user may:
+   - Complete the payment now, or
+   - Skip and pay later through the profile page.
+6. After the backend processes the task, the user opens the Report Page to view the AI analysis.
 
-- Підзаголовок, дрібніше:
-“Завантаж фото пошкодження — AI визначить елементи, пошкодження та орієнтовну ціну ремонту.”
-
-- Велика кнопка:
-Upload Photo → веде на /upload
-
-**Right side або Left side (optional, на desktop)**
-Info Card: “Як це працює”
-1. Завантажуєш фото 
-2. AI аналізує елементи та пошкодження 
-3. Отримуєш орієнтовну вартість ремонту
-
-Для кожного свої іконки: camera → brain → money.
-
-### Upload сторінка
-#### Покроковий Upload Wizard
-**Заголовок**
-
-Завантаження зображень для попередньої оцінки
-
-**Опис сторінки**
-
-Завантажте фотографії вашого автомобіля
-
-**Пояснення**
-
-Ми використаємо ці фото, щоб попередньо оцінити вартість ремонту. Будь ласка, завантажте чіткі зображення кожного боку авто.
-
-**Upload area**:
-
-- Опис що треба завантажити
-- При перетягуванні фотографії показати зону перетягування і напис: Перетягніть фото сюди або натисніть "Вибрати файл"
-
-**Після завантаження**:
-
-- Прев’ю фото
-- Кнопки:
-  - “Вибрати фото” (замінити фото у разі потреби)
-  - “Продовжити” (розблоковує наступний крок)
-
-І так всі кроки, після яких показуємо підсумок з превʼю завантажених фото і можливістю додати email адресу. Після вдалої відповіді сервера перенаправляємо на потрібну сторінку: на **Result сторінку**, якщо у відповіді є ID задачі або на **Thank You сторінку**, якщо був наданий **email адрес**, на яку після завершення опрацювання завдання буде відправлений результат. 
-
-**Приклад Upload сторінки**
-```
-Upload Page
-   ↓
-Покроковий Upload Wizard:
-   Step 1: Left side  → Next
-   Step 2: Right side → Next
-   Step 3: Front      → Next
-   Step 4: Rear       → Next
-   Step 5: Finish
-   ↓
-Analyze button active
-   ↓
-API call: POST /estimate ( photos[] )
-   ↓
-Result Page with:
-   - Overall estimate
-   - Detected damaged parts
-   - Works
-   - Parts
-   - AI details
-```
