@@ -14,7 +14,7 @@
     "precommit": "pretty-quick --staged",
     "format": "prettier --log-level warn --write \"src/**/*.{js,jsx}\"",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "postinstall": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -63,6 +63,17 @@
     "prettier": "3.5.3",
     "pretty-quick": "4.1.1",
     "vite": "5.4.1"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix"
+    ],
+    "src/**/*.{ts,tsx,js,jsx,css,json}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
   },
   "msw": {
     "workerDirectory": [
