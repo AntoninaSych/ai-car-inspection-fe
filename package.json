@@ -4,6 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "author": "Antonina Sych <antoninasych@gmail.com>",
+  "contributors": [
+    "Roman Onishchenko <romanindev@gmail.com>"
+  ],
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
