@@ -124,6 +124,51 @@ npm run preview
 ### How to commit your changes
 We follow the rules of [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to create clean and more understandable commits.
 
+### Code Quality Setup
+This section describes the code quality pipeline using:
+- Husky (Git hooks)
+- lint-staged
+- ESLint (auto-fix)
+- Prettier (auto-format)
+
+#### What Was Implemented
+
+##### Pre-commit hook
+
+- Runs lint-staged inside the frontend package
+
+- Automatically applies:
+  - eslint --fix
+  - prettier --write
+- Only staged files are processed → fast execution
+
+##### Pre-push hook
+
+- run tests
+
+##### Developer experience improvements
+
+- Ensures all committed code is auto-formatted and linted
+- Reduces noise in PR diffs
+- Prevents inconsistent code style between developers
+
+#### Required Steps for Developers
+
+Each team member must run the following commands after pulling the latest changes:
+
+1. Install dependencies
+```
+npm install
+```
+This step automatically installs Husky hooks (pre-commit, pre-push).
+
+2(Optional but recommended) Re-enable Git hook execution
+
+```
+chmod +x .husky/pre-commit
+chmod +x .husky/pre-push
+```
+After these steps, hooks will execute automatically.
 
 ## Application Pages & Routes
 
