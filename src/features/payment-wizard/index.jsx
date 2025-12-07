@@ -20,8 +20,9 @@ export const PaymentWizard = () => {
     defaultValues,
   });
 
-  const { handleSubmit, setValue, formState } = methods;
+  const { handleSubmit, setValue, formState, watch } = methods;
   const { isSubmitting } = formState;
+  const paymentMethod = watch('paymentMethod');
 
   const onSubmit = async values => {
     try {
@@ -29,11 +30,7 @@ export const PaymentWizard = () => {
 
       if (response?.reportId) {
         const { reportId } = response;
-        navigate(`${ROUTERS.REPORTS}/${reportId}`, {
-          state: {
-            from: 'payment',
-          },
-        });
+        navigate(`${ROUTERS.REPORTS}/${reportId}`);
       } else {
         navigate(ROUTERS.SUCCESS, {
           state: {
@@ -42,8 +39,17 @@ export const PaymentWizard = () => {
         });
       }
     } catch (error) {
-      errorHandler(error, t('unknownError', 'Something went wrong during payment. Please try again.'));
+      errorHandler(error, t('paymentError', 'Something went wrong during payment. Please try again.'));
     }
+  };
+
+  const handleSkip = event => {
+    event.preventDefault();
+    navigate(ROUTERS.PROFILE, {
+      state: {
+        from: 'payment',
+      },
+    });
   };
 
   useEffect(() => {
@@ -75,13 +81,13 @@ export const PaymentWizard = () => {
   }
 
   if (isSubmitting) {
-    return <PaymentProcessing t={t} />;
+    return <PaymentProcessing t={t} paymentMethod={paymentMethod} />;
   }
 
   if (paymentDetails && paymentDetails.task?.isPaid) {
     return (
       <Alert severity="success" sx={{ mt: 3 }}>
-        <AlertTitle>{t('paid', 'Has already paid, thank you!')}</AlertTitle>
+        <AlertTitle>{t('paid', 'Has already paid!')}</AlertTitle>
       </Alert>
     );
   }
@@ -107,6 +113,9 @@ export const PaymentWizard = () => {
 
           <Button type="submit" variant="contained" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
             {isSubmitting ? t('button.processing', 'Processing payment…') : t('button.submit', 'Pay')}
+          </Button>
+          <Button onClick={handleSkip} variant="outlined" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
+            {t('button.skip', 'Skip')}
           </Button>
         </form>
       </FormProvider>

@@ -11,6 +11,8 @@ export const safeLocalStorage = {
   set: (key, val) => {
     try {
       localStorage.setItem(key, val);
-    } catch {}
+    } catch {
+      return null;
+    }
   },
 };

@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { PaymentContent, BasicContent } from './components';
+import { Payment } from './components';
 
 const SuccessPage = () => {
   const location = useLocation();
@@ -10,18 +10,22 @@ const SuccessPage = () => {
 
   const renderContent = () => {
     if (isFromPayment) {
-      return <PaymentContent t={t} />;
+      return <Payment t={t} />;
     }
-    return <BasicContent t={t} />;
+    return null;
   };
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h3" mt={6} gutterBottom>
-        {t('success-page:title', 'Thank you!')}
-      </Typography>
-      <Box sx={{ mt: 4 }}>{renderContent()}</Box>
-    </Container>
+    <>
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Typography variant="h1" align="center">
+          {t('success-page.title', 'Thank you for using the service.')}
+        </Typography>
+      </Container>
+      <Container>
+        <Box sx={{ mt: 4 }}>{renderContent()}</Box>
+      </Container>
+    </>
   );
 };
 

@@ -20,10 +20,11 @@
     "subtitle": "Based on the uploaded photos, we analyzed the vehicle's condition and estimated the preliminary repair cost."
   },
   "success-page": {
-    "title": "Thank You!",
-    "description": "The operation was completed successfully. Everything is ready.",
-    "paymentSuccess": "Your payment has been successfully processed. Please check your email for the evaluation details and next steps.",
-    "generic": "Thank you for using the service."
+    "title": "Thank you for using the service.",
+    "payment": {
+      "title": "We’ve received your payment information.",
+      "subtitle": "Please wait your email for further updates. You can also visit your profile to view the status of all your submissions."
+    }
   },
   "labels": {
     "email": "Email",

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography, Button, CardContent } from '@mui/material';
+import { Button, CardContent } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +39,7 @@ export const UploadWizard = () => {
       formData.append('brand_id', values.make?.id);
       formData.append('model_id', values.model?.id);
       formData.append('year', values.year?.id);
+      formData.append('country', values.country?.id);
       formData.append('front', values.front);
       formData.append('back', values.rear);
       formData.append('left', values.left);
