@@ -13,7 +13,7 @@
     "build": "vite build",
     "audit": "npm audit --production --audit-level=critical",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint src/**/*.{ts,tsx,js,jsx}",
+    "lint:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "preview": "vite preview",
     "precommit": "pretty-quick --staged",
     "format": "prettier --log-level warn --write \"src/**/*.{js,jsx}\"",
