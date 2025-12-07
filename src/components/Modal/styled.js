@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { FaX } from 'react-icons/fa6';
 import { Box, Dialog } from '@mui/material';
 
-export const Overlay = styled(Dialog)(({ theme }) => ({
+export const Overlay = styled(Dialog)(() => ({
   position: 'fixed',
   zIndex: 999,
   backgroundColor: 'rgba(18, 20, 23, 0.8)',

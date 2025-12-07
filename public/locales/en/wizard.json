@@ -70,6 +70,10 @@
         "label": "Mileage (optional)",
         "placeholder": "e.g., 50000"
       },
+      "country": {
+        "label": "Evaluation Country",
+        "helperText": "Select the country where the repair evaluation will be performed."
+      },
       "description": {
         "label": "Damage context (optional)",
         "placeholder": "e.g., scratch on the front bumper or dent on the left door"
@@ -84,5 +88,11 @@
     "integer": "Must be an integer",
     "positive": "Must be an positive",
     "oneImageRequired": "Please upload at least one photo."
+  },
+  "countries": {
+    "ua": "Ukraine",
+    "pl": "Poland",
+    "ro": "Romania",
+    "de": "Germany"
   }
 }

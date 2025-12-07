@@ -13,11 +13,10 @@
     "build": "vite build",
     "audit": "npm audit --production --audit-level=critical",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint src/**/*.{js,jsx}",
+    "lint:js": "eslint src/**/*.{ts,tsx,js,jsx}",
     "preview": "vite preview",
     "precommit": "pretty-quick --staged",
     "format": "prettier --log-level warn --write \"src/**/*.{js,jsx}\"",
-    "lint-staged": "lint-staged",
     "postinstall": "husky"
   },
   "dependencies": {

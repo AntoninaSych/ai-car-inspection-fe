@@ -4,6 +4,7 @@ export const defaultValues = {
   year: '',
   mileage: '',
   description: '',
+  country: '',
   front: null,
   rear: null,
   left: null,

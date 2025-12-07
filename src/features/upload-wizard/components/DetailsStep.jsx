@@ -2,8 +2,8 @@ import { Stack, Typography, TextField, CircularProgress } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Controller, useFormContext } from 'react-hook-form';
 import { styled } from '@mui/material/styles';
-import { getYearOptions } from '../utils/options';
 import { useLoadCars } from '../hooks/useLoadCars';
+import { COUNTRY_CODES } from '../constants';
 
 const FieldsRow = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
@@ -22,6 +22,11 @@ export const DetailsStep = ({ t }) => {
     selectedBrand,
     selectedModel,
   });
+
+  const countryOptions = COUNTRY_CODES.map(code => ({
+    id: code,
+    label: t(`countries.${code}`),
+  }));
 
   return (
     <Stack gap={2}>
@@ -135,7 +140,30 @@ export const DetailsStep = ({ t }) => {
         />
       </FieldsRow>
 
-      <FieldsRow>
+      <FieldsRow gap={2}>
+        <Controller
+          name="country"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={countryOptions}
+              getOptionLabel={option => option.label ?? ''}
+              value={countryOptions.find(opt => opt.id === field.value.id) || null}
+              onChange={(_, option) => field.onChange(option || '')}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label={t('details.fields.country.label', 'Country')}
+                  error={!!errors.country}
+                  helperText={errors.country?.message}
+                  required
+                  fullWidth
+                />
+              )}
+              fullWidth
+            />
+          )}
+        />
         <TextField
           fullWidth
           label={t('details.fields.mileage.label', 'Mileage (optional)')}

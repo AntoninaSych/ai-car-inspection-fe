@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Avatar, IconButton, Menu, ListItemIcon, ListItemText, Divider, Typography } from '@mui/material';
+import { Avatar, IconButton, Menu, ListItemIcon, ListItemText, Divider } from '@mui/material';
 import { AccountCircle, Logout, LightMode, DarkMode } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

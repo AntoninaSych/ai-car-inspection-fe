@@ -1,2 +1,1 @@
-export { PaymentContent } from './PaymentContent';
-export { BasicContent } from './BasicContent';
+export { Payment } from './Payment';

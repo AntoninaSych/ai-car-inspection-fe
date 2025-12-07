@@ -31,19 +31,29 @@ export const createUploadWizardSchema = t =>
         id: yup.mixed().required(),
         label: yup.string().required(),
       })
-      .required(t(`validation.required`)),
+      .required(t(`validation.required`))
+      .typeError(t('validation.required')),
     model: yup
       .object({
         id: yup.mixed().required(),
         label: yup.string().required(),
       })
-      .required(t(`validation.required`)),
+      .required(t(`validation.required`))
+      .typeError(t('validation.required')),
     year: yup
       .object({
         id: yup.mixed().required(),
         label: yup.string().required(),
       })
-      .required(t(`validation.required`)),
+      .required(t(`validation.required`))
+      .typeError(t('validation.required')),
+    country: yup
+      .object({
+        id: yup.mixed().required(),
+        label: yup.string().required(),
+      })
+      .required(t(`validation.required`))
+      .typeError(t('validation.required')),
     mileage: yup.string().optional().nullable(),
     description: yup
       .string()
