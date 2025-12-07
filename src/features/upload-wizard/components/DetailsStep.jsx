@@ -155,7 +155,7 @@ export const DetailsStep = ({ t }) => {
                   {...params}
                   label={t('details.fields.country.label', 'Country')}
                   error={!!errors.country}
-                  helperText={errors.country?.message}
+                  helperText={errors.country?.message || t('details.fields.country.helperText')}
                   required
                   fullWidth
                 />
