@@ -36,7 +36,7 @@ export const ProfilePageView = ({ tasks, isLoading }) => {
     return <Typography>{t('profile:loading', 'Loading data...')}</Typography>;
   }
 
-  if (!filteredTasks?.length) {
+  if (!tasks?.length) {
     return (
       <Box>
         <Typography variant="h4" gutterBottom>
