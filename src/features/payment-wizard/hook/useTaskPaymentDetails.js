@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTaskDetails } from '../../../api/tasksApi';
+import { fetchTaskDetails } from '../../../api/tasksApi';
 import { errorHandler } from '../../../utils/notification';
 
 export const useTaskPaymentDetails = taskId => {
@@ -17,7 +17,7 @@ export const useTaskPaymentDetails = taskId => {
       setError(null);
 
       try {
-        const response = await getTaskDetails(taskId);
+        const response = await fetchTaskDetails(taskId);
         setData(response);
       } catch (err) {
         setError(err);

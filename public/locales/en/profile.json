@@ -1,3 +1,12 @@
 {
-  "title": "Profile Page"
+  "title": "Profile Page",
+  "serverError": "An error occurred. Please try again later.",
+  "loading": "Loading data...",
+  "filter": {
+    "tasks": {
+      "all": "All",
+      "paid": "Paid",
+      "unpaid": "Unpaid"
+    }
+  }
 }
