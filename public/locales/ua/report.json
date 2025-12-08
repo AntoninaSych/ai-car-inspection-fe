@@ -6,15 +6,12 @@
   "summaryTitle": "Короткий висновок AI",
   "paid": "сплачено",
   "unpaid": "не сплачено",
-  "my-requests": "Мої заявки",
-  "no-requests": "У вас ще немає заявок - <2>Створіть першу</2>",
-  "view-latest-report": "Переглянути останній звіт",
   "reportFrom": "Звіт від {{value}}",
   "costSummaryTitle": "Попередній кошторис",
   "totalLabor": "Роботи",
   "totalPartsOriginal": "Запчастини (оригінал)",
   "totalPartsAlternative": "Запчастини (альтернатива)",
-  "noReports": "Поки що звітів немає.",
+  "no-reports": "Поки що звітів немає.",
   "createdAt": "Створено: {{value}}",
   "damagesTitle": "Виявлені пошкодження",
   "damage": {
@@ -26,9 +23,6 @@
     "minor": "Легке",
     "moderate": "Середнє",
     "severe": "Серйозне"
-  },
-  "button": {
-    "pay": "Перейти до оплати"
   },
   "recommendationsTitle": "Рекомендовані наступні кроки",
   "serverError": "Сталася помилка. Спробуйте ще раз пізніше."

@@ -6,15 +6,12 @@
   "summaryTitle": "AI Summary",
   "paid": "paid",
   "unpaid": "unpaid",
-  "my-requests": "My requests",
-  "no-requests": "You have no requests yet - <2>Create your first one</2>",
-  "view-latest-report": "View latest report",
   "reportFrom": "Report from {{value}}",
   "costSummaryTitle": "Preliminary Cost Estimate",
   "totalLabor": "Labor",
   "totalPartsOriginal": "Parts (original)",
   "totalPartsAlternative": "Parts (alternative)",
-  "noReports": "There are no reports yet.",
+  "no-reports": "There are no reports yet.",
   "createdAt": "Created: {{value}}",
   "damagesTitle": "Detected Damages",
   "damage": {
@@ -26,9 +23,6 @@
     "minor": "Minor",
     "moderate": "Moderate",
     "severe": "Severe"
-  },
-  "button": {
-    "pay": "Go to payment"
   },
   "recommendationsTitle": "Recommended Next Steps",
   "serverError": "An error occurred. Please try again later."

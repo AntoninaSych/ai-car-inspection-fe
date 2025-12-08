@@ -39,7 +39,7 @@ export const UploadWizard = () => {
       formData.append('brand_id', values.make?.id);
       formData.append('model_id', values.model?.id);
       formData.append('year', values.year?.id);
-      formData.append('country', values.country?.id);
+      formData.append('country_id', values.country?.id);
       formData.append('front', values.front);
       formData.append('back', values.rear);
       formData.append('left', values.left);

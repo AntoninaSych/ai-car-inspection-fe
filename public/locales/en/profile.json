@@ -2,11 +2,19 @@
   "title": "Profile Page",
   "serverError": "An error occurred. Please try again later.",
   "loading": "Loading data...",
+  "my-requests": "My requests",
+  "view-latest-report": "View latest report",
+  "empty": {
+    "all": "You have no requests yet - <2>Create your first one</2>",
+    "paid": "You have no paid requests yet.",
+    "unpaid": "There are no requests that require payment."
+  },
   "filter": {
-    "tasks": {
-      "all": "All",
-      "paid": "Paid",
-      "unpaid": "Unpaid"
-    }
+    "all": "All",
+    "paid": "Paid",
+    "unpaid": "Unpaid"
+  },
+  "button": {
+    "pay": "Go to payment"
   }
 }
