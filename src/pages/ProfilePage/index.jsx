@@ -1,5 +1,6 @@
 import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Profile } from '../../features';
 
 const ProfilePag = () => {
   const { t } = useTranslation('profile');
@@ -9,7 +10,9 @@ const ProfilePag = () => {
       <Typography variant="h1" align="center">
         {t('title')}
       </Typography>
-      <Box sx={{ mt: 4 }}></Box>
+      <Box sx={{ mt: 4 }}>
+        <Profile />
+      </Box>
     </Container>
   );
 };
