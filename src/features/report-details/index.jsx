@@ -5,7 +5,7 @@ import { useReportDetails } from './hook/useReportDetails';
 import { Loader } from '../../components';
 import { Report } from './components';
 
-export const Reports = () => {
+export const ReportDetails = () => {
   const { reportId } = useParams();
   const { t } = useTranslation('report');
   const { data, isLoading, error } = useReportDetails(reportId);
@@ -13,8 +13,6 @@ export const Reports = () => {
   if (isLoading) {
     return <Loader />;
   }
-
-  const { report } = data;
 
   if (!reportId) {
     return (
@@ -34,5 +32,5 @@ export const Reports = () => {
     );
   }
 
-  return <Report t={t} report={report} />;
+  return <Report t={t} report={data.report?.data?.analysis} />;
 };

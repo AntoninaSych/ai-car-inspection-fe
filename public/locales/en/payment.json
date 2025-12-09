@@ -1,7 +1,7 @@
 {
   "title": "Payment",
-  "description": "Please fill in the payment details. After a successful payment you will receive an email with your estimate.",
-  "noTaskId": "Task ID not found",
+  "description": "Please fill in the payment details.",
+  "noTaskId": "Request ID not found",
   "paid": "Thank you! Payment has already been received.",
   "method": {
     "label": "Payment method",

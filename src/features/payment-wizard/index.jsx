@@ -97,10 +97,13 @@ export const PaymentWizard = () => {
       <Typography variant="h4" gutterBottom>
         {t('title', 'Payment')}
       </Typography>
-      <Typography variant="body2" color="text.secondary" mb={2}>
+      <Typography variant="body2" color="text.secondary">
         {paymentDetails?.task?.brand}, {paymentDetails?.task?.model} ({paymentDetails?.task?.year})
       </Typography>
-      <Typography variant="body1" color="text.secondary" mb={3}>
+      <Typography variant="caption" color="text.secondary" mb={2}>
+        {new Date(paymentDetails?.task?.createdAt).toLocaleString()}
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mt={3}>
         {t(
           'description',
           'Please fill in the payment details. After a successful payment you will receive an email with your estimate.'

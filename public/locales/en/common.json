@@ -15,9 +15,9 @@
   "payment-page": {
     "title": "Payment page"
   },
-  "reports-page": {
+  "report-details-page": {
     "title": "Damage Assessment Report",
-    "subtitle": "Based on the uploaded photos, we analyzed the vehicle's condition and estimated the preliminary repair cost."
+    "subtitle": "Based on the uploaded photos and information provided, we assessed the condition of the car and the preliminary cost of repairs."
   },
   "success-page": {
     "title": "Thank you for using the service.",

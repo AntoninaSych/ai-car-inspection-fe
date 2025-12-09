@@ -1,4 +1,4 @@
 export { UploadWizard } from './upload-wizard';
 export { PaymentWizard } from './payment-wizard';
-export { Reports } from './reports';
+export { ReportDetails } from './report-details';
 export { Profile } from './profile';

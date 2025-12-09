@@ -22,29 +22,38 @@ import DoneIcon from '@mui/icons-material/Done';
 import { StyledCard } from '../../styled';
 import { StyledAccordion } from './styled';
 
+const SEVERITY = {
+  MINOR: 'minor',
+  MODERATE: 'moderate',
+  SEVERE: 'severe',
+  UNKNOWN: 'unknown',
+};
+
 const severityColor = severity => {
   switch (severity) {
-    case 'minor':
+    case SEVERITY.MINOR:
       return 'success';
-    case 'moderate':
+    case SEVERITY.MODERATE:
       return 'warning';
-    case 'severe':
+    case SEVERITY.SEVERE:
       return 'error';
+    case SEVERITY.UNKNOWN:
     default:
-      return 'default';
+      return 'info';
   }
 };
 
 const severityLabel = (severity, t) => {
   switch (severity) {
-    case 'minor':
-      return t('severity.minor', 'Легке');
-    case 'moderate':
-      return t('severity.moderate', 'Середнє');
-    case 'severe':
-      return t('severity.severe', 'Серйозне');
+    case SEVERITY.MINOR:
+      return t('severity.minor', 'Minor');
+    case SEVERITY.MODERATE:
+      return t('severity.moderate', 'Moderate');
+    case SEVERITY.SEVERE:
+      return t('severity.severe', 'Severe');
+    case SEVERITY.UNKNOWN:
     default:
-      return severity;
+      return t('severity.unknown', 'Unknown');
   }
 };
 

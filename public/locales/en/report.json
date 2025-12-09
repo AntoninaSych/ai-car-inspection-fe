@@ -22,7 +22,8 @@
   "severity": {
     "minor": "Minor",
     "moderate": "Moderate",
-    "severe": "Severe"
+    "severe": "Severe",
+    "unknown": "Unknown"
   },
   "recommendationsTitle": "Recommended Next Steps",
   "serverError": "An error occurred. Please try again later."

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchCarBrands, fetchModelsByBrandId } from '../../../api/carsApi';
 import { getYearOptions } from '../utils/options';
+import { useMemo } from 'react';
 
 export const useLoadCars = ({ selectedBrand = null, selectedModel = null, search = '' }) => {
   const selectedBrandId = selectedBrand?.id;
@@ -13,7 +14,7 @@ export const useLoadCars = ({ selectedBrand = null, selectedModel = null, search
   } = useQuery({
     queryKey: ['brands'],
     queryFn: () => fetchCarBrands(search),
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 15, // cache 15 minutes
   });
 
   const {
@@ -24,29 +25,39 @@ export const useLoadCars = ({ selectedBrand = null, selectedModel = null, search
     queryKey: ['models', selectedBrandId],
     queryFn: () => fetchModelsByBrandId(selectedBrandId),
     enabled: !!selectedBrandId,
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 15, // cache 15 minutes
   });
 
-  const brandOptions = brands.map(brand => ({
-    id: brand.id,
-    label: brand.name,
-  }));
+  const yearOptions = useMemo(() => {
+    const foundModel = models.find(model => model.id === selectedModelId);
+    return foundModel ? getYearOptions(foundModel.yearFrom, foundModel.yearTo) : [];
+  }, [models, selectedModelId]);
 
-  const modelOptions = models.map(model => ({
-    id: model.id,
-    label: model.name,
-  }));
+  const brandOptions = useMemo(
+    () =>
+      brands.map(brand => ({
+        id: brand.id,
+        label: brand.name,
+      })),
+    [brands]
+  );
 
-  const foundModel = models.find(model => model.id === selectedModelId);
-  const yearOptions = foundModel ? getYearOptions(foundModel.yearFrom, foundModel.yearTo) : [];
+  const modelOptions = useMemo(
+    () =>
+      models.map(model => ({
+        id: model.id,
+        label: model.name,
+      })),
+    [models]
+  );
 
   return {
-    isLoading: isBrandsLoading || isModelsLoading,
     isBrandsLoading,
     isModelsLoading,
-    isError: isBrandsError || isModelsError,
     brandOptions,
     modelOptions,
     yearOptions,
+    isLoading: isBrandsLoading || isModelsLoading,
+    isError: isBrandsError || isModelsError,
   };
 };

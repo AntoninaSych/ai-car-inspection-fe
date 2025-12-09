@@ -106,15 +106,6 @@ export const DetailsStep = ({ t }) => {
           )}
         />
 
-        {/*<TextField*/}
-        {/*  fullWidth*/}
-        {/*  label={t('details.fields.model.label', 'Model')}*/}
-        {/*  required*/}
-        {/*  {...register('model')}*/}
-        {/*  error={Boolean(errors.model)}*/}
-        {/*  helperText={errors.model?.message}*/}
-        {/*/>*/}
-
         <Controller
           name="year"
           control={control}
@@ -141,6 +132,14 @@ export const DetailsStep = ({ t }) => {
       </FieldsRow>
 
       <FieldsRow gap={2}>
+        <TextField
+          fullWidth
+          label={t('details.fields.mileage.label', 'Mileage (optional)')}
+          placeholder={t('details.fields.mileage.placeholder', 'e.g., 50000')}
+          {...register('mileage')}
+          error={Boolean(errors.mileage)}
+          helperText={errors.mileage?.message}
+        />
         <Controller
           name="country"
           control={control}
@@ -163,14 +162,6 @@ export const DetailsStep = ({ t }) => {
               fullWidth
             />
           )}
-        />
-        <TextField
-          fullWidth
-          label={t('details.fields.mileage.label', 'Mileage (optional)')}
-          placeholder={t('details.fields.mileage.placeholder', 'e.g., 50000')}
-          {...register('mileage')}
-          error={Boolean(errors.mileage)}
-          helperText={errors.mileage?.message}
         />
       </FieldsRow>
 

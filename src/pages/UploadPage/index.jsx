@@ -11,7 +11,7 @@ const UploadPage = () => {
         <Typography variant="h1" align="center">
           {t('upload-page.title')}
         </Typography>
-        <Typography variant="body2" color="text.secondary" align="center">
+        <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 2 }}>
           {t('upload-page.subtitle')}
         </Typography>
       </Container>

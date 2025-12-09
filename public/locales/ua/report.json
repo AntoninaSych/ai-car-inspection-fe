@@ -22,7 +22,8 @@
   "severity": {
     "minor": "Легке",
     "moderate": "Середнє",
-    "severe": "Серйозне"
+    "severe": "Серйозне",
+    "unknown": "Невідоме"
   },
   "recommendationsTitle": "Рекомендовані наступні кроки",
   "serverError": "Сталася помилка. Спробуйте ще раз пізніше."
