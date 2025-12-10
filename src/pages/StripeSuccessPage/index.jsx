@@ -7,8 +7,9 @@ const StripeSuccessPage = () => {
   const [params] = useSearchParams();
   const sessionId = params.get('session_id') || '';
 
-  const [data, setData] = useState(null);
+  const [session, setSession] = useState(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const run = async () => {
@@ -16,15 +17,29 @@ const StripeSuccessPage = () => {
         setError('');
         if (!sessionId) return;
 
+        setLoading(true);
+
         const res = await getStripeCheckoutSession(sessionId);
-        setData(res);
+        setSession(res?.session || null);
       } catch (e) {
-        setError(e?.message || 'Failed to fetch session');
+        const backendMessage = e?.response?.data?.message;
+        const status = e?.response?.status;
+        setError(
+          backendMessage
+            ? `${backendMessage}`
+            : status
+              ? `Request failed with status ${status}`
+              : e?.message || 'Failed to load Stripe session'
+        );
+      } finally {
+        setLoading(false);
       }
     };
 
     run();
   }, [sessionId]);
+
+  const taskId = session?.metadata?.task_id || session?.client_reference_id;
 
   return (
     <Container maxWidth="sm" sx={{ py: 8 }}>
@@ -34,18 +49,22 @@ const StripeSuccessPage = () => {
 
       <Stack spacing={2}>
         {!sessionId ? <Alert severity="warning">No session_id in URL</Alert> : null}
-
         {error ? <Alert severity="error">{error}</Alert> : null}
+        {loading ? <Alert severity="info">Loading payment info...</Alert> : null}
 
-        {data?.session ? (
-          <Alert severity={data.session.paymentStatus === 'paid' ? 'success' : 'info'}>
-            Session: {data.session.id}
-            <br />
-            Status: {data.session.paymentStatus}
-            <br />
-            Amount: {data.session.amountTotal} {String(data.session.currency).toUpperCase()}
-            <br />
-            Reference: {data.session.clientReferenceId}
+        <Alert severity="success">
+          Payment received ✅<br />
+          Backend will mark the task as paid via Stripe webhook.
+        </Alert>
+
+        {session ? (
+          <Alert severity={session.payment_status === 'paid' ? 'success' : 'info'}>
+            <div>Stripe session: {session.id}</div>
+            <div>Stripe status: {session.payment_status}</div>
+            <div>
+              Amount: {session.amount_total} {String(session.currency || '').toUpperCase()}
+            </div>
+            <div>Task ID: {taskId || '—'}</div>
           </Alert>
         ) : null}
 

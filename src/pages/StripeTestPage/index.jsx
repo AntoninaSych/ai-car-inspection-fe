@@ -3,7 +3,7 @@ import { Container, Typography, TextField, Button, Stack, Alert } from '@mui/mat
 import { createStripeCheckoutSession } from '../../api/stripeApi';
 
 const StripeTestPage = () => {
-  const [fakeId, setFakeId] = useState('demo-123');
+  const [taskId, setTaskId] = useState('demo-123'); //copy from DB real task ID to complete
   const [amount, setAmount] = useState(2000);
   const [currency, setCurrency] = useState('gbp');
   const [error, setError] = useState('');
@@ -13,7 +13,7 @@ const StripeTestPage = () => {
       setError('');
 
       const res = await createStripeCheckoutSession({
-        fake_id: fakeId,
+        task_id: taskId,
         amount: Number(amount),
         currency: currency,
       });
@@ -38,7 +38,7 @@ const StripeTestPage = () => {
       <Stack spacing={2}>
         {error ? <Alert severity="error">{error}</Alert> : null}
 
-        <TextField label="Fake ID" value={fakeId} onChange={e => setFakeId(e.target.value)} fullWidth />
+        <TextField label="Fake ID" value={taskId} onChange={e => setTaskId(e.target.value)} fullWidth />
 
         <TextField
           label="Amount (minor units)"
