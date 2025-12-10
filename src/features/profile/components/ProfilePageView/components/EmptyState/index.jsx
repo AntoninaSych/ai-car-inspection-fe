@@ -1,4 +1,4 @@
-import { Link, Typography } from '@mui/material';
+import { Link, Typography, Box } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { ROUTERS } from '../../../../../../constants';
@@ -10,21 +10,31 @@ export const EmptyState = ({ filter }) => {
   switch (filter) {
     case FILTERS.ALL: {
       return (
-        <Trans i18nKey="empty.paid">
-          You have no requests yet -{' '}
-          <Link component={RouterLink} to={ROUTERS.UPLOAD}>
-            Create your first one
-          </Link>
-        </Trans>
+        <Box>
+          <Trans i18nKey="profile:empty.all">
+            You have no requests yet -
+            <Link component={RouterLink} to={ROUTERS.UPLOAD}>
+              create your first one
+            </Link>
+          </Trans>
+        </Box>
       );
     }
 
     case FILTERS.PAID: {
-      return <Typography>{t('empty.paid')}</Typography>;
+      return (
+        <Box>
+          <Typography>{t('empty.paid')}</Typography>
+        </Box>
+      );
     }
 
     case FILTERS.UNPAID: {
-      return <Typography>{t('empty.unpaid')}</Typography>;
+      return (
+        <Box>
+          <Typography>{t('empty.unpaid')}</Typography>
+        </Box>
+      );
     }
     default:
       return null;

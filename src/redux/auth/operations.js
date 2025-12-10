@@ -35,16 +35,27 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
   }
 });
 
-export const refreshUser = createAsyncThunk('auth/refresh', async (_, { rejectWithValue }) => {
+export const refreshUser = createAsyncThunk('auth/refresh', async (_, { getState, rejectWithValue }) => {
+  const state = getState();
+  const token = state.auth.accessToken;
+
+  if (!token) {
+    return rejectWithValue('NO_TOKEN');
+  }
+
   try {
     const data = await fetchCurrentUser();
 
     if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-      return rejectWithValue('Invalid response format');
+      return rejectWithValue('INVALID_RESPONSE_FORMAT');
     }
 
     return data;
   } catch (error) {
+    if (error?.response?.status === 401) {
+      return rejectWithValue('UNAUTHORIZED');
+    }
+
     return rejectWithValue(error.response?.data || error);
   }
 });

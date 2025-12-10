@@ -38,7 +38,12 @@ const authSlice = createSlice({
         state.isAuthorized = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action) => {
+        if (action.payload === 'UNAUTHORIZED') {
+          state.accessToken = null;
+          state.user = null;
+          state.isAuthorized = false;
+        }
         state.isRefreshing = false;
       });
   },

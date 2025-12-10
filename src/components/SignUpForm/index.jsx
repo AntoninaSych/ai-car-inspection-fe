@@ -43,7 +43,6 @@ export const SignUpForm = ({ onSuccess }) => {
       })
       .catch(error => {
         setLoading(false);
-        console.log(error);
         if (error?.message === 'Email in use') {
           errorHandler(error, t('errors.emailInUse'));
         } else {
@@ -62,7 +61,14 @@ export const SignUpForm = ({ onSuccess }) => {
               <TextField name="email" label={t('labels.email')} fullWidth required />
             </Stack>
 
-            <TextField type="password" label={t('labels.password')} name="password" fullWidth required />
+            <TextField
+              type="password"
+              label={t('labels.password')}
+              name="password"
+              autoComplete="off"
+              fullWidth
+              required
+            />
 
             <Button
               size="large"
