@@ -12,6 +12,10 @@ const SuccessPage = lazy(() => import('../pages/SuccessPage'));
 const PaymentPage = lazy(() => import('../pages/PaymentPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
+const StripeTestPage = lazy(() => import('../pages/StripeTestPage'));
+const StripeSuccessPage = lazy(() => import('../pages/StripeSuccessPage'));
+const StripeCancelPage = lazy(() => import('../pages/StripeCancelPage'));
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -19,7 +23,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
 
-      // 🔐 private routes
+      { path: 'stripe-test', element: <StripeTestPage /> },
+      { path: 'stripe/success', element: <StripeSuccessPage /> },
+      { path: 'stripe/cancel', element: <StripeCancelPage /> },
+
       {
         element: <PrivateRoute />,
         children: [
