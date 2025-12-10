@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-import { errorNotification, successNotification } from '../../utils/notification';
+import { errorHandler, successNotification } from '../../utils/notification';
 import { Button } from '../../design-system';
 import { TextField } from '../FormFields';
 import { defaultValues } from './const';
@@ -43,7 +43,12 @@ export const SignUpForm = ({ onSuccess }) => {
       })
       .catch(error => {
         setLoading(false);
-        errorNotification(error);
+        console.log(error);
+        if (error?.message === 'Email in use') {
+          errorHandler(error, t('errors.emailInUse'));
+        } else {
+          errorHandler(error, t('errors.registrationFailed'));
+        }
       });
   };
 

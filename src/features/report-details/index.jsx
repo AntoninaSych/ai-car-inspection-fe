@@ -7,7 +7,7 @@ import { Report } from './components';
 
 export const ReportDetails = () => {
   const { reportId } = useParams();
-  const { t } = useTranslation('report');
+  const { t } = useTranslation(['report', 'common']);
   const { data, isLoading, error } = useReportDetails(reportId);
 
   if (isLoading) {
@@ -18,7 +18,7 @@ export const ReportDetails = () => {
     return (
       <Container maxWidth="sm">
         <Typography variant="h4" mt={4}>
-          {t('noReportId', 'Report not found')}
+          {t('report:noReportId', 'Report not found')}
         </Typography>
       </Container>
     );
@@ -27,7 +27,7 @@ export const ReportDetails = () => {
   if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
-        <AlertTitle>{t('serverError', 'An error occurred. Please try again later.')}</AlertTitle>
+        <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
       </Alert>
     );
   }

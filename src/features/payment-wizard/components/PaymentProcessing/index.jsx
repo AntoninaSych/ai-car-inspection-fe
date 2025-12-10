@@ -21,14 +21,17 @@ export const PaymentProcessing = ({ t, paymentMethod }) => {
       <CardContent>
         <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
           {renderIcon()}
-          <Typography variant="h6">{t(`processing.title`, 'Processing your payment...')}</Typography>
+          <Typography variant="h6">{t(`payment:processing.title`, 'Processing your payment...')}</Typography>
 
           <Box sx={{ width: '100%', mt: 3 }}>
             <LinearProgress />
           </Box>
 
           <Typography variant="body2" color="text.secondary">
-            {t('processing.description', 'This may take a few seconds. Please do not close or refresh the page.')}
+            {t(
+              'payment:processing.description',
+              'This may take a few seconds. Please do not close or refresh the page.'
+            )}
           </Typography>
         </Box>
       </CardContent>

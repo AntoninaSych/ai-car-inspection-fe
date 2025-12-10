@@ -25,6 +25,5 @@
     "severe": "Severe",
     "unknown": "Unknown"
   },
-  "recommendationsTitle": "Recommended Next Steps",
-  "serverError": "An error occurred. Please try again later."
+  "recommendationsTitle": "Recommended Next Steps"
 }

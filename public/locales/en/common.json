@@ -58,5 +58,18 @@
     "switch-label": "Switch appearance",
     "dark-label": "Dark mode",
     "light-label": "Light mode"
+  },
+  "errors": {
+    "internal": {
+      "unpaidLimitReached": "You have reached the limit for creating unpaid requests.",
+      "rateLimitExceeded": "Rate limit exceeded. Please try again later.",
+      "tooManyRequests": "Too many requests. Please wait a moment and try again."
+    },
+    "validation": "Invalid or incomplete data. Please check the information you entered.",
+    "unknown": "An error occurred. Please try again later",
+    "unauthorized": "Access denied. Please log in to your account.",
+    "loginFailed": "Login failed. Please check your email and password and try again.",
+    "registrationFailed": "Registration failed. Please check your information or try again later.",
+    "emailInUse": "This email is already in use."
   }
 }

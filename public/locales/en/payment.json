@@ -73,8 +73,7 @@
       "payerIbanInvalid": "Invalid IBAN"
     }
   },
-  "paymentError": "Something went wrong during payment. Please try again or contact us.",
-  "serverError": "An error occurred. Please try again later.",
+  "error": "Something went wrong during payment. Please try again or contact us.",
   "processing": {
     "title": "Processing your payment...",
     "description": "This may take a few seconds. Please do not close or refresh the page."
