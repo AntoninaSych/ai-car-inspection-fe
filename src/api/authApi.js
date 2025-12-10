@@ -15,6 +15,6 @@ export const usersLogout = async () => {
 };
 
 export const fetchCurrentUser = async () => {
-  const { data } = await api.get('/users/current', { skipGlobalErrorHandler: true });
+  const { data } = await api.get('/users/current');
   return data;
 };

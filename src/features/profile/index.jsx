@@ -5,7 +5,7 @@ import { useProfileData } from './hook/useProfileData';
 import { ProfilePageView } from './components';
 
 export const Profile = () => {
-  const { t } = useTranslation(['profile', 'report', 'common']);
+  const { t } = useTranslation();
   const { tasks, isLoading, error } = useProfileData();
 
   if (isLoading) {

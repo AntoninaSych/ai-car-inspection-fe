@@ -53,7 +53,7 @@ export const SignInForm = ({ onSuccess }) => {
           <Stack spacing={2}>
             <Stack spacing={1}>
               <TextField label={t('labels.email')} name="email" required />
-              <TextField label={t('labels.password')} type="password" name="password" required />
+              <TextField label={t('labels.password')} type="password" name="password" autoComplete="off" required />
             </Stack>
 
             <Button
