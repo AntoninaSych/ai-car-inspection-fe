@@ -12,7 +12,7 @@ import { createUploadWizardSchema } from './validation/schema';
 import { WizardStepper } from './components/WizardStepper';
 import { SummaryStep } from './components/SummaryStep';
 import { DetailsStep } from './components/DetailsStep';
-import { errorNotification } from '../../utils/notification';
+import { errorHandler } from '../../utils/notification';
 import { PhotosStep } from './components/PhotosStep';
 import { WizardRoot, NavRow, StyledCard } from './styled';
 
@@ -61,7 +61,7 @@ export const UploadWizard = () => {
         navigate(ROUTERS.SUCCESS);
       }
     } catch (error) {
-      errorNotification(error?.message);
+      errorHandler(error);
     }
   };
 

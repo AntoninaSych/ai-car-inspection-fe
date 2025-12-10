@@ -15,7 +15,7 @@ export const register = createAsyncThunk('auth/register', async (user, { rejectW
       return rejectWithValue('User creation error');
     }
 
-    return rejectWithValue(error.response?.data?.message || error.message || 'Server error');
+    return rejectWithValue(error.response?.data || error);
   }
 });
 
@@ -23,18 +23,15 @@ export const login = createAsyncThunk('auth/login', async (user, { rejectWithVal
   try {
     return await usersLogin(user);
   } catch (error) {
-    if (error.status === 400) {
-      return rejectWithValue('Login error, please check credentials');
-    }
-    return rejectWithValue(error.response?.data?.message || error.message || 'Server error');
+    return rejectWithValue(error.response?.data || error);
   }
 });
 
 export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
   try {
     await usersLogout();
-  } catch ({ message }) {
-    return rejectWithValue(message);
+  } catch (error) {
+    return rejectWithValue(error.response?.data || error);
   }
 });
 
@@ -47,7 +44,7 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, { rejectWi
     }
 
     return data;
-  } catch ({ message }) {
-    return rejectWithValue(message);
+  } catch (error) {
+    return rejectWithValue(error.response?.data || error);
   }
 });

@@ -46,14 +46,14 @@ const severityColor = severity => {
 const severityLabel = (severity, t) => {
   switch (severity) {
     case SEVERITY.MINOR:
-      return t('severity.minor', 'Minor');
+      return t('report:severity.minor', 'Minor');
     case SEVERITY.MODERATE:
-      return t('severity.moderate', 'Moderate');
+      return t('report:severity.moderate', 'Moderate');
     case SEVERITY.SEVERE:
-      return t('severity.severe', 'Severe');
+      return t('report:severity.severe', 'Severe');
     case SEVERITY.UNKNOWN:
     default:
-      return t('severity.unknown', 'Unknown');
+      return t('report:severity.unknown', 'Unknown');
   }
 };
 
@@ -61,7 +61,7 @@ export const Report = ({ report, t }) => {
   if (!report) {
     return (
       <Box p={3}>
-        <Alert severity="info">{t('loading', 'Завантажуємо звіт...')}</Alert>
+        <Alert severity="info">{t('report:loading', 'Завантажуємо звіт...')}</Alert>
       </Box>
     );
   }
@@ -82,11 +82,14 @@ export const Report = ({ report, t }) => {
       <Box mb={3}>
         {damageDetected ? (
           <Alert icon={<ErrorIcon />} severity="warning" variant="outlined">
-            {t('damageDetected', 'Damage has been detected. Below are the details and the estimated repair costs.')}
+            {t(
+              'report:damageDetected',
+              'Damage has been detected. Below are the details and the estimated repair costs.'
+            )}
           </Alert>
         ) : (
           <Alert icon={<CheckCircleIcon />} severity="success" variant="outlined">
-            {t('noDamageDetected', 'No significant damage detected based on the provided photos.')}
+            {t('report:noDamageDetected', 'No significant damage detected based on the provided photos.')}
           </Alert>
         )}
       </Box>
@@ -98,7 +101,7 @@ export const Report = ({ report, t }) => {
           <Box>
             <Stack direction="row" spacing={1} alignItems="center" mb={1.5}>
               <InfoOutlinedIcon fontSize="small" />
-              <Typography variant="h6">{t('summaryTitle', 'AI Summary')}</Typography>
+              <Typography variant="h6">{t('report:summaryTitle', 'AI Summary')}</Typography>
             </Stack>
             <Typography variant="body1">{summary}</Typography>
           </Box>
@@ -109,14 +112,14 @@ export const Report = ({ report, t }) => {
           <StyledCard variant="outlined">
             <CardContent>
               <Typography variant="h6" gutterBottom>
-                {t('costSummaryTitle', 'Preliminary Cost Estimate')}
+                {t('report:costSummaryTitle', 'Preliminary Cost Estimate')}
               </Typography>
 
               <Stack spacing={2}>
                 {estimatedTotalLaborCost && (
                   <Box>
                     <Typography variant="caption" color="text.secondary">
-                      {t('totalLabor', 'Labor')}
+                      {t('report:totalLabor', 'Labor')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
                       {estimatedTotalLaborCost}
@@ -127,7 +130,7 @@ export const Report = ({ report, t }) => {
                 {estimatedTotalPartsCostOriginal && (
                   <Box>
                     <Typography variant="caption" color="text.secondary">
-                      {t('totalPartsOriginal', 'Parts (original)')}
+                      {t('report:totalPartsOriginal', 'Parts (original)')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
                       {estimatedTotalPartsCostOriginal}
@@ -138,7 +141,7 @@ export const Report = ({ report, t }) => {
                 {estimatedTotalPartsCostAlternative && (
                   <Box>
                     <Typography variant="caption" color="text.secondary">
-                      {t('totalPartsAlternative', 'Parts (alternative)')}
+                      {t('report:totalPartsAlternative', 'Parts (alternative)')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
                       {estimatedTotalPartsCostAlternative}
@@ -163,7 +166,7 @@ export const Report = ({ report, t }) => {
               sx={{ width: '100%' }}
             >
               <Typography variant="h6" gutterBottom>
-                {t('damagesTitle', 'Detected Damages')}
+                {t('report:damagesTitle', 'Detected Damages')}
               </Typography>
               <Chip size="small" label={damages.length} color="primary" variant="outlined" />
             </Stack>
@@ -201,7 +204,7 @@ export const Report = ({ report, t }) => {
                     {damage.estimatedLaborCost && (
                       <Grid size={{ xs: 12, md: 4 }}>
                         <Typography variant="caption" color="text.secondary">
-                          {t('damage.labor', 'Labor')}
+                          {t('report:damage.labor', 'Labor')}
                         </Typography>
                         <Typography variant="body2">{damage.estimatedLaborCost}</Typography>
                       </Grid>
@@ -209,7 +212,7 @@ export const Report = ({ report, t }) => {
                     {damage.estimatedPartsCostOriginal && (
                       <Grid size={{ xs: 12, md: 4 }}>
                         <Typography variant="caption" color="text.secondary">
-                          {t('damage.partsOriginal', 'Parts (original)')}
+                          {t('report:damage.partsOriginal', 'Parts (original)')}
                         </Typography>
                         <Typography variant="body2">{damage.estimatedPartsCostOriginal}</Typography>
                       </Grid>
@@ -217,7 +220,7 @@ export const Report = ({ report, t }) => {
                     {damage.estimatedPartsCostAlternative && (
                       <Grid size={{ xs: 12, md: 4 }}>
                         <Typography variant="caption" color="text.secondary">
-                          {t('damage.partsAlternative', 'Parts (alternative)')}
+                          {t('report:damage.partsAlternative', 'Parts (alternative)')}
                         </Typography>
                         <Typography variant="body2">{damage.estimatedPartsCostAlternative}</Typography>
                       </Grid>
@@ -234,7 +237,7 @@ export const Report = ({ report, t }) => {
         <StyledCard sx={{ mt: 4 }}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              {t('recommendationsTitle', 'Recommended Next Steps')}
+              {t('report:recommendationsTitle', 'Recommended Next Steps')}
             </Typography>
 
             <List dense>

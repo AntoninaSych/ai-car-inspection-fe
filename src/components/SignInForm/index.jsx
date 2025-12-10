@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Stack } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
-import { errorNotification } from '../../utils/notification';
+import { errorHandler } from '../../utils/notification';
 import { Button } from '../../design-system';
 import { TextField } from '../FormFields';
 import { defaultValues } from './const';
@@ -42,7 +42,7 @@ export const SignInForm = ({ onSuccess }) => {
       })
       .catch(error => {
         setLoading(false);
-        errorNotification(error);
+        errorHandler(error, t('errors.loginFailed'));
       });
   };
 

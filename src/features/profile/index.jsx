@@ -5,7 +5,7 @@ import { useProfileData } from './hook/useProfileData';
 import { ProfilePageView } from './components';
 
 export const Profile = () => {
-  const { t } = useTranslation(['profile', 'report']);
+  const { t } = useTranslation(['profile', 'report', 'common']);
   const { tasks, isLoading, error } = useProfileData();
 
   if (isLoading) {
@@ -15,7 +15,7 @@ export const Profile = () => {
   if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
-        <AlertTitle>{t('profile:serverError', 'An error occurred. Please try again later.')}</AlertTitle>
+        <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
       </Alert>
     );
   }

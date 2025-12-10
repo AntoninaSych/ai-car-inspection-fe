@@ -7,14 +7,14 @@ import { payTask } from '../../api/tasksApi';
 import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
 import { PaymentForm, PaymentProcessing } from './components';
-import { errorHandler } from '../../utils/notification';
+import { errorHandler, errorNotification } from '../../utils/notification';
 import { defaultValues } from './config';
 import { ROUTERS } from '../../constants';
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation('payment');
+  const { t } = useTranslation(['payment', 'common']);
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
   const methods = useForm({
     defaultValues,
@@ -39,7 +39,7 @@ export const PaymentWizard = () => {
         });
       }
     } catch (error) {
-      errorHandler(error, t('paymentError', 'Something went wrong during payment. Please try again.'));
+      errorHandler(error, t('payment:error'));
     }
   };
 
@@ -66,7 +66,7 @@ export const PaymentWizard = () => {
     return (
       <Container maxWidth="sm">
         <Typography variant="h4" mt={4}>
-          {t('noTaskId', 'Task not found')}
+          {t('payment:noTaskId', 'Task not found')}
         </Typography>
       </Container>
     );
@@ -75,7 +75,7 @@ export const PaymentWizard = () => {
   if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
-        <AlertTitle>{t('serverError', 'An error occurred. Please try again later.')}</AlertTitle>
+        <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
       </Alert>
     );
   }
@@ -87,7 +87,7 @@ export const PaymentWizard = () => {
   if (paymentDetails && paymentDetails.task?.isPaid) {
     return (
       <Alert severity="success" sx={{ mt: 3 }}>
-        <AlertTitle>{t('paid', 'Has already paid!')}</AlertTitle>
+        <AlertTitle>{t('payment:paid', 'Has already paid!')}</AlertTitle>
       </Alert>
     );
   }
@@ -95,7 +95,7 @@ export const PaymentWizard = () => {
   return (
     <>
       <Typography variant="h4" gutterBottom>
-        {t('title', 'Payment')}
+        {t('payment:title', 'Payment')}
       </Typography>
       <Typography variant="body2" color="text.secondary">
         {paymentDetails?.task?.brand}, {paymentDetails?.task?.model} ({paymentDetails?.task?.year})
@@ -105,7 +105,7 @@ export const PaymentWizard = () => {
       </Typography>
       <Typography variant="body1" color="text.secondary" mt={3}>
         {t(
-          'description',
+          'payment:description',
           'Please fill in the payment details. After a successful payment you will receive an email with your estimate.'
         )}
       </Typography>
@@ -115,10 +115,10 @@ export const PaymentWizard = () => {
           <PaymentForm />
 
           <Button type="submit" variant="contained" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
-            {isSubmitting ? t('button.processing', 'Processing payment…') : t('button.submit', 'Pay')}
+            {isSubmitting ? t('payment:button.processing', 'Processing payment…') : t('payment:button.submit', 'Pay')}
           </Button>
           <Button onClick={handleSkip} variant="outlined" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
-            {t('button.skip', 'Skip')}
+            {t('payment:button.skip', 'Skip')}
           </Button>
         </form>
       </FormProvider>

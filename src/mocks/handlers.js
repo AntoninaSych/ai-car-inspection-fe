@@ -1,20 +1,42 @@
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-  // send form
-  // http.post('/api/estimates', async () => {
-  //   await new Promise(resolve => setTimeout(resolve, 800));
-  //
-  //   return HttpResponse.json(
-  //     {
-  //       estimateId: 'mock_msw_123',
-  //       status: 'accepted',
-  //     },
-  //     { status: 200 }
-  //   );
-  // }),
+  // add task
+  http.post('/api/tasks', async ({ request }) => {
+    const auth = request.headers.get('Authorization');
+    if (!auth || !auth.startsWith('Bearer')) {
+      return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
 
-  http.get(`/___api/tasks/:taskId`, async ({ request }) => {
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    return HttpResponse.json(
+      {
+        message: 'User has reached the limit of unpaid tasks.',
+        internalCode: 'UNPAID_TASK_LIMIT_REACHED',
+      },
+      { status: 409 }
+    );
+  }),
+
+  // pay task
+  http.post('/_api/tasks/:taskId/pay', async ({ request }) => {
+    const auth = request.headers.get('Authorization');
+    if (!auth || !auth.startsWith('Bearer')) {
+      return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    return HttpResponse.json(
+      {
+        message: 'Server Error',
+      },
+      { status: 500 }
+    );
+  }),
+
+  http.get(`/_api/tasks/:taskId`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });

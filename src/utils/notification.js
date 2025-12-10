@@ -1,4 +1,6 @@
 import { toast } from 'react-hot-toast';
+import i18n from '../i18n';
+import { INTERNAL_CODE_MAP } from './errorCodes';
 
 const defaultOptions = {
   position: 'bottom-right',
@@ -13,8 +15,44 @@ export const errorNotification = (message, options = {}) => {
   toast.error(message, { ...defaultOptions, ...options });
 };
 
-export const errorHandler = (error, text = '') => {
-  const message =
-    text || error.response?.data?.message || error.message || 'Error';
-  errorNotification(message);
+const getErrorDetails = error => {
+  const data = error && error.response && error.response.data;
+  const internalCode = data && data.internalCode;
+
+  return { data, internalCode };
+};
+
+export const globalErrorHandler = error => {
+  const translate = i18n.t.bind(i18n);
+  const { internalCode } = getErrorDetails(error);
+
+  if (internalCode && INTERNAL_CODE_MAP[internalCode]) {
+    const message = translate(INTERNAL_CODE_MAP[internalCode] || 'errors.unknown');
+    errorNotification(message);
+  }
+};
+
+export const errorHandler = (error, defaultMessage = '') => {
+  const { data, internalCode } = getErrorDetails(error);
+  const translate = i18n.t.bind(i18n);
+  let message = '';
+
+  // skip internalCode, used in globalErrorHandler
+  if (!internalCode) {
+    if (defaultMessage) {
+      message = defaultMessage;
+    } else if (data && data.message) {
+      // message from api
+      message = data.message;
+    } else if (error && error.message) {
+      // common JS error
+      message = error.message;
+    } else {
+      message = translate('errors.unknown');
+    }
+
+    if (message) {
+      errorNotification(message);
+    }
+  }
 };
