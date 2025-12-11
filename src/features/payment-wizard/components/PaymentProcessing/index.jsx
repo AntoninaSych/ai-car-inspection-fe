@@ -5,7 +5,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { PAYMENT_METHODS } from '../../constants';
 import { StyledCard } from '../../styled';
 
-export const PaymentProcessing = ({ uiState, paymentMethod }) => {
+export const PaymentProcessing = ({ paymentMethod }) => {
   const { t } = useTranslation('payment');
   if (!paymentMethod) {
     return null;
@@ -30,7 +30,7 @@ export const PaymentProcessing = ({ uiState, paymentMethod }) => {
           </Box>
 
           <Typography variant="body2" color="text.secondary">
-            {uiState === 'takingLonger' ? t('processing.takingLonger') : t('processing.description')}
+            {t('processing.description')}
           </Typography>
         </Box>
       </CardContent>

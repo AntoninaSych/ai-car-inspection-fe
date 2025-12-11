@@ -7,48 +7,15 @@ import { payTask } from '../../api/tasksApi';
 import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
 import { PaymentForm, PaymentProcessing } from './components';
-import { errorHandler } from '../../utils/notification';
+import { errorHandler, errorNotification } from '../../utils/notification';
 import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { ROUTERS } from '../../constants';
 import { createStripeCheckoutSession } from '../../api/stripeApi';
-
-const basicPayment = async (values, taskId, callback = null) => {
-  try {
-    await payTask(taskId, values);
-    callback && callback();
-  } catch (error) {
-    return new Error(error);
-  }
-};
-
-const payWithStripe = async (values, taskId) => {
-  try {
-    const res = await createStripeCheckoutSession({
-      task_id: taskId,
-      amount: Math.round(Number(values.amount) * 100),
-      currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
-      full_name: values.fullName,
-    });
-
-    if (!res?.url) {
-      return new Error('Stripe did not return checkout url');
-    }
-
-    window.location.href = res.url;
-  } catch (error) {
-    return new Error(error);
-  }
-};
-
-const paymentHandlers = {
-  stripe: payWithStripe,
-  transfer: basicPayment,
-  card: basicPayment,
-};
+import { PAYMENT_METHODS } from './constants';
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
-  const [uiState, setUiState] = useState(null);
+  const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation(['payment', 'common']);
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
@@ -61,31 +28,38 @@ export const PaymentWizard = () => {
   const paymentMethod = watch('paymentMethod');
 
   const onSubmit = async values => {
-    const handler = paymentHandlers[values.paymentMethod];
-    if (!handler) {
-      errorHandler(error, t('payment:unsupported-payment-method'));
+    if (values.paymentMethod === PAYMENT_METHODS.STRIPE) {
+      try {
+        setRedirecting(true);
+        const res = await createStripeCheckoutSession({
+          task_id: taskId,
+          amount: Math.round(Number(values.amount) * 100),
+          currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
+          full_name: values.fullName,
+        });
+
+        if (res?.url) {
+          window.location.href = res.url;
+        } else {
+          errorNotification('Stripe did not return checkout url');
+          setRedirecting(false);
+        }
+      } catch (error) {
+        errorHandler(error, t('payment:error'));
+        setRedirecting(false);
+      }
       return;
     }
 
-    setUiState('processing');
-    const timer = setTimeout(() => {
-      setUiState('takingLonger');
-    }, 3000);
-
     try {
-      await handler(values, taskId, () => {
-        setUiState('success');
-        navigate(ROUTERS.SUCCESS, {
-          state: {
-            from: `payment.${values.paymentMethod}`,
-          },
-        });
+      await payTask(taskId, values);
+      navigate(ROUTERS.SUCCESS, {
+        state: {
+          from: `payment.${values.paymentMethod}`,
+        },
       });
     } catch (error) {
-      setUiState('error');
       errorHandler(error, t('payment:error'));
-    } finally {
-      clearTimeout(timer);
     }
   };
 
@@ -118,7 +92,7 @@ export const PaymentWizard = () => {
     );
   }
 
-  if (error || uiState === 'error') {
+  if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
         <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
@@ -126,8 +100,8 @@ export const PaymentWizard = () => {
     );
   }
 
-  if (isSubmitting) {
-    return <PaymentProcessing paymentMethod={paymentMethod} uiState={uiState} />;
+  if (isSubmitting || redirecting) {
+    return <PaymentProcessing paymentMethod={paymentMethod} />;
   }
 
   if (paymentDetails && paymentDetails.task?.isPaid) {

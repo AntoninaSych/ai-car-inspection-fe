@@ -103,8 +103,7 @@
   "error": "Something went wrong during payment. Please try again or contact us.",
   "processing": {
     "title": "Processing your payment...",
-    "description": "This may take a few seconds. Please do not close or refresh the page.",
-    "takingLonger": "This is taking longer than usual. Please wait..."
+    "description": "This may take a few seconds. Please do not close or refresh the page."
   },
   "success": {
     "card": {
