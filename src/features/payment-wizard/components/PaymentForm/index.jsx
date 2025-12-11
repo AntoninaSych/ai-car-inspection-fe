@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { PAYMENT_METHODS } from '../../constants';
 import { TransferPaymentMethod } from './TransferPaymentMethod';
 import { CardPaymentMethod } from './CardPaymentMethod';
+import { StripePaymentMethod } from './StripePaymentMethod';
 import { formatAmount } from '../../utils/helpers';
 
 export const PaymentForm = () => {
@@ -83,6 +84,7 @@ export const PaymentForm = () => {
               >
                 <MenuItem value="transfer">{t('payment:method.transfer', 'Bank transfer')}</MenuItem>
                 <MenuItem value="card">{t('payment:method.card', 'Bank card')}</MenuItem>
+                <MenuItem value="stripe">{t('payment:method.stripe', 'Bank card')}</MenuItem>
               </TextField>
             )}
           />
@@ -90,8 +92,9 @@ export const PaymentForm = () => {
       </Grid>
 
       <Box sx={{ p: 3, pt: 0 }}>
-        {paymentMethod === PAYMENT_METHODS.CARD && <CardPaymentMethod t={t} />}
-        {paymentMethod === PAYMENT_METHODS.TRANSFER && <TransferPaymentMethod t={t} />}
+        {paymentMethod === PAYMENT_METHODS.CARD && <CardPaymentMethod />}
+        {paymentMethod === PAYMENT_METHODS.STRIPE && <StripePaymentMethod />}
+        {paymentMethod === PAYMENT_METHODS.TRANSFER && <TransferPaymentMethod />}
       </Box>
     </>
   );

@@ -3,15 +3,21 @@
   "description": "Please fill in the payment details.",
   "noTaskId": "Request ID not found",
   "paid": "Thank you! Payment has already been received.",
+  "unsupported-payment-method": "Unsupported payment method.",
   "method": {
     "label": "Payment method",
     "card": "Bank card",
-    "transfer": "Bank transfer"
+    "transfer": "Bank transfer",
+    "stripe": "Stripe Checkout"
   },
   "button": {
     "submit": "Pay",
+    "tryToPayAgain": "Try to pay one more time",
     "processing": "Processing payment...",
-    "skip": "Skip"
+    "skip": "Skip",
+    "goToProfile": "Go to profile and check request status",
+    "backToProfile": "Back to profile",
+    "backToHome": "Back to home page"
   },
   "fields": {
     "fullName": {
@@ -60,6 +66,27 @@
       "cardCvvInvalid": "Invalid CVV"
     }
   },
+  "stripe": {
+    "title": "Complete Your Payment",
+    "subtitle": "We will securely redirect you to Stripe to finish the transaction.",
+    "paymentSuccess": {
+      "title": "Payment Confirmed",
+      "subtitle": "Your payment has been successfully verified.",
+      "body": "We are preparing your report. You will receive an email once it is ready.",
+      "goToProfile": "Go to Profile"
+    },
+    "paymentStatus": {
+      "title": "Verifying Payment",
+      "subtitle": "Please wait while we confirm your transaction.",
+      "loading": "Checking payment status..."
+    },
+    "paymentCancel": {
+      "title": "Payment Not Completed",
+      "subtitle": "It looks like your payment was canceled or not processed.",
+      "body": "You can try again anytime.",
+      "tryAgain": "Try Again"
+    }
+  },
   "transfer": {
     "info": "After confirmation we will send you bank transfer details.",
     "payerName": {
@@ -80,14 +107,17 @@
     "takingLonger": "This is taking longer than usual. Please wait..."
   },
   "success": {
-    "title": "Payment received",
-    "subtitle": "Thank you for paying for your request.",
-    "statusInfo": "We have started preparing a detailed report about the condition of your car.",
-    "emailInfo": "When the report is ready, you will receive an email with instructions and a link to view it.",
-    "description": "Success page confirming payment and allowing you to go to your profile to check the request status.",
-    "button": {
-      "goToProfile": "Go to profile and check request status",
-      "backToHome": "Back to home page"
+    "card": {
+      "title": "Payment received",
+      "subtitle": "Thank you for paying for your request.",
+      "statusInfo": "We have started preparing a detailed report about the condition of your car.",
+      "emailInfo": "When the report is ready, you will receive an email with instructions and a link to view it."
+    },
+    "transfer": {
+      "title": "Request Successfully Created",
+      "subtitle": "To complete the payment, a bank transfer is required.",
+      "statusInfo": "We will send the payment details to your email address.",
+      "emailInfo": "Please check your inbox and follow the instructions to complete the transfer."
     }
   }
 }

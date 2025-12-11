@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Payment } from './components';
+import { Payment, Transfer } from './components';
 
 const SuccessPage = () => {
   const location = useLocation();
@@ -9,8 +9,11 @@ const SuccessPage = () => {
 
   const renderContent = () => {
     switch (location.state?.from) {
-      case 'payment': {
+      case 'payment.card': {
         return <Payment />;
+      }
+      case 'payment.transfer': {
+        return <Transfer />;
       }
       default:
         return null;
