@@ -1,8 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, TextField, Grid, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { getCardBrand, formatCardNumber, formatCardExpiry } from '../../utils/helpers';
 
-export const CardPaymentMethod = ({ t }) => {
+export const CardPaymentMethod = () => {
+  const { t } = useTranslation('payment');
   const { control, formState, watch } = useFormContext();
   const { errors } = formState;
   const cardNumberValue = watch('cardNumber');

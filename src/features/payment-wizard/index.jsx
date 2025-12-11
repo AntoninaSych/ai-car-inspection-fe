@@ -8,8 +8,42 @@ import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
 import { PaymentForm, PaymentProcessing } from './components';
 import { errorHandler } from '../../utils/notification';
-import { defaultValues } from './config';
+import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { ROUTERS } from '../../constants';
+import { createStripeCheckoutSession } from '../../api/stripeApi';
+
+const payWithBankTransfer = async (values, taskId, callback = null) => {
+  try {
+    await payTask(taskId, values);
+    callback && callback();
+  } catch (error) {
+    return new Error(error);
+  }
+};
+
+const payWithStripe = async (values, taskId) => {
+  try {
+    const res = await createStripeCheckoutSession({
+      task_id: taskId,
+      amount: Math.round(Number(values.amount) * 100),
+      currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
+      fullName: values.fullName || '',
+    });
+
+    if (!res?.url) {
+      return new Error('Stripe did not return checkout url');
+    }
+
+    window.location.href = res.url;
+  } catch (error) {
+    return new Error(error);
+  }
+};
+
+const paymentHandlers = {
+  stripe: payWithStripe,
+  transfer: payWithBankTransfer,
+};
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
@@ -26,18 +60,25 @@ export const PaymentWizard = () => {
   const paymentMethod = watch('paymentMethod');
 
   const onSubmit = async values => {
+    const handler = paymentHandlers[values.paymentMethod];
+    if (!handler) {
+      errorHandler(error, t('payment:unsupported-payment-method'));
+      return;
+    }
+
     setUiState('processing');
     const timer = setTimeout(() => {
       setUiState('takingLonger');
     }, 3000);
 
     try {
-      await payTask(taskId, values);
-      setUiState('success');
-      navigate(ROUTERS.SUCCESS, {
-        state: {
-          from: 'payment',
-        },
+      await handler(values, taskId, () => {
+        setUiState('success');
+        navigate(ROUTERS.SUCCESS, {
+          state: {
+            from: `payment.${values.paymentMethod}`,
+          },
+        });
       });
     } catch (error) {
       setUiState('error');

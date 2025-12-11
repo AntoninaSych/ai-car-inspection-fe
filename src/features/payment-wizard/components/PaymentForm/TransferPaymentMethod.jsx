@@ -1,7 +1,9 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { Box, TextField, Alert } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-export const TransferPaymentMethod = ({ t }) => {
+export const TransferPaymentMethod = () => {
+  const { t } = useTranslation('payment');
   const { control, formState } = useFormContext();
   const { errors } = formState;
 

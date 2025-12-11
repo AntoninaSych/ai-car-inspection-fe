@@ -39,7 +39,7 @@ export const UploadWizard = () => {
       formData.append('brand_id', values.make?.id);
       formData.append('model_id', values.model?.id);
       formData.append('year', values.year?.id);
-      formData.append('country_id', values.country?.id);
+      formData.append('country_code', values.country?.id);
       formData.append('front', values.front);
       formData.append('back', values.rear);
       formData.append('left', values.left);
@@ -53,10 +53,9 @@ export const UploadWizard = () => {
         formData.append('description', values.description);
       }
 
-      const data = await sendTask(formData);
-
-      if (data.ok && data.taskId) {
-        navigate(`${ROUTERS.TASKS_PAY}/${data.taskId}`);
+      const { taskId } = await sendTask(formData);
+      if (taskId) {
+        navigate(`${ROUTERS.TASKS_PAY}/${taskId}`);
       } else {
         navigate(ROUTERS.SUCCESS);
       }
