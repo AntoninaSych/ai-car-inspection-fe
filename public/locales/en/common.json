@@ -23,11 +23,7 @@
     "subtitle": "Based on the uploaded photos and information provided, we assessed the condition of the car and the preliminary cost of repairs."
   },
   "success-page": {
-    "title": "Thank you for using the service.",
-    "payment": {
-      "title": "We’ve received your payment information.",
-      "subtitle": "Please wait your email for further updates. You can also visit your profile to view the status of all your submissions."
-    }
+    "title": "Thank you for using the service."
   },
   "labels": {
     "email": "Email",

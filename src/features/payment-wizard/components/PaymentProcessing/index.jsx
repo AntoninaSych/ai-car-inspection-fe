@@ -1,10 +1,12 @@
 import { Box, CardContent, LinearProgress, Typography } from '@mui/material';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
+import { useTranslation } from 'react-i18next';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { PAYMENT_METHODS } from '../../constants';
 import { StyledCard } from '../../styled';
 
-export const PaymentProcessing = ({ t, paymentMethod }) => {
+export const PaymentProcessing = ({ uiState, paymentMethod }) => {
+  const { t } = useTranslation('payment');
   if (!paymentMethod) {
     return null;
   }
@@ -17,21 +19,18 @@ export const PaymentProcessing = ({ t, paymentMethod }) => {
   };
 
   return (
-    <StyledCard elevation={3} variant="outlined">
+    <StyledCard variant="elevation">
       <CardContent>
         <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
           {renderIcon()}
-          <Typography variant="h6">{t(`payment:processing.title`, 'Processing your payment...')}</Typography>
+          <Typography variant="h6">{t(`processing.title`, 'Processing your payment...')}</Typography>
 
           <Box sx={{ width: '100%', mt: 3 }}>
             <LinearProgress />
           </Box>
 
           <Typography variant="body2" color="text.secondary">
-            {t(
-              'payment:processing.description',
-              'This may take a few seconds. Please do not close or refresh the page.'
-            )}
+            {uiState === 'takingLonger' ? t('processing.takingLonger') : t('processing.description')}
           </Typography>
         </Box>
       </CardContent>

@@ -10,7 +10,7 @@ export const useTaskPaymentDetails = taskId => {
     queryKey: ['paymentDetails', taskId],
     queryFn: () => fetchTaskDetails(taskId),
     enabled: !!taskId,
-    staleTime: 1000 * 60 * 60, // cache 1 hour
+    // staleTime: 1000 * 60 * 60, // cache 1 hour
   });
 
   return { data, isLoading, error };

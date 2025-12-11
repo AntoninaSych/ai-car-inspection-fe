@@ -6,13 +6,15 @@ import { Payment } from './components';
 const SuccessPage = () => {
   const location = useLocation();
   const { t } = useTranslation();
-  const isFromPayment = location.state?.from === 'payment';
 
   const renderContent = () => {
-    if (isFromPayment) {
-      return <Payment t={t} />;
+    switch (location.state?.from) {
+      case 'payment': {
+        return <Payment />;
+      }
+      default:
+        return null;
     }
-    return null;
   };
 
   return (

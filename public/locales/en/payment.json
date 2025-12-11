@@ -76,6 +76,18 @@
   "error": "Something went wrong during payment. Please try again or contact us.",
   "processing": {
     "title": "Processing your payment...",
-    "description": "This may take a few seconds. Please do not close or refresh the page."
+    "description": "This may take a few seconds. Please do not close or refresh the page.",
+    "takingLonger": "This is taking longer than usual. Please wait..."
+  },
+  "success": {
+    "title": "Payment received",
+    "subtitle": "Thank you for paying for your request.",
+    "statusInfo": "We have started preparing a detailed report about the condition of your car.",
+    "emailInfo": "When the report is ready, you will receive an email with instructions and a link to view it.",
+    "description": "Success page confirming payment and allowing you to go to your profile to check the request status.",
+    "button": {
+      "goToProfile": "Go to profile and check request status",
+      "backToHome": "Back to home page"
+    }
   }
 }

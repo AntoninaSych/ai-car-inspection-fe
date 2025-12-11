@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Button, Container, Typography, Alert, AlertTitle } from '@mui/material';
@@ -7,12 +7,13 @@ import { payTask } from '../../api/tasksApi';
 import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
 import { PaymentForm, PaymentProcessing } from './components';
-import { errorHandler, errorNotification } from '../../utils/notification';
+import { errorHandler } from '../../utils/notification';
 import { defaultValues } from './config';
 import { ROUTERS } from '../../constants';
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
+  const [uiState, setUiState] = useState(null);
   const navigate = useNavigate();
   const { t } = useTranslation(['payment', 'common']);
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
@@ -21,25 +22,28 @@ export const PaymentWizard = () => {
   });
 
   const { handleSubmit, setValue, formState, watch } = methods;
-  const { isSubmitting } = formState;
+  const { isSubmitting, isDirty } = formState;
   const paymentMethod = watch('paymentMethod');
 
   const onSubmit = async values => {
-    try {
-      const response = await payTask(taskId, values);
+    setUiState('processing');
+    const timer = setTimeout(() => {
+      setUiState('takingLonger');
+    }, 3000);
 
-      if (response?.reportId) {
-        const { reportId } = response;
-        navigate(`${ROUTERS.REPORTS}/${reportId}`);
-      } else {
-        navigate(ROUTERS.SUCCESS, {
-          state: {
-            from: 'payment',
-          },
-        });
-      }
+    try {
+      await payTask(taskId, values);
+      setUiState('success');
+      navigate(ROUTERS.SUCCESS, {
+        state: {
+          from: 'payment',
+        },
+      });
     } catch (error) {
+      setUiState('error');
       errorHandler(error, t('payment:error'));
+    } finally {
+      clearTimeout(timer);
     }
   };
 
@@ -72,7 +76,7 @@ export const PaymentWizard = () => {
     );
   }
 
-  if (error) {
+  if (error || uiState === 'error') {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
         <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
@@ -81,7 +85,7 @@ export const PaymentWizard = () => {
   }
 
   if (isSubmitting) {
-    return <PaymentProcessing t={t} paymentMethod={paymentMethod} />;
+    return <PaymentProcessing paymentMethod={paymentMethod} uiState={uiState} />;
   }
 
   if (paymentDetails && paymentDetails.task?.isPaid) {
@@ -114,7 +118,14 @@ export const PaymentWizard = () => {
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <PaymentForm />
 
-          <Button type="submit" variant="contained" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            sx={{ mt: 3 }}
+            disabled={isSubmitting || !isDirty}
+            fullWidth
+          >
             {isSubmitting ? t('payment:button.processing', 'Processing payment…') : t('payment:button.submit', 'Pay')}
           </Button>
           <Button onClick={handleSkip} variant="outlined" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>

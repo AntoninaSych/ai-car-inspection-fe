@@ -10,7 +10,7 @@ import { Button } from '../../design-system';
 import { TextField } from '../FormFields';
 import { defaultValues } from './const';
 import { validationSchema } from './const/validation';
-import css from './SignInForm.module.css';
+import { Wrapper } from './styled';
 
 export const SignInForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -47,7 +47,7 @@ export const SignInForm = ({ onSuccess }) => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <Wrapper>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={2}>
@@ -68,7 +68,7 @@ export const SignInForm = ({ onSuccess }) => {
           </Stack>
         </form>
       </FormProvider>
-    </div>
+    </Wrapper>
   );
 };
 

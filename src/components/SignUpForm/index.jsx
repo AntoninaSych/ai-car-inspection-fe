@@ -10,7 +10,7 @@ import { Button } from '../../design-system';
 import { TextField } from '../FormFields';
 import { defaultValues } from './const';
 import { validationSchema } from './const/validation';
-import css from './SignUpForm.module.css';
+import { Wrapper } from './styled';
 
 export const SignUpForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -52,7 +52,7 @@ export const SignUpForm = ({ onSuccess }) => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <Wrapper>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={2}>
@@ -82,7 +82,7 @@ export const SignUpForm = ({ onSuccess }) => {
           </Stack>
         </form>
       </FormProvider>
-    </div>
+    </Wrapper>
   );
 };
 
