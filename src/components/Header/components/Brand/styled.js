@@ -5,6 +5,6 @@ export const StyledLink = styled(Link)(({ theme }) => ({
   fontWeight: 800,
   fontSize: '16px',
   textDecoration: 'none',
-  textTransform: 'uppercase',
+  // textTransform: 'uppercase',
   color: theme.palette.primary.main,
 }));
