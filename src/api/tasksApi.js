@@ -1,5 +1,5 @@
 import api from './axiosInstance';
-import { formatToCamelCase } from './utils';
+import { formatToCamelCase, formatToSnake } from './utils';
 
 export const sendTask = async task => {
   const { data } = await api.post('/tasks', task, {
@@ -11,7 +11,7 @@ export const sendTask = async task => {
 };
 
 export const payTask = async (taskId, values) => {
-  const { data } = await api.post(`/tasks/${taskId}/pay`, values);
+  const { data } = await api.post(`/tasks/${taskId}/pay`, formatToSnake(values));
   return formatToCamelCase(data);
 };
 

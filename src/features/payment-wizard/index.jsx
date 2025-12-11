@@ -12,7 +12,7 @@ import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { ROUTERS } from '../../constants';
 import { createStripeCheckoutSession } from '../../api/stripeApi';
 
-const payWithBankTransfer = async (values, taskId, callback = null) => {
+const basicPayment = async (values, taskId, callback = null) => {
   try {
     await payTask(taskId, values);
     callback && callback();
@@ -42,7 +42,8 @@ const payWithStripe = async (values, taskId) => {
 
 const paymentHandlers = {
   stripe: payWithStripe,
-  transfer: payWithBankTransfer,
+  transfer: basicPayment,
+  card: basicPayment,
 };
 
 export const PaymentWizard = () => {
