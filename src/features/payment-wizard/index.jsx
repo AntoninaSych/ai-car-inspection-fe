@@ -27,7 +27,7 @@ const payWithStripe = async (values, taskId) => {
       task_id: taskId,
       amount: Math.round(Number(values.amount) * 100),
       currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
-      fullName: values.fullName || '',
+      full_name: values.fullName,
     });
 
     if (!res?.url) {
