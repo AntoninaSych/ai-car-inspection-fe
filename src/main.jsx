@@ -13,6 +13,7 @@ import { App } from './App';
 import './i18n';
 import { i18nPromise } from './i18n';
 import { ROOT_CONTAINER } from './constants';
+import './styles/index.css';
 
 if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser');
