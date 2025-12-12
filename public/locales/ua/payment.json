@@ -4,8 +4,7 @@
   "noTaskId": "Не знайдено ідентифікатора заявки",
   "paid": "Дякуємо! Оплату вже отримано.",
   "unsupported-payment-method": "Непідтримуваний спосіб оплати.",
-  "method": {
-    "label": "Метод оплати",
+  "paymentMethod": {
     "card": "Банківська карта",
     "transfer": "Банківський переказ",
     "stripe": "Stripe Checkout"
@@ -20,6 +19,9 @@
     "backToHome": "Повернутися на головну сторінку"
   },
   "fields": {
+    "paymentMethod": {
+      "label": "Метод оплати"
+    },
     "fullName": {
       "label": "Повне імʼя"
     },
@@ -28,24 +30,12 @@
     },
     "amount": {
       "label": "Сума до оплати, {{currency}}"
-    }
-  },
-  "errors": {
-    "fullNameRequired": "Ім’я є обовʼязковим",
-    "fullNameShort": "Занадто коротке імʼя",
-    "emailRequired": "Email є обовʼязковим",
-    "emailInvalid": "Некоректний формат email",
-    "amountRequired": "Сума є обовʼязковою",
-    "amountInvalid": "Вкажіть коректну суму"
-  },
-  "card": {
-    "title": "Дані банківської картки",
-    "description": "Ми не зберігаємо дані вашої картки. Використовуйте карту, що підтримує інтернет-платежі.",
-    "cardHolder": {
-      "label": "Ім’я власника картки"
     },
     "cardNumber": {
       "label": "Номер картки"
+    },
+    "cardHolder": {
+      "label": "Ім’я власника картки"
     },
     "cardExpiry": {
       "label": "Термін дії (MM/YY)"
@@ -53,18 +43,27 @@
     "cardCvv": {
       "label": "CVV"
     },
-    "brand": {
+    "cardType": {
       "label": "Тип картки"
     },
-    "errors": {
-      "cardHolderRequired": "Вкажіть імʼя власника картки",
-      "cardNumberRequired": "Вкажіть номер картки",
-      "cardNumberInvalid": "Некоректний номер картки",
-      "cardExpiryRequired": "Вкажіть термін дії",
-      "cardExpiryInvalid": "Формат MM/YY",
-      "cardCvvRequired": "Вкажіть CVV",
-      "cardCvvInvalid": "Некоректний CVV"
+    "payerName": {
+      "label": "Ім’я платника"
+    },
+    "payerIban": {
+      "label": "IBAN платника (необовʼязково)"
     }
+  },
+  "validation": {
+    "fullNameShort": "Занадто коротке імʼя",
+    "amountInvalid": "Вкажіть коректну суму",
+    "cardNumberInvalid": "Некоректний номер картки",
+    "cardExpiryInvalid": "Формат MM/YY",
+    "cardCvvInvalid": "Некоректний CVV",
+    "payerIbanInvalid": "Некоректний IBAN"
+  },
+  "card": {
+    "title": "Дані банківської картки",
+    "description": "Ми не зберігаємо дані вашої картки. Використовуйте карту, що підтримує інтернет-платежі."
   },
   "stripe": {
     "title": "Завершіть оплату",
@@ -85,20 +84,13 @@
       "subtitle": "Схоже, оплату було скасовано або не оброблено.",
       "body": "Ви можете спробувати знову у будь-який момент.",
       "tryAgain": "Спробувати ще раз"
+    },
+    "errors": {
+      "checkoutUrl": "Stripe не повернув URL-адресу оформлення замовлення"
     }
   },
   "transfer": {
-    "info": "Після підтвердження ми надішлемо вам реквізити для банківського переказу.",
-    "payerName": {
-      "label": "Ім’я платника"
-    },
-    "payerIban": {
-      "label": "IBAN платника (необовʼязково)"
-    },
-    "errors": {
-      "payerNameRequired": "Вкажіть ім’я платника",
-      "payerIbanInvalid": "Некоректний IBAN"
-    }
+    "info": "Після підтвердження ми надішлемо вам реквізити для банківського переказу."
   },
   "error": "Сталася помилка при оплаті. Спробуйте ще раз або звʼяжіться з нами.",
   "processing": {

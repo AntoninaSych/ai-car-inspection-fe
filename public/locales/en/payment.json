@@ -4,8 +4,7 @@
   "noTaskId": "Request ID not found",
   "paid": "Thank you! Payment has already been received.",
   "unsupported-payment-method": "Unsupported payment method.",
-  "method": {
-    "label": "Payment method",
+  "paymentMethod": {
     "card": "Bank card",
     "transfer": "Bank transfer",
     "stripe": "Stripe Checkout"
@@ -20,6 +19,9 @@
     "backToHome": "Back to home page"
   },
   "fields": {
+    "paymentMethod": {
+      "label": "Payment method"
+    },
     "fullName": {
       "label": "Full name"
     },
@@ -28,19 +30,7 @@
     },
     "amount": {
       "label": "Amount to pay, {{currency}}"
-    }
-  },
-  "errors": {
-    "fullNameRequired": "Full name is required",
-    "fullNameShort": "Name is too short",
-    "emailRequired": "Email is required",
-    "emailInvalid": "Invalid email format",
-    "amountRequired": "Amount is required",
-    "amountInvalid": "Enter a valid amount"
-  },
-  "card": {
-    "title": "Bank card details",
-    "description": "We do not store your card details. Please use a card that supports online payments.",
+    },
     "cardHolder": {
       "label": "Card holder name"
     },
@@ -53,18 +43,27 @@
     "cardCvv": {
       "label": "CVV"
     },
-    "brand": {
+    "cardType": {
       "label": "Card type"
     },
-    "errors": {
-      "cardHolderRequired": "Card holder name is required",
-      "cardNumberRequired": "Card number is required",
-      "cardNumberInvalid": "Invalid card number",
-      "cardExpiryRequired": "Expiry date is required",
-      "cardExpiryInvalid": "Use MM/YY format",
-      "cardCvvRequired": "CVV is required",
-      "cardCvvInvalid": "Invalid CVV"
+    "payerName": {
+      "label": "Payer name"
+    },
+    "payerIban": {
+      "label": "Payer IBAN (optional)"
     }
+  },
+  "validation": {
+    "fullNameShort": "Name is too short",
+    "amountInvalid": "Enter a valid amount",
+    "cardNumberInvalid": "Invalid card number",
+    "cardExpiryInvalid": "Use MM/YY format",
+    "cardCvvInvalid": "Invalid CVV",
+    "payerIbanInvalid": "Invalid IBAN"
+  },
+  "card": {
+    "title": "Bank card details",
+    "description": "We do not store your card details. Please use a card that supports online payments."
   },
   "stripe": {
     "title": "Complete Your Payment",
@@ -85,20 +84,13 @@
       "subtitle": "It looks like your payment was canceled or not processed.",
       "body": "You can try again anytime.",
       "tryAgain": "Try Again"
+    },
+    "errors": {
+      "checkoutUrl": "Stripe did not return checkout url"
     }
   },
   "transfer": {
-    "info": "After confirmation we will send you bank transfer details.",
-    "payerName": {
-      "label": "Payer name"
-    },
-    "payerIban": {
-      "label": "Payer IBAN (optional)"
-    },
-    "errors": {
-      "payerNameRequired": "Payer name is required",
-      "payerIbanInvalid": "Invalid IBAN"
-    }
+    "info": "After confirmation we will send you bank transfer details."
   },
   "error": "Something went wrong during payment. Please try again or contact us.",
   "processing": {

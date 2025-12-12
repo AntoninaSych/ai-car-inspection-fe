@@ -70,5 +70,15 @@
     "loginFailed": "Login failed. Please check your email and password and try again.",
     "registrationFailed": "Registration failed. Please check your information or try again later.",
     "emailInUse": "This email is already in use."
+  },
+  "validation": {
+    "oneOf": "Allowed only {{value}}",
+    "required": "The field is required.",
+    "email": "Invalid email format",
+    "max": "Maximum {{value}}",
+    "min": "Minimum {{value}}",
+    "maxString": "Maximum {{value}} characters",
+    "minString": "Minimum {{value}} characters",
+    "number": "Enter a number"
   }
 }
