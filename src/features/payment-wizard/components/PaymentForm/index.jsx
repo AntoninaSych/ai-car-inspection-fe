@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { MenuItem, TextField, Box, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { PAYMENT_METHODS } from '../../constants';
+import { ALLOWED_PAYMENT_METHODS, PAYMENT_METHODS } from '../../constants';
 import { TransferPaymentMethod } from './TransferPaymentMethod';
 import { CardPaymentMethod } from './CardPaymentMethod';
 import { StripePaymentMethod } from './StripePaymentMethod';
@@ -20,14 +20,10 @@ export const PaymentForm = () => {
           <Controller
             name="fullName"
             control={control}
-            rules={{
-              required: t('payment:errors.fullNameRequired', 'Full name is required'),
-              minLength: { value: 2, message: t('payment:errors.fullNameShort', 'Name is too short') },
-            }}
             render={({ field }) => (
               <TextField
                 {...field}
-                label={t('payment:fields.fullName.label', 'Full name')}
+                label={t('fields.fullName.label')}
                 margin="normal"
                 fullWidth
                 required
@@ -42,17 +38,16 @@ export const PaymentForm = () => {
             name="amount"
             control={control}
             rules={{
-              required: t('payment:errors.amountRequired', 'Amount is required'),
               validate: value => {
                 const num = parseFloat((value || '').replace(',', '.'));
-                return num > 0 || t('payment:errors.amountInvalid', 'Enter a valid amount');
+                return num > 0 || t('validation.amountInvalid');
               },
             }}
             render={({ field }) => (
               <TextField
                 {...field}
                 type="text"
-                label={t('payment:fields.amount.label', { currency: 'USD' })}
+                label={t('fields.amount.label', { currency: 'USD' })}
                 margin="normal"
                 fullWidth
                 required
@@ -66,6 +61,7 @@ export const PaymentForm = () => {
                 onBlur={() => {
                   field.onChange(formatAmount(field.value || ''));
                 }}
+                disabled
               />
             )}
           />
@@ -75,16 +71,12 @@ export const PaymentForm = () => {
             name="paymentMethod"
             control={control}
             render={({ field }) => (
-              <TextField
-                {...field}
-                select
-                label={t('payment:method.label', 'Payment method')}
-                margin="normal"
-                fullWidth
-              >
-                <MenuItem value="transfer">{t('payment:method.transfer', 'Bank transfer')}</MenuItem>
-                <MenuItem value="card">{t('payment:method.card', 'Bank card')}</MenuItem>
-                <MenuItem value="stripe">{t('payment:method.stripe', 'Bank card')}</MenuItem>
+              <TextField {...field} select label={t('fields.paymentMethod.label')} margin="normal" fullWidth>
+                {ALLOWED_PAYMENT_METHODS.map(method => (
+                  <MenuItem key={method} value={method}>
+                    {t(`paymentMethod.${method}`)}
+                  </MenuItem>
+                ))}
               </TextField>
             )}
           />

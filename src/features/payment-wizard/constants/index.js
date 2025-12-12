@@ -3,3 +3,6 @@ export const PAYMENT_METHODS = {
   STRIPE: 'stripe',
   TRANSFER: 'transfer',
 };
+
+export const ALLOWED_PAYMENT_METHODS = [PAYMENT_METHODS.CARD, PAYMENT_METHODS.STRIPE, PAYMENT_METHODS.TRANSFER];
+export const ALLOWED_CURRENCY = ['usd'];

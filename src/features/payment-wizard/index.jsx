@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Button, Container, Typography, Alert, AlertTitle } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { payTask } from '../../api/tasksApi';
 import { useTaskPaymentDetails } from './hook/useTaskPaymentDetails';
 import { Loader } from '../../components';
 import { PaymentForm, PaymentProcessing } from './components';
 import { errorHandler, errorNotification } from '../../utils/notification';
-import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { ROUTERS } from '../../constants';
 import { createStripeCheckoutSession } from '../../api/stripeApi';
+import { createPaymentWizardSchema } from './validation/schema';
+import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { PAYMENT_METHODS } from './constants';
 
 export const PaymentWizard = () => {
@@ -18,8 +20,10 @@ export const PaymentWizard = () => {
   const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation(['payment', 'common']);
+  const paymentWizardSchema = useMemo(() => createPaymentWizardSchema(t), [t]);
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
   const methods = useForm({
+    resolver: yupResolver(paymentWizardSchema),
     defaultValues,
   });
 
@@ -27,32 +31,33 @@ export const PaymentWizard = () => {
   const { isSubmitting, isDirty } = formState;
   const paymentMethod = watch('paymentMethod');
 
-  const onSubmit = async values => {
-    if (values.paymentMethod === PAYMENT_METHODS.STRIPE) {
-      try {
-        setRedirecting(true);
-        const res = await createStripeCheckoutSession({
-          task_id: taskId,
-          amount: Math.round(Number(values.amount) * 100),
-          currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
-          full_name: values.fullName,
-        });
+  const handleStripePayment = async values => {
+    try {
+      setRedirecting(true);
 
-        if (res?.url) {
-          window.location.href = res.url;
-        } else {
-          errorNotification('Stripe did not return checkout url');
-          setRedirecting(false);
-        }
-      } catch (error) {
-        errorHandler(error, t('payment:error'));
-        setRedirecting(false);
+      const response = await createStripeCheckoutSession({
+        task_id: taskId,
+        amount: Math.round(Number(values.amount) * 100),
+        currency: (values.currency || DEFAULT_CURRENCY).toLowerCase(),
+        full_name: values.fullName,
+      });
+
+      if (response?.url) {
+        window.location.href = response.url;
+        return;
       }
-      return;
-    }
 
+      errorNotification(t('payment:stripe.errors.checkoutUrl'));
+    } catch (error) {
+      errorHandler(error, t('payment:error'));
+      setRedirecting(false);
+    }
+  };
+
+  const handleDefaultPayment = async values => {
     try {
       await payTask(taskId, values);
+
       navigate(ROUTERS.SUCCESS, {
         state: {
           from: `payment.${values.paymentMethod}`,
@@ -61,6 +66,14 @@ export const PaymentWizard = () => {
     } catch (error) {
       errorHandler(error, t('payment:error'));
     }
+  };
+
+  const onSubmit = async values => {
+    if (values.paymentMethod === PAYMENT_METHODS.STRIPE) {
+      return handleStripePayment(values);
+    }
+
+    return handleDefaultPayment(values);
   };
 
   const handleSkip = event => {
@@ -86,7 +99,7 @@ export const PaymentWizard = () => {
     return (
       <Container maxWidth="sm">
         <Typography variant="h4" mt={4}>
-          {t('payment:noTaskId', 'Task not found')}
+          {t('payment:noTaskId')}
         </Typography>
       </Container>
     );
@@ -95,7 +108,7 @@ export const PaymentWizard = () => {
   if (error) {
     return (
       <Alert severity="warning" sx={{ mt: 3 }}>
-        <AlertTitle>{t('common:errors.unknown', 'An error occurred. Please try again later.')}</AlertTitle>
+        <AlertTitle>{t('common:errors.unknown')}</AlertTitle>
       </Alert>
     );
   }
@@ -107,7 +120,7 @@ export const PaymentWizard = () => {
   if (paymentDetails && paymentDetails.task?.isPaid) {
     return (
       <Alert severity="success" sx={{ mt: 3 }}>
-        <AlertTitle>{t('payment:paid', 'Has already paid!')}</AlertTitle>
+        <AlertTitle>{t('payment:paid')}</AlertTitle>
       </Alert>
     );
   }
@@ -115,7 +128,7 @@ export const PaymentWizard = () => {
   return (
     <>
       <Typography variant="h4" gutterBottom>
-        {t('payment:title', 'Payment')}
+        {t('payment:title')}
       </Typography>
       <Typography variant="body2" color="text.secondary">
         {paymentDetails?.task?.brand}, {paymentDetails?.task?.model} ({paymentDetails?.task?.year})
@@ -124,10 +137,7 @@ export const PaymentWizard = () => {
         {new Date(paymentDetails?.task?.createdAt).toLocaleString()}
       </Typography>
       <Typography variant="body1" color="text.secondary" mt={3}>
-        {t(
-          'payment:description',
-          'Please fill in the payment details. After a successful payment you will receive an email with your estimate.'
-        )}
+        {t('payment:description')}
       </Typography>
 
       <FormProvider {...methods}>
@@ -142,10 +152,10 @@ export const PaymentWizard = () => {
             disabled={isSubmitting || !isDirty}
             fullWidth
           >
-            {isSubmitting ? t('payment:button.processing', 'Processing payment…') : t('payment:button.submit', 'Pay')}
+            {isSubmitting ? t('payment:button.processing') : t('payment:button.submit')}
           </Button>
           <Button onClick={handleSkip} variant="outlined" size="large" sx={{ mt: 3 }} disabled={isSubmitting} fullWidth>
-            {t('payment:button.skip', 'Skip')}
+            {t('payment:button.skip')}
           </Button>
         </form>
       </FormProvider>
