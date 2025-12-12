@@ -172,13 +172,13 @@ After these steps, hooks will execute automatically.
 
 ## Application Pages & Routes
 
-| Route                    | Description                                       |
-| ------------------------ | ------------------------------------------------- |
-| `"/"`                    | Home page                                         |
-| `"/upload"`              | Form to create a new damage assessment request    |
-| `"/tasks/pay/:taskId"`   | Payment page for the created request              |
-| `"/reports/:reportId"`   | AI-generated damage report viewer                 |
-| *(Planned)* `"/profile"` | User's personal page with task history & payments |
+| Route                  | Description                                    |
+|------------------------|------------------------------------------------|
+| `"/"`                  | Home page                                      |
+| `"/upload"`            | Form to create a new damage assessment request |
+| `"/tasks/pay/:taskId"` | Payment page for the created request           |
+| `"/reports/:reportId"` | AI-generated damage report viewer              |
+| `"/profile"`           | User's personal page with task history         |
 
 
 ## User Flow Description
@@ -191,4 +191,3 @@ After these steps, hooks will execute automatically.
    - Complete the payment now, or
    - Skip and pay later through the profile page.
 6. After the backend processes the task, the user opens the Report Page to view the AI analysis.
-
