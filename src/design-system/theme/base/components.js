@@ -13,6 +13,13 @@ export const baseComponents = {
       },
     },
   },
+  MuiContainer: {
+    styleOverrides: {
+      root: {
+        maxWidth: '1312px',
+      },
+    },
+  },
   MuiButton: {
     styleOverrides: {
       root: {
