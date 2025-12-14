@@ -1,0 +1,29 @@
+{
+  "badge": "AI-Powered Estimation",
+
+  "title": "Get Car Repair <1></1>Estimates in <4>Seconds</4>",
+  "titleHighlight": "Seconds",
+
+  "description": "Upload a photo of the damage and get an accurate cost estimate powered by artificial intelligence.",
+
+  "cta": "Upload Photo",
+
+  "stats": {
+    "accuracy": "Accuracy",
+    "speed": "Speed",
+    "users": "Users"
+  },
+
+  "live": {
+    "title": "Live Analysis",
+    "aiPowered": "AI Powered",
+    "aiPreview": "AI Preview",
+    "progress": "98%"
+  },
+
+  "parts": {
+    "title": "Parts Detected",
+    "itemsCount": "5 Items",
+    "list": ["Front Bumper", "Headlight", "Hood", "Grille", "Fender"]
+  }
+}

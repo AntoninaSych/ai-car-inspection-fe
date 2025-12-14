@@ -1,22 +1,21 @@
 import { Suspense } from 'react';
-import { Toolbar } from '@mui/material';
+import { Toolbar, Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Header, Loader, Footer } from '../components';
-import { StyledLayout } from './styled';
 
 export const Layout = () => {
   return (
-    <StyledLayout>
+    <Box sx={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
       <Header />
       <Toolbar />
-      <main>
+      <Box component="main" sx={{ flex: 1 }}>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </main>
+      </Box>
       <Toaster />
       <Footer />
-    </StyledLayout>
+    </Box>
   );
 };
