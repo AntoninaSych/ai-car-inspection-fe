@@ -7,13 +7,13 @@ export const NavWrapper = styled('nav')(({ theme }) => ({
 
   '& a': {
     textDecoration: 'none',
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.main,
     opacity: 0.7,
     fontWeight: 600,
   },
 
   '& a:hover': {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
   },
 
   '& a.active': {

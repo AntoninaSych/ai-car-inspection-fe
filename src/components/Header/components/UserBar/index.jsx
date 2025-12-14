@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { Avatar, IconButton, Menu, ListItemIcon, ListItemText, Divider } from '@mui/material';
-import { AccountCircle, Logout, LightMode, DarkMode } from '@mui/icons-material';
+import { Avatar, IconButton, Menu, ListItemIcon, Divider } from '@mui/material';
+import { AccountCircle, Logout } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Nav } from '../Nav';
+import { useSelector } from 'react-redux';
 import { ROUTERS } from '../../../../constants';
-import { useAppTheme } from '../../../../design-system';
+import { selectUser } from '../../../../redux/auth/selectors';
+import { Nav } from '../Nav';
+// import { ThemeMode } from './ThemeMode';
 import { StyledMenuItem } from './styled';
 
-export const UserBar = ({ user, onLogout }) => {
-  const { t } = useTranslation();
+export const UserBar = ({ onLogout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { toggle, isDark } = useAppTheme();
+  const user = useSelector(selectUser);
   const open = Boolean(anchorEl);
 
   const handleOpen = event => {
@@ -56,15 +56,9 @@ export const UserBar = ({ user, onLogout }) => {
           Profile
         </StyledMenuItem>
 
-        <Divider />
+        {/*<Divider />*/}
 
-        <StyledMenuItem onClick={toggle}>
-          <ListItemIcon>{isDark ? <DarkMode fontSize="small" /> : <LightMode fontSize="small" />}</ListItemIcon>
-          <ListItemText
-            primary={isDark ? t('mode.dark-label') : t('mode.light-label')}
-            secondary={t('mode.switch-label')}
-          />
-        </StyledMenuItem>
+        {/*<ThemeMode />*/}
 
         <Divider />
 

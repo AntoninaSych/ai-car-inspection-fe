@@ -1,17 +1,21 @@
-import { Box, Container, Stack, Typography, Button, Chip, Grid } from '@mui/material';
+import { Box, Stack, Typography, Button, Chip, Grid } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
+import { Trans, useTranslation } from 'react-i18next';
+import { PageContainer, Section } from '../../../../layouts';
+import { HeroStat } from './HeroStat';
 
 export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
+  const { t } = useTranslation('hero');
+
   return (
-    <Box
+    <Section
+      container={false}
       component="section"
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        pt: { xs: 6, sm: 8, md: 10 },
-        pb: { xs: 6, sm: 8, md: 10 },
         backgroundColor: '#F5F7FF',
       }}
     >
@@ -26,15 +30,15 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
         }}
       />
 
-      <Container maxWidth="xl" sx={{ position: 'relative' }}>
-        <Grid container spacing={{ xs: 5, md: 6 }} alignItems="center">
+      <PageContainer sx={{ position: 'relative' }}>
+        <Grid container spacing={{ xs: 2, md: 8, lg: 10 }} alignItems="center">
           {/* LEFT */}
           <Grid size={{ xs: 12, lg: 6 }}>
             <Stack spacing={{ xs: 3, sm: 3.5 }}>
               <Box>
                 <Chip
                   icon={<AutoAwesomeOutlinedIcon />}
-                  label="AI-Powered Estimation"
+                  label={t('hero:badge')}
                   sx={{
                     height: 42,
                     px: 1.5,
@@ -54,71 +58,77 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
               <Typography
                 component="h1"
                 sx={{
-                  fontWeight: 700,
                   letterSpacing: '-0.03em',
                   lineHeight: 1.05,
                   fontSize: { xs: 36, sm: 48, md: 60 },
-                  color: '#0B1220',
+                  color: '#0F172B',
                 }}
               >
-                Get Car Repair
-                <br />
-                Estimates in{' '}
-                <Box
-                  component="span"
-                  sx={{
-                    background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  Seconds
-                </Box>
+                <Trans i18nKey="hero:title">
+                  Get Car Repair
+                  <br />
+                  Estimates in{' '}
+                  <Box
+                    component="span"
+                    sx={{
+                      background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}
+                  >
+                    Seconds
+                  </Box>
+                </Trans>
               </Typography>
 
               <Typography
                 sx={{
-                  maxWidth: { xs: '100%', lg: '540px' },
+                  maxWidth: { xs: '100%', md: '540px' },
                   color: 'rgba(11, 18, 32, 0.62)',
                   fontSize: { xs: 16, sm: 20 },
                   lineHeight: 1.7,
                 }}
               >
-                Upload a photo of the damage and get an accurate cost estimate powered by artificial intelligence
+                {t('hero:description')}
               </Typography>
+              <Box sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
+                <Box sx={{ pt: 1 }}>
+                  <Button
+                    onClick={onUploadClick}
+                    size="large"
+                    variant="contained"
+                    startIcon={<FileUploadOutlinedIcon />}
+                    endIcon={<ArrowForwardRoundedIcon />}
+                    sx={{
+                      height: 64,
+                      px: 4,
+                      borderRadius: 999,
+                      textTransform: 'none',
+                      fontSize: 18,
+                      fontWeight: 600,
+                      background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
+                      boxShadow: '0 18px 50px rgba(67, 99, 255, 0.28)',
+                      '&:hover': {
+                        background: 'linear-gradient(90deg, rgba(57,120,255,0.95), rgba(168,74,255,0.95))',
+                        boxShadow: '0 20px 60px rgba(67, 99, 255, 0.32)',
+                      },
+                    }}
+                  >
+                    {t('hero:cta')}
+                  </Button>
+                </Box>
 
-              <Box sx={{ pt: 1 }}>
-                <Button
-                  onClick={onUploadClick}
-                  size="large"
-                  variant="contained"
-                  startIcon={<FileUploadOutlinedIcon />}
-                  endIcon={<ArrowForwardRoundedIcon />}
-                  sx={{
-                    height: 64,
-                    px: 4,
-                    borderRadius: 999,
-                    textTransform: 'none',
-                    fontSize: 18,
-                    fontWeight: 600,
-                    background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
-                    boxShadow: '0 18px 50px rgba(67, 99, 255, 0.28)',
-                    '&:hover': {
-                      background: 'linear-gradient(90deg, rgba(57,120,255,0.95), rgba(168,74,255,0.95))',
-                      boxShadow: '0 20px 60px rgba(67, 99, 255, 0.32)',
-                    },
-                  }}
+                {/* Stats */}
+                <Grid
+                  container
+                  spacing={{ xs: 2.5, sm: 3 }}
+                  sx={{ pt: { xs: 3.5, sm: 4 }, justifyContent: { xs: 'center', lg: 'flex-start' } }}
                 >
-                  Upload Photo
-                </Button>
+                  <HeroStat value="95%" label={t('hero:stats.accuracy')} />
+                  <HeroStat value="&lt;30s" label={t('hero:stats.speed')} />
+                  <HeroStat value="50k+" label={t('hero:stats.users')} />
+                </Grid>
               </Box>
-
-              {/* Stats */}
-              <Grid container spacing={{ xs: 2.5, sm: 3 }} sx={{ pt: { xs: 3.5, sm: 4 } }}>
-                <HeroStat value="95%" label="Accuracy" />
-                <HeroStat value="&lt;30s" label="Speed" />
-                <HeroStat value="50k+" label="Users" />
-              </Grid>
             </Stack>
           </Grid>
 
@@ -129,7 +139,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                 position: 'relative',
                 ml: { lg: 'auto' },
                 width: '100%',
-                maxWidth: 560,
+                maxWidth: '544px',
               }}
             >
               {/* outer glow */}
@@ -177,15 +187,15 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                         boxShadow: '0 0 0 4px rgba(120,255,153,0.18)',
                       }}
                     />
-                    <Typography sx={{ fontWeight: 600 }}>Live Analysis</Typography>
+                    <Typography sx={{ fontWeight: 600 }}>{t('hero:live.title')}</Typography>
                   </Stack>
 
                   <Chip
-                    label="AI Powered"
+                    label={t('hero:live.aiPowered')}
                     size="small"
                     sx={{
                       color: 'rgba(255,255,255,0.9)',
-                      bgcolor: 'rgba(255,255,255,0.18)',
+                      backgroundColor: 'rgba(255,255,255,0.18)',
                       border: '1px solid rgba(255,255,255,0.22)',
                       borderRadius: 999,
                       fontWeight: 600,
@@ -193,20 +203,19 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                   />
                 </Box>
 
-                {/* mock image */}
-                <Box sx={{ p: 2.5 }}>
+                <Box sx={{ p: 3 }}>
                   <Box
                     component="img"
-                    alt="AI preview"
+                    alt={t('hero:live.aiPreview')}
                     src={heroMock1x}
                     srcSet={`${heroMock1x} 1x, ${heroMock2x} 2x`}
                     sx={{
                       width: '100%',
-                      height: 246,
+                      height: { xs: 226, xl: 256 },
                       objectFit: 'cover',
                       borderRadius: 4,
                       display: 'block',
-                      background: 'rgba(0,0,0,0.04)',
+                      background: '#FFFFFF',
                     }}
                   />
                 </Box>
@@ -239,7 +248,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                       color: 'rgba(57,120,255,1)',
                     }}
                   >
-                    98%
+                    {t('hero:live.progress')}
                   </Typography>
                 </Box>
               </Box>
@@ -248,8 +257,8 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
               <Box
                 sx={{
                   position: 'absolute',
-                  left: { md: -40 },
-                  bottom: { md: -30 },
+                  left: { md: -54 },
+                  bottom: { md: -54 },
                   width: 280,
                   borderRadius: 5,
                   p: 2.5,
@@ -257,13 +266,15 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                   border: '3px solid rgba(255,255,255,0.82)',
                   boxShadow: '0 18px 60px rgba(0,0,0,0.28)',
                   backdropFilter: 'blur(10px)',
-                  color: 'rgba(255,255,255,0.9)',
+                  color: '#CAD5E2',
                 }}
               >
                 <Stack direction="row" alignItems="center" justifyContent="space-between">
                   <Box>
-                    <Typography sx={{ opacity: 0.7, fontSize: 13 }}>Parts Detected</Typography>
-                    <Typography sx={{ fontSize: 34, fontWeight: 800, lineHeight: 1.1 }}>5 Items</Typography>
+                    <Typography sx={{ opacity: 0.8, fontSize: 12 }}>{t('hero:parts.title')}</Typography>
+                    <Typography sx={{ mt: 0.5, fontSize: 28, fontWeight: 800, lineHeight: 1.1, color: '#FFFFFF' }}>
+                      {t('hero:parts.itemsCount')}
+                    </Typography>
                   </Box>
 
                   <Box
@@ -281,17 +292,18 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                 </Stack>
 
                 <Stack spacing={1.2} sx={{ mt: 2 }}>
-                  {['Front Bumper', 'Headlight', 'Hood', 'Grille', 'Fender'].map(t => (
+                  {t('hero:parts.list', { returnObjects: true }).map((t, index) => (
                     <Stack key={t} direction="row" spacing={1.2} alignItems="center">
                       <Box
                         sx={{
                           width: 7,
                           height: 7,
                           borderRadius: 999,
-                          bgcolor: 'rgba(168,74,255,0.95)',
+                          boxShadow: '0 0 2px 3px rgba(255,255,255,0.06)',
+                          backgroundColor: index % 2 === 0 ? '#51A2FF' : '#C27AFF',
                         }}
                       />
-                      <Typography sx={{ fontSize: 14, opacity: 0.9 }}>{t}</Typography>
+                      <Typography sx={{ fontSize: 12, opacity: 0.9 }}>{t}</Typography>
                     </Stack>
                   ))}
                 </Stack>
@@ -299,40 +311,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
             </Box>
           </Grid>
         </Grid>
-      </Container>
-    </Box>
+      </PageContainer>
+    </Section>
   );
 };
-
-function HeroStat({ value, label }) {
-  return (
-    <Grid size={{ xs: 3 }}>
-      <Stack spacing={1} alignItems="center">
-        <Typography
-          sx={{
-            fontWeight: 800,
-            fontSize: { xs: 38, sm: 44 },
-            lineHeight: 1,
-            background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          {value}
-        </Typography>
-
-        <Typography sx={{ color: 'rgba(11, 18, 32, 0.62)', fontWeight: 500 }}>{label}</Typography>
-
-        <Box
-          sx={{
-            mt: 0.5,
-            width: 64,
-            height: 4,
-            borderRadius: 999,
-            background: 'rgba(168,74,255,0.35)',
-          }}
-        />
-      </Stack>
-    </Grid>
-  );
-}
