@@ -48,10 +48,11 @@
   },
   "buttons": {
     "upload_photo": "Upload photo",
-    "login": "Login",
+    "login": "Sign In",
     "register": "Register",
     "logout": "Log Out",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "getStarted": "Get Started"
   },
   "mode": {
     "switch-label": "Switch appearance",

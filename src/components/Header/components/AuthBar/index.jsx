@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { Link } from '../../../../design-system';
+import { ButtonBase } from '@mui/material';
 import { openModal } from '../../../../redux/modal/slice';
-import { NavWrapper } from './styled';
 
 export const AuthBar = () => {
   const dispatch = useDispatch();
@@ -13,9 +12,22 @@ export const AuthBar = () => {
   };
 
   return (
-    <NavWrapper>
-      <Link onClick={handleOnClick('login')}>{t('buttons.login', 'Sign In')}</Link>
-      <Link onClick={handleOnClick('register')}>{t('buttons.register', 'Sign Up')}</Link>
-    </NavWrapper>
+    <ButtonBase
+      onClick={handleOnClick('auth')}
+      sx={{
+        px: 1,
+        py: 0.5,
+        borderRadius: 0.5,
+        fontSize: { xs: 12, md: 14 },
+        lineHeight: 1,
+        color: '#45556C',
+        backgroundColor: 'transparent',
+        '&:hover': {
+          backgroundColor: '#EFF6FF',
+        },
+      }}
+    >
+      {t('buttons.login', 'Sign In')}
+    </ButtonBase>
   );
 };
