@@ -13,6 +13,8 @@ const StripeStatusPage = lazy(() => import('../pages/stripe/StripeStatusPage'));
 const StripeCancelPage = lazy(() => import('../pages/stripe/StripeCancelPage'));
 const PaymentPage = lazy(() => import('../pages/PaymentPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+const PrivacyPolicyPage = lazy(() => import('../pages/PrivacyPolicyPage'));
+const TermsPage = lazy(() => import('../pages/TermsPage'));
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,8 @@ export const router = createBrowserRouter([
         ],
       },
       { path: 'success', element: <SuccessPage /> },
+      { path: 'privacy-policy', element: <PrivacyPolicyPage /> },
+      { path: 'terms', element: <TermsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
