@@ -5,7 +5,6 @@ import brandLogo1x from '@/assets/brand/logo.png';
 import brandLogo2x from '@/assets/brand/logo@2x.png';
 
 export const Brand = ({ light }) => {
-  const darkMode = !light;
   return (
     <Box
       component={Link}
@@ -32,7 +31,7 @@ export const Brand = ({ light }) => {
             letterSpacing: -0.4,
             fontSize: { xs: 14, md: 16 },
             lineHeight: 1.5,
-            color: darkMode ? '#0F172B' : '#FFFFFF',
+            color: light ? '#FFFFFF' : '#0F172B',
           }}
         >
           Car Rep<span style={{ color: '#155DFC' }}>AI</span>r
@@ -43,7 +42,7 @@ export const Brand = ({ light }) => {
             mt: 0.2,
             fontSize: { xs: 10, md: 12 },
             lineHeight: 1,
-            color: '#45556C',
+            color: light ? 'rgba(255, 255, 255, 0.7)' : '#45556C',
           }}
         >
           Estimator

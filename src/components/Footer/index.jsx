@@ -41,7 +41,7 @@ export const Footer = () => {
           {/* Brand & Description */}
           <Grid item xs={12} md={4}>
             <Box sx={{ mb: 3 }}>
-              <Brand light={false} />
+              <Brand light={true} />
             </Box>
             <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 3, maxWidth: 300 }}>
               AI-powered car repair cost estimation. Fast, accurate, and reliable.
@@ -51,30 +51,32 @@ export const Footer = () => {
           {/* Footer Links Columns */}
           {footerSections.map(section => (
             <Grid item xs={6} sm={4} md={2.66} key={section.title}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, fontSize: 16, color: 'white' }}>
-                {section.title}
-              </Typography>
-              <Stack spacing={1.5}>
-                {section.links.map(link => (
-                  <MuiLink
-                    key={link.label}
-                    component={link.href.startsWith('/#') ? 'a' : Link}
-                    to={link.href.startsWith('/#') ? undefined : link.href}
-                    href={link.href.startsWith('/#') ? link.href : undefined}
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.7)',
-                      textDecoration: 'none',
-                      fontSize: 14,
-                      transition: 'color 0.2s',
-                      '&:hover': {
-                        color: 'white',
-                      },
-                    }}
-                  >
-                    {link.label}
-                  </MuiLink>
-                ))}
-              </Stack>
+              <Box sx={{ pl: { xs: 0, md: 3 } }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, fontSize: 16, color: 'white' }}>
+                  {section.title}
+                </Typography>
+                <Stack spacing={1.5}>
+                  {section.links.map(link => (
+                    <MuiLink
+                      key={link.label}
+                      component={link.href.startsWith('/#') ? 'a' : Link}
+                      to={link.href.startsWith('/#') ? undefined : link.href}
+                      href={link.href.startsWith('/#') ? link.href : undefined}
+                      sx={{
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        textDecoration: 'none',
+                        fontSize: 14,
+                        transition: 'color 0.2s',
+                        '&:hover': {
+                          color: 'white',
+                        },
+                      }}
+                    >
+                      {link.label}
+                    </MuiLink>
+                  ))}
+                </Stack>
+              </Box>
             </Grid>
           ))}
         </Grid>
