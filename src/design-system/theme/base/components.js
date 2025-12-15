@@ -20,6 +20,15 @@ export const baseComponents = {
       },
     },
   },
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        minHeight: 76,
+        '@media (min-width: 0px)': { minHeight: 60 },
+        '@media (min-width: 768px)': { minHeight: 76 },
+      },
+    },
+  },
   MuiButton: {
     styleOverrides: {
       root: {

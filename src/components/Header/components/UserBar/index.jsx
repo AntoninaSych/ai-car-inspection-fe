@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ROUTERS } from '../../../../constants';
 import { selectUser } from '../../../../redux/auth/selectors';
-import { Nav } from '../Nav';
-// import { ThemeMode } from './ThemeMode';
 import { StyledMenuItem } from './styled';
 
 export const UserBar = ({ onLogout }) => {
@@ -24,7 +22,6 @@ export const UserBar = ({ onLogout }) => {
 
   return (
     <>
-      <Nav />
       <IconButton onClick={handleOpen} size="small" sx={{ ml: 1 }}>
         {user?.avatarURL ? (
           <Avatar src={user.avatarURL} alt={user.name} sx={{ width: 32, height: 32 }} />
@@ -55,10 +52,6 @@ export const UserBar = ({ onLogout }) => {
           </ListItemIcon>
           Profile
         </StyledMenuItem>
-
-        {/*<Divider />*/}
-
-        {/*<ThemeMode />*/}
 
         <Divider />
 

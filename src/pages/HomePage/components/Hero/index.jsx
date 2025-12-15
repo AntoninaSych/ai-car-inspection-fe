@@ -168,7 +168,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                 {/* top bar */}
                 <Box
                   sx={{
-                    height: 64,
+                    height: 76,
                     px: 3,
                     display: 'flex',
                     alignItems: 'center',
