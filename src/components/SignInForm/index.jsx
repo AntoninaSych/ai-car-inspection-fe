@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
@@ -8,14 +8,15 @@ import { login } from '../../redux/auth/operations';
 import { errorHandler } from '../../utils/notification';
 import { Button } from '../../design-system';
 import { TextField } from '../FormFields';
-import { defaultValues } from './const';
-import { validationSchema } from './const/validation';
+import { defaultValues } from './config';
+import { createValidationSchema } from './validation/schema';
 import { Wrapper } from './styled';
 
 export const SignInForm = ({ onSuccess }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const validationSchema = useMemo(() => createValidationSchema(t), [t]);
 
   const methods = useForm({
     resolver: yupResolver(validationSchema),
