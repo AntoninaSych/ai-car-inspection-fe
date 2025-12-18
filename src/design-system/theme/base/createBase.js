@@ -7,6 +7,10 @@ import { ThemeName } from '../constants';
 
 export const createBaseTheme = () => {
   return createTheme({
+    zIndex: {
+      appBar: 1100,
+      modal: 1400,
+    },
     breakpoints: {
       values: {
         xs: 0,

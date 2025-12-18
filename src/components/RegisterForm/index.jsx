@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Stack, InputAdornment, FormControlLabel, Typography, Checkbox, Link, Box } from '@mui/material';
+import { Stack, InputAdornment, Typography, Box } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -27,8 +27,6 @@ export const RegisterForm = ({ onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const validationSchema = useMemo(() => createValidationSchema(t), [t]);
-  const termsHref = '#';
-  const privacyHref = '#';
 
   const methods = useForm({
     resolver: yupResolver(validationSchema),
@@ -39,20 +37,17 @@ export const RegisterForm = ({ onSuccess }) => {
   });
 
   const {
-    register: formRegister,
+    // register: formRegister,
     reset,
     handleSubmit,
     watch,
-    formState: { isSubmitting, isDirty, errors },
+    formState: { isSubmitting, isDirty },
   } = methods;
 
   const passwordValue = watch('password');
-  const agreeValue = watch('agree');
+  // const agreeValue = watch('agree');
   const rules = useMemo(() => passwordRules(passwordValue), [passwordValue]);
-  const canSubmit = Object.values(rules).every(value => value) && agreeValue && !isSubmitting && !loading && isDirty;
-
-  console.log(rules);
-  console.log(Object.values(rules).every(value => value));
+  const canSubmit = Object.values(rules).every(value => value) && !isSubmitting && !loading && isDirty;
 
   const onSubmit = values => {
     setLoading(true);
@@ -115,27 +110,28 @@ export const RegisterForm = ({ onSuccess }) => {
               </Box>
             </Stack>
 
-            <Box>
-              <FormControlLabel
-                sx={{ alignItems: 'center' }}
-                control={<Checkbox {...formRegister('agree')} sx={{ mt: 0.2 }} />}
-                label={
-                  <Typography sx={{ color: 'text.secondary' }}>
-                    I agree to the{' '}
-                    <Link href={termsHref} underline="hover" sx={{ fontWeight: 600 }}>
-                      Terms of Service
-                    </Link>{' '}
-                    and{' '}
-                    <Link href={privacyHref} underline="hover" sx={{ fontWeight: 600 }}>
-                      Privacy Policy
-                    </Link>
-                  </Typography>
-                }
-              />
-              {!!errors.agree && (
-                <Typography sx={{ mt: 0.5, color: 'error.main', fontSize: 13 }}>{errors.agree.message}</Typography>
-              )}
-            </Box>
+            {/*<Box>*/}
+            {/*  <FormControlLabel*/}
+            {/*    sx={{ alignItems: 'center' }}*/}
+            {/*    control={<Checkbox {...formRegister('agree')} sx={{ mt: 0.2 }} />}*/}
+            {/*    label={*/}
+            {/*      <Typography sx={{ color: 'text.secondary', fontSize: '14px' }}>*/}
+            {/*        I agree to the{' '}*/}
+            {/*        <Link href={termsHref} underline="hover">*/}
+            {/*          Terms of Service*/}
+            {/*        </Link>{' '}*/}
+            {/*        and{' '}*/}
+            {/*        <Link href={privacyHref} underline="hover">*/}
+            {/*          Privacy Policy*/}
+            {/*        </Link>*/}
+            {/*      </Typography>*/}
+            {/*    }*/}
+            {/*  />*/}
+            {/*  {!!errors.agree && (*/}
+            {/*    <Typography sx={{ mt: 0.5, color: 'error.main', fontSize: 13 }}>{errors.agree.message}</Typography>*/}
+            {/*  )}*/}
+            {/*</Box>*/}
+
             <SubmitButton loading={loading || isSubmitting} disabled={!canSubmit}>
               {t('buttons.createAccount')}
             </SubmitButton>

@@ -3,8 +3,6 @@ import { fetchCurrentUser, usersLogin, usersLogout, usersSignup } from '../../ap
 
 export const register = createAsyncThunk('auth/register', async (user, { rejectWithValue }) => {
   try {
-    // TODO temporary remove agreements
-    delete user['agree'];
     return await usersSignup(user);
   } catch (error) {
     if (error.status === 400) {

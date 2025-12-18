@@ -1,9 +1,29 @@
 import { useState } from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Link, Button } from '@mui/material';
 import { Trans } from 'react-i18next';
-import { Link } from '../../../../design-system';
+// import { Link } from '../../../../design-system';
 import { LoginFormModal } from '../LoginFormModal';
 import { RegisterFormModal } from '../RegisterFormModal';
+
+const LinkButton = ({ children, onClick }) => {
+  return (
+    <Button
+      variant="text"
+      onClick={onClick}
+      sx={{
+        p: 0,
+        minWidth: 'auto',
+        textTransform: 'none',
+        '&:hover': {
+          textDecoration: 'underline',
+          backgroundColor: 'transparent',
+        },
+      }}
+    >
+      {children}
+    </Button>
+  );
+};
 
 export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
   const [mode, setMode] = useState(defaultMode);
@@ -15,9 +35,10 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           open={mode === 'login'}
           onClose={onClose}
           footer={
-            <Typography variant="body1" textAlign="center" color="textSecondary" sx={{ mt: 2 }}>
+            <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
               <Trans i18nKey="modals.login.footer">
-                Do not have an account? <Link onClick={() => setMode('register')}>Sign up</Link>
+                Do not have an account?&html;
+                <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
               </Trans>
             </Typography>
           }
@@ -30,9 +51,10 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           open={mode === 'register'}
           onClose={onClose}
           footer={
-            <Typography variant="body1" textAlign="center" color="textSecondary" sx={{ mt: 2 }}>
+            <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
               <Trans i18nKey="modals.register.footer">
-                Already have an account? <Link onClick={() => setMode('login')}>Sign in</Link>
+                Already have an account?&html;
+                <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
               </Trans>
             </Typography>
           }
