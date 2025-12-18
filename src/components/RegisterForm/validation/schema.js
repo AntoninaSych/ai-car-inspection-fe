@@ -17,8 +17,9 @@ export const createValidationSchema = t => {
       .required(required),
     password: yup
       .string()
-      .min(6, t('common:validation.minString', { value: 6 }))
+      .min(8, t('common:validation.minString', { value: 8 }))
       .max(18, t('common:validation.maxString', { value: 18 }))
       .required(required),
+    agree: yup.boolean().oneOf([true], t('common:validation.agreements')).required(t('common:validation.agreements')),
   });
 };

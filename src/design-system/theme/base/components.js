@@ -1,5 +1,5 @@
 import { createTheme, alpha } from '@mui/material/styles';
-import { filledInputClasses, inputLabelClasses, outlinedInputClasses, paperClasses } from '@mui/material';
+import { filledInputClasses, outlinedInputClasses, paperClasses } from '@mui/material';
 import { basePalette } from '../../tokens/colors';
 
 const muiTheme = createTheme();
@@ -184,9 +184,8 @@ export const baseComponents = {
       input: {
         fontSize: 14,
         fontWeight: 500,
-        lineHeight: '24px',
         '&::placeholder': {
-          color: basePalette.text.secondary,
+          color: basePalette.neutral[600],
         },
       },
     },
@@ -195,7 +194,7 @@ export const baseComponents = {
     styleOverrides: {
       root: {
         backgroundColor: 'transparent',
-        borderRadius: 8,
+        borderRadius: 12,
         borderStyle: 'solid',
         borderWidth: 1,
         overflow: 'hidden',
@@ -227,7 +226,6 @@ export const baseComponents = {
       input: ({ theme }) => ({
         fontSize: 14,
         fontWeight: 500,
-        lineHeight: '24px',
         '&:-webkit-autofill': {
           WebkitBoxShadow: '0 0 0 1000px transparent inset',
           WebkitTextFillColor: theme.palette.text.primary,
@@ -263,7 +261,6 @@ export const baseComponents = {
       input: ({ theme }) => ({
         fontSize: 14,
         fontWeight: 500,
-        lineHeight: '24px',
         '&:-webkit-autofill': {
           WebkitBoxShadow: '0 0 0 1000px transparent inset',
           WebkitTextFillColor: theme.palette.text.primary,
@@ -281,21 +278,6 @@ export const baseComponents = {
     styleOverrides: {
       root: {
         fontSize: 14,
-        fontWeight: 500,
-        [`&.${inputLabelClasses.filled}`]: {
-          transform: 'translate(12px, 18px) scale(1)',
-        },
-        [`&.${inputLabelClasses.shrink}`]: {
-          [`&.${inputLabelClasses.standard}`]: {
-            transform: 'translate(0, -1.5px) scale(0.85)',
-          },
-          [`&.${inputLabelClasses.filled}`]: {
-            transform: 'translate(12px, 6px) scale(0.85)',
-          },
-          [`&.${inputLabelClasses.outlined}`]: {
-            transform: 'translate(14px, -9px) scale(0.85)',
-          },
-        },
       },
     },
   },

@@ -6,7 +6,7 @@ export const createValidationSchema = t => {
   return yup.object({
     password: yup
       .string()
-      .min(6, t('common:validation.minString', { value: 6 }))
+      .min(8, t('common:validation.minString', { value: 8 }))
       .max(18, t('common:validation.maxString', { value: 18 }))
       .required(required),
     email: yup

@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import AuthModal from './components/AuthModal';
-import SignInModal from './components/SignInModal';
-import SignUpModal from './components/SignUpModal';
+import { RegisterFormModal, LoginFormModal } from './components';
 import LogOutModal from './components/LogOutModal';
 import { selectGlobalModal } from '../../redux/modal/selectors';
 import { closeModal } from '../../redux/modal/slice';
@@ -18,9 +17,9 @@ export const GlobalModal = () => {
     case 'auth':
       return <AuthModal onClose={handleOnClose} {...props} />;
     case 'login':
-      return <SignInModal onClose={handleOnClose} {...props} />;
+      return <LoginFormModal onClose={handleOnClose} {...props} />;
     case 'register':
-      return <SignUpModal onClose={handleOnClose} {...props} />;
+      return <RegisterFormModal onClose={handleOnClose} {...props} />;
     case 'logout':
       return <LogOutModal onClose={handleOnClose} {...props} />;
     default:
