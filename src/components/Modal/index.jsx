@@ -1,10 +1,24 @@
-import { ThemeProvider, Box, Typography, Stack } from '@mui/material';
-import { StyledModal, Overlay, Header, Content, StyledIconButton, StyledIcon } from './styled';
+import { ThemeProvider, Box, Typography, Stack, Dialog } from '@mui/material';
+import { StyledModal, Header, Content, StyledIconButton, StyledIcon } from './styled';
 import { getTheme } from '../../design-system/theme/getTheme';
 
 export const Modal = ({ children, open, onClose, icon, title, subtitle }) => {
   return (
-    <Overlay open={open} onClose={onClose}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      scroll="paper"
+      maxWidth="sm"
+      slotProps={{
+        paper: {
+          sx: {
+            width: '100%',
+            borderRadius: 2,
+            maxHeight: '90vh',
+          },
+        },
+      }}
+    >
       <StyledModal>
         <ThemeProvider theme={getTheme('light')}>
           <Header>
@@ -17,7 +31,7 @@ export const Modal = ({ children, open, onClose, icon, title, subtitle }) => {
             <Stack alignItems="flex-start" spacing={0.5}>
               {(icon || title) && (
                 <Stack direction="row" alignItems="center" gap={0.5}>
-                  {icon && <Box>{icon}</Box>}
+                  {icon && <>{icon}</>}
                   {title && (
                     <Typography variant="h5" fontWeight={400}>
                       {title}
@@ -36,6 +50,6 @@ export const Modal = ({ children, open, onClose, icon, title, subtitle }) => {
           <Content>{children}</Content>
         </ThemeProvider>
       </StyledModal>
-    </Overlay>
+    </Dialog>
   );
 };

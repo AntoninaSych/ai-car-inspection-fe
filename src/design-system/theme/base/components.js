@@ -160,6 +160,32 @@ export const baseComponents = {
       },
     },
   },
+  MuiInputAdornment: {
+    styleOverrides: {
+      root: {
+        height: '100%',
+        maxHeight: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        color: '#90A1B9',
+        marginTop: '0 !important',
+      },
+      positionStart: {
+        marginRight: 8,
+      },
+      positionEnd: {
+        marginLeft: 8,
+        '& .MuiIconButton-root': {
+          color: '#90A1B9',
+
+          '&:hover': {
+            backgroundColor: 'transparent',
+            color: '#2563EB',
+          },
+        },
+      },
+    },
+  },
   MuiInputBase: {
     styleOverrides: {
       input: ({ theme }) => ({
@@ -193,12 +219,12 @@ export const baseComponents = {
   MuiFilledInput: {
     styleOverrides: {
       root: {
-        backgroundColor: 'transparent',
         borderRadius: 12,
         borderStyle: 'solid',
         borderWidth: 1,
         overflow: 'hidden',
-        borderColor: basePalette.primary.main,
+        backgroundColor: 'transparent',
+        borderColor: '#CAD5E2',
         transition: muiTheme.transitions.create(['border-color', 'box-shadow']),
         '&:hover': {
           backgroundColor: 'transparent',
@@ -215,7 +241,7 @@ export const baseComponents = {
         },
         [`&.${filledInputClasses.focused}`]: {
           backgroundColor: 'transparent',
-          borderColor: basePalette.primary.main,
+          borderColor: basePalette.action.hover,
           boxShadow: `${basePalette.primary.main} 0 0 0 1px`,
         },
         [`&.${filledInputClasses.error}`]: {
@@ -224,6 +250,26 @@ export const baseComponents = {
         },
       },
       input: ({ theme }) => ({
+        // height: 48,
+        boxSizing: 'border-box',
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        paddingTop: 14,
+        paddingBottom: 14,
+        '.MuiInputBase-adornedStart &': {
+          paddingLeft: 0,
+          paddingRight: 16,
+        },
+        ':not(.MuiInputBase-adornedStart) &': {
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+
+        '&::placeholder': {
+          color: '#9CA3AF',
+          opacity: 1,
+        },
         fontSize: 14,
         fontWeight: 500,
         '&:-webkit-autofill': {
@@ -278,6 +324,7 @@ export const baseComponents = {
     styleOverrides: {
       root: {
         fontSize: 14,
+        color: '#314158',
       },
     },
   },
