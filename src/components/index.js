@@ -6,3 +6,5 @@ export { RegisterForm } from './RegisterForm';
 export { LoginForm } from './LoginForm';
 export { GetStarted } from './GetStarted';
 export { Brand } from './Brand';
+export { SubmitButton } from './SubmitButton';
+export * from './FormFields';

@@ -1,1 +1,6 @@
-export const defaultValues = { name: '', email: '', password: '', agree: false };
+export const defaultValues = {
+  name: '',
+  email: '',
+  password: '',
+  agree: false,
+};
