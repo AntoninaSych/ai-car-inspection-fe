@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { FaX } from 'react-icons/fa6';
 import { Box, Dialog, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -41,7 +40,7 @@ export const Header = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(90deg, #2B6AF6 0%, #7C2CF3 70%, #A12AF0 100%)',
 }));
 
-export const Content = styled(Box)(({ theme }) => ({
+export const Content = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
