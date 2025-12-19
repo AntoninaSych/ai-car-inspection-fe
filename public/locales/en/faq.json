@@ -1,0 +1,46 @@
+{
+  "title": "Frequently Asked Questions",
+  "subtitle": "Find answers to common questions about our AI car damage assessment service",
+  "questions": [
+    {
+      "question": "How does the AI car damage assessment work?",
+      "answer": "Our AI-powered system uses advanced computer vision algorithms to analyze photos of your damaged vehicle. Simply upload clear images of the damage, and our AI will identify the affected parts, assess the extent of damage, and provide a preliminary repair cost estimate within minutes."
+    },
+    {
+      "question": "How accurate is the AI estimate?",
+      "answer": "Our AI provides a preliminary estimate based on visible damage in the photos. While we strive for high accuracy, the actual repair cost may vary due to hidden damage not visible in photos, regional pricing differences, and specific service station rates. We recommend using our estimate as a starting point for planning."
+    },
+    {
+      "question": "What types of damage can the AI detect?",
+      "answer": "Our AI can identify various types of vehicle damage including dents, scratches, broken parts, paint damage, cracked glass, and structural damage. It analyzes body panels, bumpers, doors, hoods, fenders, and other visible components."
+    },
+    {
+      "question": "How many photos do I need to upload?",
+      "answer": "We recommend uploading at least 3-5 clear photos showing the damage from different angles. Include close-up shots of damaged areas and wider shots showing the overall context. More photos generally lead to more accurate assessments."
+    },
+    {
+      "question": "Is my data secure and private?",
+      "answer": "Yes, we take data security seriously. All uploaded photos are encrypted and stored securely. We automatically blur license plates and faces for privacy. Your data is used only for providing the service and improving our AI models, in accordance with our Privacy Policy and GDPR regulations."
+    },
+    {
+      "question": "Can I use the AI estimate for insurance claims?",
+      "answer": "Our AI estimate is for informational purposes only and is not an official expert conclusion or basis for insurance payouts. However, it can be useful as a preliminary reference when discussing your claim with your insurance company. Always follow your insurer's official assessment process."
+    },
+    {
+      "question": "How long does it take to get results?",
+      "answer": "In most cases, you'll receive your preliminary damage assessment and cost estimate within 2-5 minutes after uploading your photos. Processing time may vary slightly depending on the number and size of images."
+    },
+    {
+      "question": "What if I'm not satisfied with the estimate?",
+      "answer": "If you have concerns about the estimate, you can contact our support team for clarification. Keep in mind that our AI provides a preliminary assessment, and we recommend consulting with local repair shops for final quotes. Due to the nature of digital services, refunds are subject to our Terms and Conditions."
+    },
+    {
+      "question": "Do you support multiple languages?",
+      "answer": "Yes, our platform currently supports English and Ukrainian. You can switch between languages using the language selector in the navigation menu."
+    },
+    {
+      "question": "Can I save my assessment report?",
+      "answer": "Yes, once your assessment is complete, you can download a detailed PDF report containing the damage analysis, identified parts, and cost estimate. You can also access your previous reports through your account dashboard."
+    }
+  ]
+}

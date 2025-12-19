@@ -12,8 +12,8 @@ export const Footer = () => {
     {
       title: t('footer.sections.product.title'),
       links: [
-        { label: t('footer.sections.product.links.faq'), href: '/#faq' },
-        { label: t('footer.sections.product.links.pricing'), href: '/#pricing' },
+        { label: t('footer.sections.product.links.faq'), href: '/faq' },
+        { label: t('footer.sections.product.links.pricing'), href: '/pricing' },
         { label: t('footer.sections.product.links.api'), href: '/api' },
         { label: t('footer.sections.product.links.mobile'), href: '/app' },
       ],
