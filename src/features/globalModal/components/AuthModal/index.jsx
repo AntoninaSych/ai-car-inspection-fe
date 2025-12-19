@@ -9,6 +9,7 @@ const LinkButton = ({ children, onClick }) => {
   return (
     <Button
       variant="text"
+      size="small"
       onClick={onClick}
       sx={{
         p: 0,
@@ -35,7 +36,7 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           open={mode === 'login'}
           onClose={onClose}
           footer={
-            <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
               <Trans i18nKey="modals.login.footer">
                 Do not have an account?&html;
                 <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
@@ -51,7 +52,7 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           open={mode === 'register'}
           onClose={onClose}
           footer={
-            <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
               <Trans i18nKey="modals.register.footer">
                 Already have an account?&html;
                 <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>

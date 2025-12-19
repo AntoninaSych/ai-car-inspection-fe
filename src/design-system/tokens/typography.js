@@ -1,3 +1,5 @@
+import { basePalette } from './colors';
+
 export const baseTypography = {
   fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
   body1: {
@@ -40,12 +42,14 @@ export const baseTypography = {
     fontWeight: 700,
     fontSize: '2.25rem',
     lineHeight: 1.2,
+    color: basePalette.text.secondary,
   },
   h2: {
     fontFamily: 'Inter, sans-serif',
     fontWeight: 700,
     fontSize: '1.875rem',
     lineHeight: 1.3,
+    color: basePalette.text.secondary,
   },
   h3: {
     fontFamily: 'Inter, sans-serif',

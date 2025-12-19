@@ -25,7 +25,7 @@ export const createBaseTheme = () => {
       htmlFontSize: 16,
     },
     palette: {
-      mode: ThemeName.Dark,
+      mode: ThemeName.Light,
       ...basePalette,
     },
     components: baseComponents,

@@ -23,23 +23,12 @@ export const GetStarted = () => {
   return (
     <Button
       variant="contained"
+      size="small"
       onClick={handleOnClick}
       sx={{
-        textTransform: 'none',
-        px: 2,
-        py: 1,
-        borderRadius: 999,
-        fontSize: 14,
-        background: 'linear-gradient(110deg, #2F66FF 0%, #7B2BFF 100%)',
-        // boxShadow: '0 14px 30px rgba(55, 79, 255, 0.25)',
+        boxShadow: 'none',
         '&:hover': {
-          background: 'linear-gradient(110deg, #2A5CF2 0%, #6E26F0 100%)',
-          // boxShadow: '0 18px 38px rgba(55, 79, 255, 0.28)',
-        },
-
-        '&:active': {
-          transform: 'translateY(1px)',
-          // boxShadow: '0 10px 24px rgba(55, 79, 255, 0.22)',
+          boxShadow: 'none',
         },
       }}
       disableElevation
