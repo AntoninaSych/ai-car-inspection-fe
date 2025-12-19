@@ -85,5 +85,44 @@
     "number": "Введіть число",
     "agreements": "Ви повинні погодитися, щоб продовжити.",
     "containsNumber": "Містить число"
+  },
+  "footer": {
+    "description": "Оцінка вартості ремонту автомобіля за допомогою штучного інтелекту. Швидко, точно та надійно.",
+    "copyright": "Усі права захищено",
+    "sections": {
+      "product": {
+        "title": "Продукт",
+        "links": {
+          "faq": "Питання та відповіді",
+          "pricing": "Ціни",
+          "api": "Доступ до API",
+          "mobile": "Мобільний додаток"
+        }
+      },
+      "company": {
+        "title": "Компанія",
+        "links": {
+          "about": "Про нас",
+          "careers": "Кар'єра",
+          "blog": "Блог",
+          "contact": "Контакти"
+        }
+      },
+      "legal": {
+        "title": "Правова інформація",
+        "links": {
+          "privacy": "Політика конфіденційності",
+          "terms": "Умови використання",
+          "cookies": "Політика cookies",
+          "gdpr": "GDPR"
+        }
+      }
+    },
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    }
   }
 }

@@ -54,7 +54,7 @@ export const basePalette = {
     paper: '#FFFFFF',
     secondary: '#EFF6FF',
   },
-  divider: neutral[700],
+  divider: '#1D293D',
   loader: '#ffffff',
   error: {
     main: '#EF4444',

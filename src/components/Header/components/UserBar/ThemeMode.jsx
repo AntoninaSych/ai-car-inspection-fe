@@ -1,7 +1,7 @@
 import { ListItemIcon, ListItemText } from '@mui/material';
 import { LightMode, DarkMode } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { useAppTheme } from '../../../../design-system';
+import { useAppTheme } from '../../../../design-system/theme/hooks';
 import { StyledMenuItem } from './styled';
 
 export const ThemeMode = () => {

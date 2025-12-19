@@ -1,29 +1,12 @@
-import { createContext, useContext, useEffect, useState, useMemo } from 'react';
-import { useTheme as useMuiTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
+import { createContext, useEffect, useState, useMemo } from 'react';
+import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeName } from './constants';
 import { safeLocalStorage, THEME_STORAGE_KEY } from './storage';
 import { getInitialThemeName } from './initial';
 import { getTheme } from './getTheme';
 
-const DesignSystemThemeContext = createContext(null);
-
-export const useThemeSwitcher = () => {
-  const ctx = useContext(DesignSystemThemeContext);
-  if (!ctx) {
-    throw new Error('useThemeSwitcher must be used within DesignSystemThemeProvider');
-  }
-  return ctx;
-};
-
-export const useAppTheme = () => {
-  const theme = useMuiTheme();
-  const { themeName, setThemeName } = useThemeSwitcher();
-  const toggle = () => setThemeName(themeName === ThemeName.Dark ? ThemeName.Light : ThemeName.Dark);
-  const isDark = themeName === ThemeName.Dark;
-
-  return { theme, themeName, setThemeName, isDark, toggle };
-};
+export const DesignSystemThemeContext = createContext(null);
 
 export const DesignSystemThemeProvider = ({ children }) => {
   const [themeName, setThemeName] = useState(getInitialThemeName);

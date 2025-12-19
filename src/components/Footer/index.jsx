@@ -1,40 +1,14 @@
 import { Box, Grid, Typography, Link as MuiLink, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Copyright, SocialLinks } from './components';
 import { Brand } from '../Brand';
 import { PageContainer } from '../../layouts';
-
-const footerSections = [
-  {
-    title: 'Product',
-    links: [
-      { label: 'F.A.Q', href: '/#faq' },
-      { label: 'Pricing', href: '/#pricing' },
-      { label: 'API Access', href: '/api' },
-      { label: 'Mobile App', href: '/app' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Privacy Policy', href: '/privacy-policy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'GDPR', href: '/gdpr' },
-    ],
-  },
-];
+import { footerSections } from './config/footerSections';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <Box component="footer" sx={{ backgroundColor: theme => theme.palette.neutral[900], color: 'white', py: 6 }}>
       <PageContainer>
@@ -44,7 +18,7 @@ export const Footer = () => {
             <Stack direction="column" gap={2} sx={{ mb: { xs: 4, lg: 0 } }}>
               <Brand light />
               <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', maxWidth: { xs: '100%', md: 300 } }}>
-                AI-powered car repair cost estimation. Fast, accurate, and reliable.
+                {t('footer.description')}
               </Typography>
             </Stack>
           </Grid>
@@ -56,12 +30,13 @@ export const Footer = () => {
                 <Grid key={section.title} size={{ xs: 12, md: 4 }}>
                   <Stack gap={2}>
                     <Typography variant="h4" sx={{ fontWeight: 600, fontSize: 14, color: 'white' }}>
-                      {section.title}
+                      {t(section.title)}
                     </Typography>
                     <Stack spacing={1}>
                       {section.links.map(link => (
                         <MuiLink
-                          key={link.label}
+                          underline="hover"
+                          key={link.labelKey}
                           component={link.href.startsWith('/#') ? 'a' : Link}
                           to={link.href.startsWith('/#') ? undefined : link.href}
                           href={link.href.startsWith('/#') ? link.href : undefined}
@@ -70,15 +45,12 @@ export const Footer = () => {
                             textDecoration: 'none',
                             fontSize: 12,
                             transition: 'color 0.2s',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
                             '&:hover': {
                               color: 'white',
                             },
                           }}
                         >
-                          {link.label}
+                          {t(link.labelKey)}
                         </MuiLink>
                       ))}
                     </Stack>
