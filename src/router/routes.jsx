@@ -15,6 +15,8 @@ const PaymentPage = lazy(() => import('../pages/PaymentPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 const PrivacyPolicyPage = lazy(() => import('../pages/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('../pages/TermsPage'));
+const CookiePolicyPage = lazy(() => import('../pages/CookiePolicyPage'));
+const FAQPage = lazy(() => import('../pages/FAQPage'));
 
 export const router = createBrowserRouter([
   {
@@ -36,8 +38,10 @@ export const router = createBrowserRouter([
         ],
       },
       { path: 'success', element: <SuccessPage /> },
+      { path: 'faq', element: <FAQPage /> },
       { path: 'privacy-policy', element: <PrivacyPolicyPage /> },
       { path: 'terms', element: <TermsPage /> },
+      { path: 'cookies', element: <CookiePolicyPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

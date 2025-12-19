@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    build: {
+      target: 'ES2022',
+      sourcemap: mode === 'development',
+    },
     server: {
       proxy: {
         '/api': {
@@ -16,6 +20,9 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
         },
       },
+    },
+    optimizeDeps: {
+      include: ['@emotion/react', '@emotion/styled'],
     },
     resolve: {
       alias: {

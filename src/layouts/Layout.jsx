@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Toolbar, Box } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Header, Loader, Footer } from '../components';
 
@@ -11,6 +11,7 @@ export const Layout = () => {
       <Toolbar />
       <Box component="main" sx={{ flex: 1 }}>
         <Suspense fallback={<Loader />}>
+          <ScrollRestoration />
           <Outlet />
         </Suspense>
       </Box>

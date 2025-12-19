@@ -2,8 +2,8 @@ export const footerSections = [
   {
     title: 'footer.sections.product.title',
     links: [
-      { labelKey: 'footer.sections.product.links.faq', href: '/#faq' },
-      { labelKey: 'footer.sections.product.links.pricing', href: '/#pricing' },
+      { labelKey: 'footer.sections.product.links.faq', href: '/faq' },
+      { labelKey: 'footer.sections.product.links.pricing', href: '/pricing' },
       { labelKey: 'footer.sections.product.links.api', href: '/api' },
       { labelKey: 'footer.sections.product.links.mobile', href: '/app' },
     ],

@@ -1,0 +1,28 @@
+{
+  "title": "COOKIE POLICY",
+  "sections": {
+    "whatAreCookies": {
+      "title": "1. What are cookies",
+      "content": "A cookie is a small text file stored on your device to ensure the site's functionality and analyze its use."
+    },
+    "typesOfCookies": {
+      "title": "2. Types of cookies we use",
+      "strictly": {
+        "title": "Strictly Necessary:",
+        "description": "Required for the site to work (e.g., saving login sessions). Consent is not required for them."
+      },
+      "analytical": {
+        "title": "Analytical:",
+        "description": "Google Analytics, Hotjar. Help us understand how users interact with the site. Used only with your consent."
+      },
+      "marketing": {
+        "title": "Marketing:",
+        "description": "Facebook Pixel. Used to show relevant advertising. Used only with your consent."
+      }
+    },
+    "consentManagement": {
+      "title": "3. Consent Management",
+      "content": "You can change your cookie settings at any time via the \"Privacy Settings\" panel on our website."
+    }
+  }
+}
