@@ -1,0 +1,74 @@
+{
+  "title": "PRIVACY POLICY",
+  "sections": {
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "This Privacy Policy explains how CarRepAIr collects, uses, and protects your personal data when you use the web application and AI-based car damage assessment services (hereinafter – the \"Service\"). We act as a Data Controller in accordance with the GDPR."
+    },
+    "dataCollection": {
+      "title": "2. What Data We Collect",
+      "intro": "We collect the following categories of data:",
+      "items": {
+        "identification": "Identification Data: Name, email address, phone number (upon registration or ordering a report).",
+        "vehicle": "Vehicle Data: Make, model, year of manufacture, mileage, VIN code (if provided).",
+        "visual": "Visual Data (Media): Photographs of the damaged vehicle that you upload.",
+        "technical": "Technical Data: IP address, device type, browser data, geolocation (with your consent, for searching for the nearest service stations)."
+      }
+    },
+    "legalBasis": {
+      "title": "3. Legal Basis and Purposes of Processing",
+      "table": {
+        "headers": {
+          "purpose": "Purpose of Processing",
+          "legalBasis": "Legal Basis (GDPR)",
+          "explanation": "Explanation"
+        },
+        "rows": [
+          {
+            "purpose": "Providing a repair cost estimate",
+            "legalBasis": "Contract performance (Art. 6(1)(b))",
+            "explanation": "Processing photos and vehicle data is necessary to generate the report you ordered."
+          },
+          {
+            "purpose": "Improving AI model accuracy",
+            "legalBasis": "Legitimate interest (Art. 6(1)(f))",
+            "explanation": "We use anonymized photographs to train our Computer Vision algorithms."
+          },
+          {
+            "purpose": "Transferring application to a Service Station",
+            "legalBasis": "Consent (Art. 6(1)(a))",
+            "explanation": "We transfer your contact data to partners only if you click the \"Book a Repair\" button."
+          },
+          {
+            "purpose": "Marketing and News",
+            "legalBasis": "Consent (Art. 6(1)(a))",
+            "explanation": "Sending special offers."
+          }
+        ]
+      }
+    },
+    "visualData": {
+      "title": "4. Specifics of Visual Data Processing (AI and Photos)",
+      "intro": "By uploading photos, you acknowledge that they may contain objects allowing for indirect identification (e.g., license plates).",
+      "anonymization": "Anonymization: Our Service automatically applies blurring technologies to recognized license plates and human faces in the photos before storing them for long-term model training.",
+      "aiTraining": "AI Training: We use anonymized images of damage to enhance the accuracy of our algorithms. If you do not want your data to be used for training, you may exercise your right to object (opt-out) by writing to us at [email]."
+    },
+    "dataTransfer": {
+      "title": "5. Transfer of Data to Third Parties",
+      "intro": "We may transfer your data to:",
+      "items": {
+        "cloud": "Cloud Service Providers: (e.g., AWS, Google Cloud) for hosting and computing.",
+        "partners": "Partner Service Stations (STO): Exclusively at your request to receive an accurate estimate.",
+        "payment": "Payment Systems: For transaction processing (we do not store your card details)."
+      }
+    },
+    "dataRetention": {
+      "title": "6. Data Retention",
+      "content": "We store personal data for the duration of the service provision and in accordance with the statute of limitations (3 years). Photographs used for AI training are stored in an anonymized form indefinitely, as long as necessary for technical purposes."
+    },
+    "rights": {
+      "title": "7. Your Rights",
+      "content": "You have the right to: access your data, rectification, erasure (\"right to be forgotten\"), restriction of processing, data portability, and objection to processing. To exercise these rights, please contact: [email]."
+    }
+  }
+}
