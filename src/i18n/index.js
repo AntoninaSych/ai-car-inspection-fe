@@ -12,7 +12,7 @@ export const i18nPromise = i18n
     supportedLngs: ['en', 'ua'],
     load: 'languageOnly',
     debug: import.meta.env.DEV,
-    ns: ['common', 'howItWorks', 'privacyPolicy', 'cookiePolicy', 'terms', 'faq'],
+    ns: ['common'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false,
