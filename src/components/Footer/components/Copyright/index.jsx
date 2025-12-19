@@ -1,6 +1,16 @@
-import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 
 export const Copyright = () => {
   const year = new Date().getFullYear();
-  return <Box sx={{ py: 4 }}>&copy; {year}, Car RepAIr Estimator. All rights reserved</Box>;
+  return (
+    <Typography
+      variant="body2"
+      sx={{
+        color: '#90A1B9',
+        fontSize: 12,
+      }}
+    >
+      &copy; {year}, Car RepAIr Estimator. All rights reserved
+    </Typography>
+  );
 };

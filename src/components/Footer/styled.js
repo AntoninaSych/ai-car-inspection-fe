@@ -6,9 +6,3 @@ export const Divider = styled('hr')(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   margin: '40px 0',
 }));
-
-export const Wrapper = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
