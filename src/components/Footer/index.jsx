@@ -4,39 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Copyright, SocialLinks } from './components';
 import { Brand } from '../Brand';
 import { PageContainer } from '../../layouts';
+import { footerSections } from './config/footerSections';
 
 export const Footer = () => {
   const { t } = useTranslation();
 
-  const footerSections = [
-    {
-      title: t('footer.sections.product.title'),
-      links: [
-        { label: t('footer.sections.product.links.faq'), href: '/#faq' },
-        { label: t('footer.sections.product.links.pricing'), href: '/#pricing' },
-        { label: t('footer.sections.product.links.api'), href: '/api' },
-        { label: t('footer.sections.product.links.mobile'), href: '/app' },
-      ],
-    },
-    {
-      title: t('footer.sections.company.title'),
-      links: [
-        { label: t('footer.sections.company.links.about'), href: '/about' },
-        { label: t('footer.sections.company.links.careers'), href: '/careers' },
-        { label: t('footer.sections.company.links.blog'), href: '/blog' },
-        { label: t('footer.sections.company.links.contact'), href: '/contact' },
-      ],
-    },
-    {
-      title: t('footer.sections.legal.title'),
-      links: [
-        { label: t('footer.sections.legal.links.privacy'), href: '/privacy-policy' },
-        { label: t('footer.sections.legal.links.terms'), href: '/terms' },
-        { label: t('footer.sections.legal.links.cookies'), href: '/cookies' },
-        { label: t('footer.sections.legal.links.gdpr'), href: '/gdpr' },
-      ],
-    },
-  ];
   return (
     <Box component="footer" sx={{ backgroundColor: theme => theme.palette.neutral[900], color: 'white', py: 6 }}>
       <PageContainer>
@@ -58,12 +30,13 @@ export const Footer = () => {
                 <Grid key={section.title} size={{ xs: 12, md: 4 }}>
                   <Stack gap={2}>
                     <Typography variant="h4" sx={{ fontWeight: 600, fontSize: 14, color: 'white' }}>
-                      {section.title}
+                      {t(section.title)}
                     </Typography>
                     <Stack spacing={1}>
                       {section.links.map(link => (
                         <MuiLink
-                          key={link.label}
+                          underline="hover"
+                          key={link.labelKey}
                           component={link.href.startsWith('/#') ? 'a' : Link}
                           to={link.href.startsWith('/#') ? undefined : link.href}
                           href={link.href.startsWith('/#') ? link.href : undefined}
@@ -72,15 +45,12 @@ export const Footer = () => {
                             textDecoration: 'none',
                             fontSize: 12,
                             transition: 'color 0.2s',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
                             '&:hover': {
                               color: 'white',
                             },
                           }}
                         >
-                          {link.label}
+                          {t(link.labelKey)}
                         </MuiLink>
                       ))}
                     </Stack>
