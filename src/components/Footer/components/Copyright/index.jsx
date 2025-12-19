@@ -6,9 +6,8 @@ export const Copyright = () => {
     <Typography
       variant="body2"
       sx={{
-        color: 'rgba(255, 255, 255, 0.7)',
-        fontSize: 14,
-        textAlign: { xs: 'center', sm: 'left' },
+        color: '#90A1B9',
+        fontSize: 12,
       }}
     >
       &copy; {year}, Car RepAIr Estimator. All rights reserved
