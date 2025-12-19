@@ -52,34 +52,47 @@ export const Footer = () => {
           </Grid>
 
           {/* Footer Links Columns */}
-          {footerSections.map(section => (
-            <Grid item xs={4} sm={4} md="auto" key={section.title}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2, fontSize: 16, color: 'white' }}>
-                {section.title}
-              </Typography>
-              <Stack spacing={1.5}>
-                {section.links.map(link => (
-                  <MuiLink
-                    key={link.label}
-                    component={link.href.startsWith('/#') ? 'a' : Link}
-                    to={link.href.startsWith('/#') ? undefined : link.href}
-                    href={link.href.startsWith('/#') ? link.href : undefined}
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.7)',
-                      textDecoration: 'none',
-                      fontSize: 14,
-                      transition: 'color 0.2s',
-                      '&:hover': {
-                        color: 'white',
-                      },
-                    }}
-                  >
-                    {link.label}
-                  </MuiLink>
-                ))}
-              </Stack>
-            </Grid>
-          ))}
+          <Grid
+            item
+            xs={12}
+            md={9}
+            sx={{ display: { xs: 'flex', md: 'contents' }, gap: { xs: 2, sm: 4 }, justifyContent: 'space-between' }}
+          >
+            {footerSections.map(section => (
+              <Box key={section.title} sx={{ flex: { xs: 1, md: 'none' }, minWidth: 0 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontWeight: 600, mb: 2, fontSize: { xs: 14, md: 16 }, color: 'white' }}
+                >
+                  {section.title}
+                </Typography>
+                <Stack spacing={1.5}>
+                  {section.links.map(link => (
+                    <MuiLink
+                      key={link.label}
+                      component={link.href.startsWith('/#') ? 'a' : Link}
+                      to={link.href.startsWith('/#') ? undefined : link.href}
+                      href={link.href.startsWith('/#') ? link.href : undefined}
+                      sx={{
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        textDecoration: 'none',
+                        fontSize: { xs: 12, md: 14 },
+                        transition: 'color 0.2s',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        '&:hover': {
+                          color: 'white',
+                        },
+                      }}
+                    >
+                      {link.label}
+                    </MuiLink>
+                  ))}
+                </Stack>
+              </Box>
+            ))}
+          </Grid>
         </Grid>
 
         {/* Divider */}
