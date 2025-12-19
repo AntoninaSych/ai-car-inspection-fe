@@ -11,7 +11,7 @@ const pickVariant = name => {
     case ThemeName.Dark:
       return darkVariant;
     default:
-      return darkVariant;
+      return lightVariant;
   }
 };
 

@@ -25,20 +25,21 @@
   "success-page": {
     "title": "Thank you for using the service."
   },
-  "labels": {
-    "email": "Email",
-    "password": "Password",
-    "name": "Name"
+  "fields": {
+    "email": { "label": "Email", "placeholder": "your@email.com" },
+    "password": { "label": "Password", "placeholder": "Enter your password" },
+    "name": { "label": "Name" },
+    "fullname": { "label": "Full Name", "placeholder": "Enter your name" }
   },
   "modals": {
     "login": {
-      "title": "Login",
-      "description": "Login to access the service and personal settings.",
-      "footer": " Do not have an account? <1>Sign up</1>"
+      "title": "Welcome back!",
+      "subtitle": "Sign in to continue using AI car repair estimates",
+      "footer": "Don't have an account? <1>Sign up</1>"
     },
     "register": {
       "title": "Create an account",
-      "description": "Create an account to have full access to the service.",
+      "subtitle": "Join thousands using AI for car repair estimates",
       "footer": "Already have an account? <1>Sign in</1>"
     },
     "logout": {
@@ -52,7 +53,8 @@
     "register": "Register",
     "logout": "Log Out",
     "cancel": "Cancel",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "createAccount": "Create Account"
   },
   "mode": {
     "switch-label": "Switch appearance",
@@ -80,6 +82,8 @@
     "min": "Minimum {{value}}",
     "maxString": "Maximum {{value}} characters",
     "minString": "Minimum {{value}} characters",
-    "number": "Enter a number"
+    "number": "Enter a number",
+    "agreements": "You must agree to continue.",
+    "containsNumber": "Contains a number"
   }
 }

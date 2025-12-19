@@ -103,11 +103,11 @@ export const UploadWizard = () => {
               </Button>
 
               {!isLastStep ? (
-                <Button variant="contained" type="button" onClick={handleNext}>
+                <Button size="medium" type="button" onClick={handleNext}>
                   {t('buttons.next', 'Next')}
                 </Button>
               ) : (
-                <Button variant="contained" type="submit" disabled={methods.formState.isSubmitting}>
+                <Button size="medium" type="submit" disabled={methods.formState.isSubmitting}>
                   {methods.formState.isSubmitting
                     ? t('buttons.sending', 'Sending...')
                     : t('buttons.sendAiButton', 'Send for AI analysis')}

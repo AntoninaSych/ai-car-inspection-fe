@@ -1,56 +1,70 @@
 import { useState } from 'react';
-import { Typography } from '@mui/material';
-import { Trans, useTranslation } from 'react-i18next';
-import { Link } from '../../../../design-system';
-import { Modal } from '../../../../components';
-import { SignUpForm, SignInForm } from '../../../../components';
+import { Typography, Link, Button } from '@mui/material';
+import { Trans } from 'react-i18next';
+// import { Link } from '../../../../design-system';
+import { LoginFormModal } from '../LoginFormModal';
+import { RegisterFormModal } from '../RegisterFormModal';
+
+const LinkButton = ({ children, onClick }) => {
+  return (
+    <Button
+      variant="text"
+      size="small"
+      onClick={onClick}
+      sx={{
+        p: 0,
+        minWidth: 'auto',
+        textTransform: 'none',
+        '&:hover': {
+          textDecoration: 'underline',
+          backgroundColor: 'transparent',
+        },
+      }}
+    >
+      {children}
+    </Button>
+  );
+};
 
 export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
-  const { t } = useTranslation();
   const [mode, setMode] = useState(defaultMode);
 
-  const handleSwitchToLogin = () => setMode('login');
-  const handleSwitchToRegister = () => setMode('register');
-
-  return (
-    <Modal open={true} onClose={onClose}>
-      {mode === 'login' ? (
-        <>
-          <Typography variant="h3" color="textSecondary" sx={{ mb: 2 }}>
-            {t('modals.login.title')}
-          </Typography>
-          <Typography color="textSecondary" sx={{ mb: 2 }}>
-            {t('modals.login.description')}
-          </Typography>
-
-          <SignInForm onSuccess={onClose} />
-
-          <Typography variant="body1" textAlign="center" color="textSecondary" sx={{ mt: 2 }}>
-            <Trans i18nKey="modals.login.footer">
-              Do not have an account? <Link onClick={handleSwitchToRegister}>Sign up</Link>
-            </Trans>
-          </Typography>
-        </>
-      ) : (
-        <>
-          <Typography variant="h3" color="textSecondary" sx={{ mb: 2 }}>
-            {t('modals.register.title')}
-          </Typography>
-          <Typography color="textSecondary" sx={{ mb: 2 }}>
-            {t('modals.register.description')}
-          </Typography>
-
-          <SignUpForm onSuccess={onClose} />
-
-          <Typography variant="body1" textAlign="center" color="textSecondary" sx={{ mt: 2 }}>
-            <Trans i18nKey="modals.register.footer">
-              Already have an account? <Link onClick={handleSwitchToLogin}>Sign in</Link>
-            </Trans>
-          </Typography>
-        </>
-      )}
-    </Modal>
-  );
+  switch (mode) {
+    case 'login': {
+      return (
+        <LoginFormModal
+          open={mode === 'login'}
+          onClose={onClose}
+          footer={
+            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+              <Trans i18nKey="modals.login.footer">
+                Do not have an account?&html;
+                <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
+              </Trans>
+            </Typography>
+          }
+        />
+      );
+    }
+    case 'register': {
+      return (
+        <RegisterFormModal
+          open={mode === 'register'}
+          onClose={onClose}
+          footer={
+            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+              <Trans i18nKey="modals.register.footer">
+                Already have an account?&html;
+                <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
+              </Trans>
+            </Typography>
+          }
+        />
+      );
+    }
+    default:
+      return null;
+  }
 };
 
 export default AuthModal;
