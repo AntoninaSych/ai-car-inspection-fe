@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Box, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-export const Header = styled(Box)(({ theme }) => ({
+export const Header = styled(Box)(() => ({
   position: 'relative',
   padding: '24px 32px',
   color: '#FFFFFF',
@@ -20,7 +20,7 @@ export const StyledIcon = styled(CloseIcon)(() => ({
   fontSize: '21px',
 }));
 
-export const StyledIconButton = styled(IconButton)(({ theme }) => ({
+export const StyledIconButton = styled(IconButton)(() => ({
   position: 'absolute',
   cursor: 'pointer',
   top: '12px',

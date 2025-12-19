@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Typography, Link, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import { Trans } from 'react-i18next';
-// import { Link } from '../../../../design-system';
 import { LoginFormModal } from '../LoginFormModal';
 import { RegisterFormModal } from '../RegisterFormModal';
 

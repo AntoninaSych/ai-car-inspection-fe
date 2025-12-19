@@ -1,5 +1,5 @@
 import { createTheme, alpha } from '@mui/material/styles';
-import { filledInputClasses, outlinedInputClasses, paperClasses } from '@mui/material';
+import { filledInputClasses, paperClasses } from '@mui/material';
 import { basePalette } from '../../tokens/colors';
 
 const muiTheme = createTheme();
