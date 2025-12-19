@@ -1,40 +1,42 @@
 import { Box, Grid, Typography, Link as MuiLink, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Copyright, SocialLinks } from './components';
 import { Brand } from '../Brand';
 import { PageContainer } from '../../layouts';
 
-const footerSections = [
-  {
-    title: 'Product',
-    links: [
-      { label: 'F.A.Q', href: '/#faq' },
-      { label: 'Pricing', href: '/#pricing' },
-      { label: 'API Access', href: '/api' },
-      { label: 'Mobile App', href: '/app' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Privacy Policy', href: '/privacy-policy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'GDPR', href: '/gdpr' },
-    ],
-  },
-];
-
 export const Footer = () => {
+  const { t } = useTranslation();
+
+  const footerSections = [
+    {
+      title: t('footer.sections.product.title'),
+      links: [
+        { label: t('footer.sections.product.links.faq'), href: '/#faq' },
+        { label: t('footer.sections.product.links.pricing'), href: '/#pricing' },
+        { label: t('footer.sections.product.links.api'), href: '/api' },
+        { label: t('footer.sections.product.links.mobile'), href: '/app' },
+      ],
+    },
+    {
+      title: t('footer.sections.company.title'),
+      links: [
+        { label: t('footer.sections.company.links.about'), href: '/about' },
+        { label: t('footer.sections.company.links.careers'), href: '/careers' },
+        { label: t('footer.sections.company.links.blog'), href: '/blog' },
+        { label: t('footer.sections.company.links.contact'), href: '/contact' },
+      ],
+    },
+    {
+      title: t('footer.sections.legal.title'),
+      links: [
+        { label: t('footer.sections.legal.links.privacy'), href: '/privacy-policy' },
+        { label: t('footer.sections.legal.links.terms'), href: '/terms' },
+        { label: t('footer.sections.legal.links.cookies'), href: '/cookies' },
+        { label: t('footer.sections.legal.links.gdpr'), href: '/gdpr' },
+      ],
+    },
+  ];
   return (
     <Box component="footer" sx={{ backgroundColor: theme => theme.palette.neutral[900], color: 'white', py: 6 }}>
       <PageContainer>
@@ -44,7 +46,7 @@ export const Footer = () => {
             <Stack direction="column" gap={2} sx={{ mb: { xs: 4, lg: 0 } }}>
               <Brand light />
               <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', maxWidth: { xs: '100%', md: 300 } }}>
-                AI-powered car repair cost estimation. Fast, accurate, and reliable.
+                {t('footer.description')}
               </Typography>
             </Stack>
           </Grid>

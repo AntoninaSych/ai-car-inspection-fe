@@ -1,14 +1,20 @@
 import { Box, IconButton } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
-const socialLinks = [
-  { icon: FaFacebookF, url: 'https://facebook.com', label: 'Facebook' },
-  { icon: FaTwitter, url: 'https://twitter.com', label: 'Twitter' },
-  { icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/ai-car-repair-estimatator/', label: 'LinkedIn' },
-  { icon: FaInstagram, url: 'https://instagram.com', label: 'Instagram' },
-];
-
 export const SocialLinks = () => {
+  const { t } = useTranslation();
+
+  const socialLinks = [
+    { icon: FaFacebookF, url: 'https://facebook.com', label: t('footer.social.facebook') },
+    { icon: FaTwitter, url: 'https://twitter.com', label: t('footer.social.twitter') },
+    {
+      icon: FaLinkedinIn,
+      url: 'https://www.linkedin.com/company/ai-car-repair-estimatator/',
+      label: t('footer.social.linkedin'),
+    },
+    { icon: FaInstagram, url: 'https://instagram.com', label: t('footer.social.instagram') },
+  ];
   return (
     <Box sx={{ display: 'flex', gap: 1.5 }}>
       {socialLinks.map(({ icon: Icon, url, label }) => (

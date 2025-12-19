@@ -85,5 +85,44 @@
     "number": "Enter a number",
     "agreements": "You must agree to continue.",
     "containsNumber": "Contains a number"
+  },
+  "footer": {
+    "description": "AI-powered car repair cost estimation. Fast, accurate, and reliable.",
+    "copyright": "All rights reserved",
+    "sections": {
+      "product": {
+        "title": "Product",
+        "links": {
+          "faq": "F.A.Q",
+          "pricing": "Pricing",
+          "api": "API Access",
+          "mobile": "Mobile App"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "about": "About Us",
+          "careers": "Careers",
+          "blog": "Blog",
+          "contact": "Contact"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "privacy": "Privacy Policy",
+          "terms": "Terms of Service",
+          "cookies": "Cookie Policy",
+          "gdpr": "GDPR"
+        }
+      }
+    },
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    }
   }
 }
