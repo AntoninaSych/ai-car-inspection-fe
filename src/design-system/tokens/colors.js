@@ -1,22 +1,33 @@
 export const neutral = {
-  50: '#F8F9FA',
-  100: '#F3F4F6',
-  200: '#E5E7EB',
-  300: '#D2D6DB',
-  400: '#9DA4AE',
-  500: '#6C737F',
-  600: '#4D5761',
-  700: '#2F3746',
-  800: '#1C2536',
-  900: '#111927',
+  50: '#F8FAFC',
+  100: '#F1F5F9',
+  200: '#E2E8F0',
+  700: '#334155',
+  900: '#0F172A',
+};
+
+export const tokens = {
+  automotive: {
+    damage: {
+      main: '#DC2626',
+    },
+    repair: {
+      main: '#FBBF24',
+    },
+    status: {
+      main: '#059669',
+    },
+    metal: {
+      main: '#6B7280',
+    },
+  },
 };
 
 export const basePalette = {
-  neutral,
   primary: {
-    main: '#2563EB',
+    main: '#3B82F6',
     light: '#3B82F6',
-    dark: '#1D4ED8',
+    dark: '#2563EB',
     contrastText: '#ffffff',
   },
   secondary: {
@@ -26,8 +37,8 @@ export const basePalette = {
     contrastText: '#ffffff',
   },
   text: {
-    primary: '#45556C',
-    secondary: '#45556C',
+    primary: '#334155',
+    secondary: '#0F172A',
     disabled: '#90A1B9',
   },
   action: {
@@ -39,11 +50,11 @@ export const basePalette = {
     selected: '#1D4ED8',
   },
   background: {
-    default: '#F8FAFC',
+    default: '#FFFFFF',
     paper: '#FFFFFF',
-    secondary: '#434954',
+    secondary: '#EFF6FF',
   },
-  divider: neutral[600],
+  divider: neutral[700],
   loader: '#ffffff',
   error: {
     main: '#EF4444',
@@ -57,4 +68,6 @@ export const basePalette = {
   warning: {
     main: '#F59E0B',
   },
+  neutral,
+  tokens,
 };

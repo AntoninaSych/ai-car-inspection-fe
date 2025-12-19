@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-
+export const PASSWORD_MIN = 8;
 export const createValidationSchema = t => {
   const required = t('common:validation.required');
 
@@ -17,7 +17,7 @@ export const createValidationSchema = t => {
       .required(required),
     password: yup
       .string()
-      .min(8, t('common:validation.minString', { value: 8 }))
+      .min(PASSWORD_MIN, t('common:validation.minString', { value: PASSWORD_MIN }))
       .max(18, t('common:validation.maxString', { value: 18 }))
       .required(required),
     // agree: yup.boolean().oneOf([true], t('common:validation.agreements')).required(t('common:validation.agreements')),

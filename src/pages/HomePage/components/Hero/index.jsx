@@ -2,6 +2,7 @@ import { Box, Stack, Typography, Button, Chip, Grid } from '@mui/material';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
+import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import { Trans, useTranslation } from 'react-i18next';
 import { PageContainer, Section } from '../../../../layouts';
 import { HeroStat } from './HeroStat';
@@ -96,23 +97,8 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                   <Button
                     onClick={onUploadClick}
                     size="large"
-                    variant="contained"
                     startIcon={<FileUploadOutlinedIcon />}
                     endIcon={<ArrowForwardRoundedIcon />}
-                    sx={{
-                      height: 64,
-                      px: 4,
-                      borderRadius: 999,
-                      textTransform: 'none',
-                      fontSize: 18,
-                      fontWeight: 600,
-                      background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
-                      boxShadow: '0 18px 50px rgba(67, 99, 255, 0.28)',
-                      '&:hover': {
-                        background: 'linear-gradient(90deg, rgba(57,120,255,0.95), rgba(168,74,255,0.95))',
-                        boxShadow: '0 20px 60px rgba(67, 99, 255, 0.32)',
-                      },
-                    }}
                   >
                     {t('hero:cta')}
                   </Button>
@@ -262,7 +248,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
                   width: 280,
                   borderRadius: 5,
                   p: 2.5,
-                  background: 'rgba(11, 18, 32, 0.88)',
+                  background: theme => theme.palette.neutral[900],
                   border: '3px solid rgba(255,255,255,0.82)',
                   boxShadow: '0 18px 60px rgba(0,0,0,0.28)',
                   backdropFilter: 'blur(10px)',
@@ -279,15 +265,16 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
 
                   <Box
                     sx={{
-                      width: 46,
-                      height: 46,
-                      borderRadius: 3,
-                      display: 'grid',
-                      placeItems: 'center',
+                      width: 48,
+                      height: 48,
+                      borderRadius: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
                     }}
                   >
-                    <AutoAwesomeOutlinedIcon />
+                    <ShieldOutlinedIcon sx={{ fontSize: 28, color: '#FFFFFF' }} />
                   </Box>
                 </Stack>
 

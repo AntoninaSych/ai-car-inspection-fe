@@ -27,7 +27,7 @@
   },
   "fields": {
     "email": { "label": "Email", "placeholder": "your@email.com" },
-    "password": { "label": "Password", "placeholder": "Minimum 8 characters" },
+    "password": { "label": "Password", "placeholder": "Enter your password" },
     "name": { "label": "Name" },
     "fullname": { "label": "Full Name", "placeholder": "Enter your name" }
   },
@@ -83,6 +83,7 @@
     "maxString": "Maximum {{value}} characters",
     "minString": "Minimum {{value}} characters",
     "number": "Enter a number",
-    "agreements": "You must agree to continue."
+    "agreements": "You must agree to continue.",
+    "containsNumber": "Contains a number"
   }
 }

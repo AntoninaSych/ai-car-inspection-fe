@@ -96,7 +96,7 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
               {required && ' *'}
             </Typography>
             <Typography variant="body2">{helperText || 'Upload a clear photo.'}</Typography>
-            <Typography variant="body2" color="neutral.600" align="center">
+            <Typography variant="body2" color="neutral.700" align="center">
               ({t('dragOverlay.subtitle', 'Maximum file size 5MB.', { size: MAX_FILE_SIZE_MB })})
             </Typography>
           </CardContent>

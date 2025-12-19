@@ -11,15 +11,15 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import { errorHandler, successNotification } from '../../utils/notification';
 import { defaultValues } from './config';
-import { createValidationSchema } from './validation/schema';
+import { createValidationSchema, PASSWORD_MIN } from './validation/schema';
 import { EmailField, InputField } from '../FormFields';
 import { SubmitButton } from '../SubmitButton';
 import { Wrapper } from './styled';
 
 function passwordRules(password) {
-  const min8 = (password?.length ?? 0) >= 8;
+  const min = (password?.length ?? 0) >= PASSWORD_MIN;
   const hasNumber = /\d/.test(password || '');
-  return { min8, hasNumber };
+  return { min, hasNumber };
 }
 
 export const RegisterForm = ({ onSuccess }) => {
@@ -96,7 +96,7 @@ export const RegisterForm = ({ onSuccess }) => {
                 name="password"
                 type="password"
                 label={t('fields.password.label')}
-                placeholder={t('fields.password.placeholder')}
+                placeholder={t('common:validation.minString', { value: PASSWORD_MIN })}
                 startIcon={
                   <InputAdornment position="start">
                     <LockOutlinedIcon sx={{ opacity: 0.7 }} />
@@ -105,8 +105,8 @@ export const RegisterForm = ({ onSuccess }) => {
                 required
               />
               <Box sx={{ mt: 1.25, display: 'grid', gap: 0.75 }}>
-                <RuleRow ok={rules.min8} label="Minimum 8 characters" />
-                <RuleRow ok={rules.hasNumber} label="Contains a number" />
+                <RuleRow ok={rules.min} label={t('common:validation.minString', { value: PASSWORD_MIN })} />
+                <RuleRow ok={rules.hasNumber} label={t('common:validation.containsNumber')} />
               </Box>
             </Stack>
 
@@ -144,13 +144,13 @@ export const RegisterForm = ({ onSuccess }) => {
 
 function RuleRow({ ok, label }) {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
       {ok ? (
-        <CheckCircleOutlineIcon fontSize="small" sx={{ color: 'success.main' }} />
+        <CheckCircleOutlineIcon sx={{ color: 'success.main', fontSize: 14 }} />
       ) : (
-        <CancelOutlinedIcon fontSize="small" sx={{ color: 'text.disabled' }} />
+        <CancelOutlinedIcon sx={{ color: 'text.disabled', fontSize: 14 }} />
       )}
-      <Typography sx={{ fontSize: 12, color: ok ? 'text.primary' : 'text.secondary' }}>{label}</Typography>
+      <Typography sx={{ fontSize: 12, color: ok ? 'text.primary' : 'text.disabled' }}>{label}</Typography>
     </Box>
   );
 }

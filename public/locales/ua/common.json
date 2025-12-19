@@ -27,7 +27,7 @@
   },
   "fields": {
     "email": { "label": "Електронна пошта", "placeholder": "your@email.com" },
-    "password": { "label": "Пароль", "placeholder": "Мінімум 8 символів" },
+    "password": { "label": "Пароль", "placeholder": "Введіть свій пароль" },
     "name": { "label": "Імʼя" },
     "fullname": { "label": "Повне Імʼя", "placeholder": "Введіть своє ім'я" }
   },
@@ -83,6 +83,7 @@
     "maxString": "Максимальна кількість символів {{value}}",
     "minString": "Мінімальна кількість символів {{value}}",
     "number": "Введіть число",
-    "agreements": "Ви повинні погодитися, щоб продовжити."
+    "agreements": "Ви повинні погодитися, щоб продовжити.",
+    "containsNumber": "Містить число"
   }
 }
