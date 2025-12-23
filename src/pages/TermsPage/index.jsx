@@ -1,101 +1,47 @@
-import { Container, Typography, Box, List, ListItem } from '@mui/material';
+import { Typography, Box, Stack, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { PageContainer } from '@/layouts';
+import { Section } from '../../layouts';
+import { getNormalizedLang } from '../../utils/languages';
 
 export const TermsPage = () => {
-  const { t } = useTranslation('terms');
+  const { i18n, t } = useTranslation('terms');
+  const normalizedLang = getNormalizedLang(i18n.resolvedLanguage);
+  const fileLink = `/assets/agb/${normalizedLang}-agb.pdf`;
 
   return (
-    <PageContainer>
-      <Container maxWidth="md" sx={{ py: 8 }}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700, mb: 4 }}>
+    <>
+      <Section
+        container
+        sx={{
+          background:
+            'radial-gradient(900px 500px at 15% 35%, rgba(72, 140, 255, 0.22), rgba(255,255,255,0) 60%), radial-gradient(700px 420px at 70% 25%, rgba(162, 84, 255, 0.24), rgba(255,255,255,0) 60%)',
+        }}
+      >
+        <Typography variant="h1" align="center">
           {t('title')}
         </Typography>
-
-        {/* 1. Service Definition and Disclaimer */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.serviceDefinition.title')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.serviceDefinition.content.point1')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.serviceDefinition.content.point2.intro')}
-          </Typography>
-
-          <List sx={{ listStyleType: 'disc', pl: 4, mb: 2 }}>
-            {t('sections.serviceDefinition.content.point2.items', { returnObjects: true }).map((item, index) => (
-              <ListItem key={index} sx={{ display: 'list-item', py: 0.5 }}>
-                <Typography variant="body1">{item}</Typography>
-              </ListItem>
-            ))}
-          </List>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.serviceDefinition.content.point3')}
-          </Typography>
+      </Section>
+      <Section container containerProps={{ maxWidth: 'lg' }}>
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h3">{t('content.title')}</Typography>
+          <Typography sx={{ mt: 1 }}>{t('content.text')}</Typography>
         </Box>
-
-        {/* 2. User Content License */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.userContentLicense.title')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.userContentLicense.content.point1')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.userContentLicense.content.point2.intro')}
-          </Typography>
-
-          <List sx={{ listStyleType: 'disc', pl: 4, mb: 2 }}>
-            {t('sections.userContentLicense.content.point2.items', { returnObjects: true }).map((item, index) => (
-              <ListItem key={index} sx={{ display: 'list-item', py: 0.5 }}>
-                <Typography variant="body1">{item}</Typography>
-              </ListItem>
-            ))}
-          </List>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.userContentLicense.content.point3')}
-          </Typography>
+        <Box sx={{ mt: 4 }}>
+          <Stack sx={{ mt: 4 }} spacing={2} alignItems="flex-start">
+            <Button
+              variant="outlined"
+              href={fileLink}
+              target="_blank"
+              title={t('download.button.title')}
+              rel="nofollow noopener"
+              sx={{ textTransform: 'uppercase' }}
+            >
+              {t('download.button.label')}
+            </Button>
+            <Typography variant="body2">{t('download.version')}</Typography>
+          </Stack>
         </Box>
-
-        {/* 3. Payment and Right of Withdrawal */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.payment.title')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.payment.content.point1')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.payment.content.point2')}
-          </Typography>
-        </Box>
-
-        {/* 4. Limitation of Liability */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.liability.title')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.liability.content.point1')}
-          </Typography>
-
-          <Typography variant="body1" paragraph>
-            {t('sections.liability.content.point2')}
-          </Typography>
-        </Box>
-      </Container>
-    </PageContainer>
+      </Section>
+    </>
   );
 };

@@ -38,6 +38,10 @@ body {
   font-family: 'Inter, Arial, sans-serif';
 }
 
+p {
+  white-space: pre-wrap;
+}
+
 .visually-hidden {
   position: absolute;
   white-space: nowrap;

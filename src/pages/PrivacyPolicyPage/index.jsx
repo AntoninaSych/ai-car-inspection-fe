@@ -1,15 +1,12 @@
 import { Typography, Box, Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Section } from '../../layouts';
-
-const ALLOWED_LANGUAGES = ['en', 'ua'];
-const normalizeLang = lang => (lang === 'uk' ? 'ua' : lang);
+import { getNormalizedLang } from '../../utils/languages';
 
 export const PrivacyPolicyPage = () => {
   const { i18n, t } = useTranslation('privacyPolicy');
-  const lang = normalizeLang(i18n.resolvedLanguage);
-  const defaultLang = ALLOWED_LANGUAGES.includes(lang) ? lang : 'en';
-  const fileLink = `/assets/privacy-policy/${defaultLang}-privacy-policy.pdf`;
+  const lang = getNormalizedLang(i18n.resolvedLanguage);
+  const fileLink = `/assets/privacy-policy/${lang}-privacy-policy.pdf`;
 
   return (
     <>
@@ -39,6 +36,7 @@ export const PrivacyPolicyPage = () => {
               target="_blank"
               title={t('download.button.title')}
               rel="nofollow noopener"
+              sx={{ textTransform: 'uppercase' }}
             >
               {t('download.button.label')}
             </Button>

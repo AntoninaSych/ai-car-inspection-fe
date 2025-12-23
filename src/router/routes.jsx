@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       { path: 'success', element: <SuccessPage /> },
       { path: 'faq', element: <FAQPage /> },
       { path: 'privacy-policy', element: <PrivacyPolicyPage /> },
-      { path: 'terms', element: <TermsPage /> },
+      { path: 'agb', element: <TermsPage /> },
       { path: 'cookies', element: <CookiePolicyPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

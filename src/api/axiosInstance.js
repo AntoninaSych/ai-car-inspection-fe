@@ -1,6 +1,7 @@
 import axios from 'axios';
 import i18n from '../i18n';
 import { globalErrorHandler } from '../utils/notification';
+import { DEFAULT_LANGUAGE } from '../constants';
 
 const api = axios.create({
   baseURL: '/api',
@@ -17,7 +18,7 @@ export const setupAxiosInterceptors = store => {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
 
-      config.headers['Accept-Language'] = i18n.resolvedLanguage || 'en';
+      config.headers['Accept-Language'] = i18n.resolvedLanguage || DEFAULT_LANGUAGE;
 
       return config;
     },
