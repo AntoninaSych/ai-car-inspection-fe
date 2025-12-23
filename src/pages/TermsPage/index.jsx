@@ -11,7 +11,6 @@ export const TermsPage = () => {
   return (
     <>
       <Section
-        container
         sx={{
           background:
             'radial-gradient(900px 500px at 15% 35%, rgba(72, 140, 255, 0.22), rgba(255,255,255,0) 60%), radial-gradient(700px 420px at 70% 25%, rgba(162, 84, 255, 0.24), rgba(255,255,255,0) 60%)',
@@ -21,7 +20,7 @@ export const TermsPage = () => {
           {t('title')}
         </Typography>
       </Section>
-      <Section container containerProps={{ maxWidth: 'lg' }}>
+      <Section containerProps={{ maxWidth: 'lg' }}>
         <Box sx={{ mt: 4 }}>
           <Typography variant="h3">{t('content.title')}</Typography>
           <Typography sx={{ mt: 1 }}>{t('content.text')}</Typography>

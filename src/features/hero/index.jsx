@@ -4,11 +4,29 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import { Trans, useTranslation } from 'react-i18next';
-import { PageContainer, Section } from '../../../../layouts';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { PageContainer, Section } from '../../layouts';
 import { HeroStat } from './HeroStat';
+import { openModal } from '../../redux/modal/slice';
+import { ROUTERS } from '../../constants';
+import { selectIsAuthorized } from '../../redux/auth/selectors';
+import heroMock1x from '@/assets/hero/hero-mock.png';
+import heroMock2x from '@/assets/hero/hero-mock@2x.png';
 
-export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
+export const Hero = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuthorized = useSelector(selectIsAuthorized);
   const { t } = useTranslation('hero');
+
+  const handleOnClick = () => {
+    if (!isAuthorized) {
+      dispatch(openModal({ type: 'auth' }));
+      return;
+    }
+    navigate(ROUTERS.UPLOAD);
+  };
 
   return (
     <Section
@@ -95,7 +113,7 @@ export const Hero = ({ onUploadClick, heroMock1x, heroMock2x }) => {
               <Box sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
                 <Box sx={{ pt: 1 }}>
                   <Button
-                    onClick={onUploadClick}
+                    onClick={handleOnClick}
                     size="large"
                     startIcon={<FileUploadOutlinedIcon />}
                     endIcon={<ArrowForwardRoundedIcon />}

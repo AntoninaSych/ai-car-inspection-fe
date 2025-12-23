@@ -1,0 +1,18 @@
+{
+  "title": "Why Choose Us?",
+  "subtitle": "The best technology for accurate repair cost estimates",
+  "items": {
+    "instant": {
+      "title": "Instant Estimates",
+      "description": "Get results in 30 seconds with AI-powered analysis"
+    },
+    "accuracy": {
+      "title": "95% Accuracy",
+      "description": "Verified precision across thousands of cases"
+    },
+    "saveTime": {
+      "title": "Save Time",
+      "description": "No need to visit a shop for initial estimates"
+    }
+  }
+}
