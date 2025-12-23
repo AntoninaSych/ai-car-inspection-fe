@@ -1,156 +1,49 @@
-import {
-  Container,
-  Typography,
-  Box,
-  List,
-  ListItem,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from '@mui/material';
+import { Typography, Box, Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { PageContainer } from '@/layouts';
+import { Section } from '../../layouts';
+import { getNormalizedLang } from '../../utils/languages';
 
 export const PrivacyPolicyPage = () => {
-  const { t } = useTranslation('privacyPolicy');
+  const { i18n, t } = useTranslation('privacyPolicy');
+  const lang = getNormalizedLang(i18n.resolvedLanguage);
+  const fileLink = `/assets/privacy-policy/${lang}-privacy-policy.pdf`;
 
   return (
-    <PageContainer>
-      <Container maxWidth="md" sx={{ py: 8 }}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700, mb: 4 }}>
+    <>
+      <Section
+        container
+        sx={{
+          background:
+            'radial-gradient(900px 500px at 15% 35%, rgba(72, 140, 255, 0.22), rgba(255,255,255,0) 60%), radial-gradient(700px 420px at 70% 25%, rgba(162, 84, 255, 0.24), rgba(255,255,255,0) 60%)',
+        }}
+      >
+        <Typography variant="h1" align="center">
           {t('title')}
         </Typography>
-
-        {/* 1. Introduction */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.introduction.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.introduction.content')}
-          </Typography>
+      </Section>
+      <Section container containerProps={{ maxWidth: 'lg' }}>
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h3">{t('content.title')}</Typography>
+          <Typography sx={{ mt: 1 }}>{t('content.text')}</Typography>
         </Box>
-
-        {/* 2. What Data We Collect */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.dataCollection.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.dataCollection.intro')}
-          </Typography>
-          <List sx={{ listStyleType: 'disc', pl: 4 }}>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataCollection.items.identification')}</Typography>
-            </ListItem>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataCollection.items.vehicle')}</Typography>
-            </ListItem>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataCollection.items.visual')}</Typography>
-            </ListItem>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataCollection.items.technical')}</Typography>
-            </ListItem>
-          </List>
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h3">{t('download.title')}</Typography>
+          <Typography sx={{ mt: 1 }}>{t('download.text')}</Typography>
+          <Stack sx={{ mt: 4 }} spacing={2} alignItems="flex-start">
+            <Button
+              variant="outlined"
+              href={fileLink}
+              target="_blank"
+              title={t('download.button.title')}
+              rel="nofollow noopener"
+              sx={{ textTransform: 'uppercase' }}
+            >
+              {t('download.button.label')}
+            </Button>
+            <Typography variant="body2">{t('download.version')}</Typography>
+          </Stack>
         </Box>
-
-        {/* 3. Legal Basis and Purposes */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.legalBasis.title')}
-          </Typography>
-          <TableContainer component={Paper} sx={{ mt: 2 }}>
-            <Table>
-              <TableHead>
-                <TableRow sx={{ backgroundColor: theme => theme.palette.primary.main }}>
-                  <TableCell sx={{ color: 'white', fontWeight: 600 }}>
-                    {t('sections.legalBasis.table.headers.purpose')}
-                  </TableCell>
-                  <TableCell sx={{ color: 'white', fontWeight: 600 }}>
-                    {t('sections.legalBasis.table.headers.legalBasis')}
-                  </TableCell>
-                  <TableCell sx={{ color: 'white', fontWeight: 600 }}>
-                    {t('sections.legalBasis.table.headers.explanation')}
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {t('sections.legalBasis.table.rows', { returnObjects: true }).map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{row.purpose}</TableCell>
-                    <TableCell>{row.legalBasis}</TableCell>
-                    <TableCell>{row.explanation}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-
-        {/* 4. Visual Data Processing */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.visualData.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.visualData.intro')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            <strong>{t('sections.visualData.anonymization').split(':')[0]}:</strong>{' '}
-            {t('sections.visualData.anonymization').split(':').slice(1).join(':')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            <strong>{t('sections.visualData.aiTraining').split(':')[0]}:</strong>{' '}
-            {t('sections.visualData.aiTraining').split(':').slice(1).join(':')}
-          </Typography>
-        </Box>
-
-        {/* 5. Data Transfer */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.dataTransfer.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.dataTransfer.intro')}
-          </Typography>
-          <List sx={{ listStyleType: 'disc', pl: 4 }}>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataTransfer.items.cloud')}</Typography>
-            </ListItem>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataTransfer.items.partners')}</Typography>
-            </ListItem>
-            <ListItem sx={{ display: 'list-item', py: 0.5 }}>
-              <Typography variant="body1">{t('sections.dataTransfer.items.payment')}</Typography>
-            </ListItem>
-          </List>
-        </Box>
-
-        {/* 6. Data Retention */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.dataRetention.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.dataRetention.content')}
-          </Typography>
-        </Box>
-
-        {/* 7. Your Rights */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-            {t('sections.rights.title')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('sections.rights.content')}
-          </Typography>
-        </Box>
-      </Container>
-    </PageContainer>
+      </Section>
+    </>
   );
 };

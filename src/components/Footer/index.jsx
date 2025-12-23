@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Copyright, SocialLinks } from './components';
 import { Brand } from '../Brand';
 import { PageContainer } from '../../layouts';
-import { footerSections } from './config/footerSections';
+import { footerLinks } from './config/footerLinks';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ export const Footer = () => {
           {/* Footer Links Columns */}
           <Grid size={{ xs: 12, lg: 8 }}>
             <Grid container spacing={{ xs: 4, lg: 2 }}>
-              {footerSections.map(section => (
+              {footerLinks.map(section => (
                 <Grid key={section.title} size={{ xs: 12, md: 4 }}>
                   <Stack gap={2}>
                     <Typography variant="h4" sx={{ fontWeight: 600, fontSize: 14, color: 'white' }}>
