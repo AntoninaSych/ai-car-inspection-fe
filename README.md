@@ -14,6 +14,9 @@ Unauthorized copying, use, modification, or distribution of this project, in who
 ## Development
 Set up Prettier and ESLint with autosave on your IDE before starting to work with the Project!
 
+### Documentation
+- Frontend technical docs: `docs/FRONTEND.md`
+
 ### Technology Stack
 
 #### Core
