@@ -261,16 +261,15 @@ export const baseComponents = {
         },
       },
       input: ({ theme }) => ({
-        // height: 48,
         boxSizing: 'border-box',
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        paddingTop: 14,
-        paddingBottom: 14,
         '.MuiInputBase-adornedStart &': {
           paddingLeft: 0,
           paddingRight: 16,
+          paddingTop: 14,
+          paddingBottom: 14,
         },
         ':not(.MuiInputBase-adornedStart) &': {
           paddingLeft: 16,

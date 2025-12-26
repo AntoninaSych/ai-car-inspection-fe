@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
-import { globalModalReducer } from './modal/slice';
+import { globalModalReducer } from '../features/globalModal/slice';
 
 const persistAuthConfig = {
   key: 'auth',

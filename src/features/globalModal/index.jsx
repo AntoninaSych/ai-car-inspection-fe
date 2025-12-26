@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthModal from './components/AuthModal';
 import { RegisterFormModal, LoginFormModal } from './components';
 import LogOutModal from './components/LogOutModal';
-import { selectGlobalModal } from '../../redux/modal/selectors';
-import { closeModal } from '../../redux/modal/slice';
+import { selectGlobalModal } from './selectors';
+import { closeModal } from './slice';
 
 export const GlobalModal = () => {
   const dispatch = useDispatch();

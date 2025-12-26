@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { PageContainer, Section } from '../../layouts';
 import { HeroStat } from './HeroStat';
-import { openModal } from '../../redux/modal/slice';
+import { openModal } from '../globalModal/slice';
 import { ROUTERS } from '../../constants';
 import { selectIsAuthorized } from '../../redux/auth/selectors';
 import heroMock1x from '@/assets/hero/hero-mock.png';

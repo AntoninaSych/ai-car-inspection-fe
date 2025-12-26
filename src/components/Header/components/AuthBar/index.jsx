@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { ButtonBase } from '@mui/material';
-import { openModal } from '../../../../redux/modal/slice';
+import { openModal } from '../../../../features/globalModal/slice';
 
 export const AuthBar = () => {
   const dispatch = useDispatch();

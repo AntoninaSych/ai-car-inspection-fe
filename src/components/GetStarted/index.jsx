@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { selectIsAuthorized } from '../../redux/auth/selectors';
-import { openModal } from '../../redux/modal/slice';
+import { openModal } from '../../features/globalModal/slice';
 import { ROUTERS } from '../../constants';
 
 export const GetStarted = () => {

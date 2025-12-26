@@ -2,7 +2,7 @@ import { Toolbar, Box, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthBar, UserBar, LanguageSwitcher } from './components';
 import { selectIsAuthorized } from '../../redux/auth/selectors';
-import { openModal } from '../../redux/modal/slice';
+import { openModal } from '../../features/globalModal/slice';
 import { PageContainer } from '../../layouts';
 import { GetStarted } from '../GetStarted';
 import { Brand } from '../Brand';

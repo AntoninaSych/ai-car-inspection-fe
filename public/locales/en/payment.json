@@ -69,10 +69,10 @@
     "title": "Complete Your Payment",
     "subtitle": "We will securely redirect you to Stripe to finish the transaction.",
     "paymentSuccess": {
-      "title": "Payment Confirmed",
-      "subtitle": "Your payment has been successfully verified.",
-      "body": "We are preparing your report. You will receive an email once it is ready.",
-      "goToProfile": "Go to Profile"
+      "title": "Payment received",
+      "subtitle": "Thank you! Your payment is being processed.",
+      "body": "We’ve received your payment details and are currently preparing your report. You can check the order status on your profile page. You’ll also receive an email once the report is ready.",
+      "goToProfile": "Go to profile"
     },
     "paymentStatus": {
       "title": "Verifying Payment",
