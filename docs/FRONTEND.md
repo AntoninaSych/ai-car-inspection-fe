@@ -48,12 +48,13 @@ High-level folder structure:
     - `axiosInstance.js` – axios instance with baseURL `/api` and auth header injection from Redux store.
     - `interceptors/` – global error interception, uses `globalErrorHandler(error, { t: i18n.t.bind(i18n) })` if backend provides `internalCode`.
     - `authApi.js`, `carsApi.js`, `reportsApi.js`, `stripeApi.js`, `tasksApi.js` – API modules using axios instance.
+    - `utils.js` - helper functions.
 
 - `src/assets/` – images and static assets.
 - `src/components/` – shared reusable components (Footer, Header, Loader, Modal, LoginForm, RegisterForm, etc.).
 - `src/constants/` – app constants (ROUTERS, ALLOWED_LANGUAGES, DEFAULT_LANGUAGE).
-- `src/design-system/` – ThemeProvider, theme setup, ability to add other themes.
-- `src/features/` – feature modules (e.g. globalModal, Profile, payment-wizard, upload-wizard).
+- `src/design-system/` – ThemeProvider, theme setup, ability to add themes.
+- `src/features/` – feature modules (globalModal, Profile, payment-wizard, upload-wizard, etc.).
 - `src/hooks/` – shared hooks.
 - `src/i18n/` – i18n config, namespaces, translations loading.
 - `src/layouts/` – Layout, PageContainer, Section (composition wrappers).
@@ -65,7 +66,7 @@ High-level folder structure:
 - `src/utils/` – helper functions.
 
 Entry files:
-- `src/main.jsx` – providers: QueryClientProvider, Redux Provider, PersistGate, ThemeProvider, Toaster, and renders `<App />`.
+- `src/main.jsx` – contains QueryClientProvider, Redux Provider, PersistGate, ThemeProvider, Toaster, and renders `<App />`.
 - `src/App.jsx` – renders routes or Loading screen while `refreshUser` is in progress.
 
 ---
@@ -124,9 +125,9 @@ Expected behavior:
 - `redux/auth` – stores:
     - `accessToken` (persisted)
     - `isAuthorized` (derived from refresh / presence of valid session)
-    - user data (if present)
+    - `user` data
 
-- `redux/modal` – controls global modals (login/register, etc.)
+- `redux/modal` – controls global modals (auth/login/register, etc.)
 
 ### Auth refresh flow
 On app start:
@@ -140,7 +141,7 @@ On app start:
 ## 7) Data fetching (React Query)
 React Query is used for server state:
 - `useQuery` for reads (caching, staleTime)
-- `useMutation` for actions (create task, pay, upload, etc.)
+- `useMutation` for actions
 - Use stable `queryKey` naming (e.g. `['reports', reportId]`)
 
 Guidelines:
@@ -156,7 +157,7 @@ In `src/api/axiosInstance.js`:
 - default headers: `Content-Type: application/json`
 - `setupAxiosInterceptors(store)` injects Authorization header:
     - reads `accessToken` from `store.getState()`
-    - sets `config.headers.Authorization = \`Bearer ${accessToken}\``
+    - sets `config.headers.Authorization` with `Bearer ${accessToken}`
 
 ### API modules
 Separated per domain:
@@ -230,7 +231,7 @@ Languages:
 
 Guidelines:
 - Use namespaces to keep translations scalable
-- For large static legal text pages (privacy/terms/cookies):
+- For large static text pages:
     - either keep separate pages per language
     - or load markdown/html per language
     - avoid placing huge text blocks into JSON if it becomes hard to maintain
