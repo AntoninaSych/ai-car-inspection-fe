@@ -1,6 +1,6 @@
 import { Box, Paper, Stack, Typography } from '@mui/material';
 
-export function StatCard({ icon, value, label, iconBgcolor, IconColor, variant = 'default' }) {
+export function StatCard({ icon, value, label, iconBgcolor, variant = 'default' }) {
   const isGradient = variant === 'gradient';
 
   return (
