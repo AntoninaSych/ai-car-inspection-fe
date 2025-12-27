@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Avatar, IconButton, Menu, ListItemIcon, Divider } from '@mui/material';
-import { AccountCircle, Logout } from '@mui/icons-material';
+import { AccountCircle, DashboardRounded, Logout } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ROUTERS } from '../../../../constants';
@@ -51,6 +51,15 @@ export const UserBar = ({ onLogout }) => {
             <AccountCircle fontSize="small" />
           </ListItemIcon>
           Profile
+        </StyledMenuItem>
+
+        <Divider />
+
+        <StyledMenuItem component={Link} to={ROUTERS.DASHBOARD}>
+          <ListItemIcon>
+            <DashboardRounded fontSize="small" />
+          </ListItemIcon>
+          Dashboard
         </StyledMenuItem>
 
         <Divider />

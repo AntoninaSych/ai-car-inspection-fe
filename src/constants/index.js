@@ -4,6 +4,7 @@ export const ROUTERS = {
   REPORTS: '/reports',
   TASKS_PAY: '/tasks/pay',
   PROFILE: '/profile',
+  DASHBOARD: '/dashboard',
   SUCCESS: '/success',
   SUCCESS_PAYMENT: '/success/payment',
   TERMS: '/agb',

@@ -1,0 +1,45 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Manage your repair estimates and track their status",
+
+  "actions": {
+    "create": "Create New Estimate",
+    "viewDetails": "View Details",
+    "pay": "Pay"
+  },
+
+  "stats": {
+    "totalReports": "Total Reports",
+    "completed": "Completed",
+    "processing": "Processing",
+    "payment": "Payment",
+    "totalRevenue": "Total Revenue"
+  },
+
+  "search": {
+    "placeholder": "Search by car model, damage type, or ID..."
+  },
+
+  "filters": {
+    "all": "All",
+    "completed": "Completed",
+    "processing": "Processing",
+    "payment": "Payment"
+  },
+
+  "card": {
+    "estimatedCost": "Estimated Cost",
+    "date": "Date"
+  },
+
+  "status": {
+    "completed": "Completed",
+    "processing": "Processing",
+    "paymentRequired": "Payment Required"
+  },
+
+  "empty": {
+    "title": "No estimates yet",
+    "description": "Create your first repair estimate to see it here"
+  }
+}
