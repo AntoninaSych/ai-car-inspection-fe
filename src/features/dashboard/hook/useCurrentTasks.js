@@ -9,7 +9,7 @@ export const useCurrentTasks = () => {
   } = useQuery({
     queryKey: ['tasks', 'current'],
     queryFn: fetchCurrentTasks,
-    staleTime: 1000 * 60, // cache 1 minute
+    // staleTime: 1000 * 60, // cache 1 minute
   });
 
   return {

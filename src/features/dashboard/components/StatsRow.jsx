@@ -39,7 +39,7 @@ export function StatsRow({ totalReports, completed, processing, revenue, t }) {
       <Grid size={{ xs: 6, md: 3 }}>
         <StatCard
           icon={<AccountBalanceWalletIcon />}
-          value={`$${Number(revenue).toLocaleString()}`}
+          value={revenue}
           label={t('stats.totalRevenue')}
           variant="gradient"
         />

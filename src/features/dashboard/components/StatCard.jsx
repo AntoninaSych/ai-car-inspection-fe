@@ -1,22 +1,16 @@
-import { Box, Paper, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import { StyledPaper } from '../styled';
 
 export function StatCard({ icon, value, label, iconBgcolor, variant = 'default' }) {
   const isGradient = variant === 'gradient';
 
   return (
-    <Paper
+    <StyledPaper
       variant="outlined"
+      isgradient={isGradient ? 'true' : undefined}
       sx={{
         p: 2,
-        borderRadius: 2,
         height: '100%',
-        ...(isGradient
-          ? {
-              border: 'none',
-              color: 'common.white',
-              background: 'linear-gradient(135deg, rgba(44,84,255,1), rgba(138,43,226,1))',
-            }
-          : { background: '#FFFFFF', borderColor: '#E2E8F0', borderWidth: 2, borderStyle: 'solid' }),
       }}
     >
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -38,6 +32,6 @@ export function StatCard({ icon, value, label, iconBgcolor, variant = 'default' 
       <Typography variant="body2" sx={{ opacity: isGradient ? 0.9 : 0.7 }}>
         {label}
       </Typography>
-    </Paper>
+    </StyledPaper>
   );
 }

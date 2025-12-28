@@ -78,7 +78,7 @@ export const PaymentWizard = () => {
 
   const handleSkip = event => {
     event.preventDefault();
-    navigate(ROUTERS.PROFILE, {
+    navigate(ROUTERS.DASHBOARD, {
       state: {
         from: 'payment',
       },

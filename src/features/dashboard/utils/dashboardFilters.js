@@ -1,22 +1,21 @@
 export const ESTIMATE_STATUS = {
-  COMPLETED: 'report_generated',
-  PROCESSING: 'image_uploaded',
+  COMPLETED: 'completed',
+  PROCESSING: 'processing',
+  FAILED: 'failed',
   PAYMENT: 'payment',
 };
 
 export const STATUS_TABS = [
-  { value: 'all', i18nKey: 'all', label: 'All' },
-  { value: ESTIMATE_STATUS.COMPLETED, i18nKey: 'completed', label: 'Completed' },
-  { value: ESTIMATE_STATUS.PROCESSING, i18nKey: 'processing', label: 'Processing' },
-  { value: ESTIMATE_STATUS.PAYMENT, i18nKey: 'payment', label: 'Payment' },
+  { value: 'all', i18nKey: 'filters.all', label: 'All' },
+  { value: ESTIMATE_STATUS.COMPLETED, i18nKey: 'filters.completed' },
+  { value: ESTIMATE_STATUS.PROCESSING, i18nKey: 'filters.processing' },
+  { value: ESTIMATE_STATUS.PAYMENT, i18nKey: 'filters.payment' },
 ];
 
-export function filterEstimates(estimates, { query, status }) {
+export function filterEstimates(tasks, { query, status }) {
   const q = (query || '').trim().toLowerCase();
 
-  console.log(query, status);
-
-  return estimates.filter(item => {
+  return tasks.filter(item => {
     const matchesQuery =
       !q ||
       item.brand.toLowerCase().includes(q) ||
@@ -24,29 +23,22 @@ export function filterEstimates(estimates, { query, status }) {
       item.description?.toLowerCase().includes(q) ||
       item.id.toLowerCase().includes(q);
 
-    let matchesStatus = status === 'all';
-
-    if (ESTIMATE_STATUS.PAYMENT === status) {
-      matchesStatus = !item.isPaid;
-    } else if (ESTIMATE_STATUS.PROCESSING === status) {
-      matchesStatus = item.isPaid && status === ESTIMATE_STATUS.PROCESSING;
-    }
-
+    const matchesStatus = status === 'all' ? true : item.status === status;
     return matchesQuery && matchesStatus;
   });
 }
 
-export function countByStatus(estimates) {
-  return estimates.reduce(
+export function countByStatus(tasks) {
+  return tasks.reduce(
     (acc, e) => {
       acc.total += 1;
       if (e.status === ESTIMATE_STATUS.COMPLETED) {
         acc.completed += 1;
       }
-      if (e.status === ESTIMATE_STATUS.PROCESSING && e.isPaid) {
+      if (e.status === ESTIMATE_STATUS.PROCESSING) {
         acc.processing += 1;
       }
-      if (!e.isPaid) {
+      if (e.status === ESTIMATE_STATUS.PAYMENT) {
         acc.payment += 1;
       }
 

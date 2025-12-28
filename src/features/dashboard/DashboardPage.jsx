@@ -12,6 +12,7 @@ import { ROUTERS } from '../../constants';
 import { useCurrentTasks } from './hook/useCurrentTasks';
 import { Loader } from '../../components';
 import { PageContainer } from '../../layouts';
+import { getEstimatedCost, getEstimatedCostByTasks } from './utils/estimateCost';
 
 const DashboardPage = () => {
   const { t } = useTranslation('dashboard');
@@ -27,9 +28,7 @@ const DashboardPage = () => {
 
   const filtered = useMemo(() => filterEstimates(tasks, { query, status }), [tasks, query, status]);
 
-  const totalRevenue = useMemo(() => {
-    return 2700;
-  }, []);
+  const totalRevenue = useMemo(() => getEstimatedCostByTasks(tasks), [tasks]);
 
   if (isLoading) {
     return <Loader />;
@@ -45,6 +44,10 @@ const DashboardPage = () => {
 
   const handleOnCreate = () => {
     navigate(ROUTERS.UPLOAD);
+  };
+
+  const handleOnViewDetails = reportId => {
+    navigate(`${ROUTERS.REPORTS}/${reportId}`);
   };
 
   return (
@@ -70,12 +73,7 @@ const DashboardPage = () => {
         />
       </Box>
       <Box sx={{ mt: 2 }}>
-        <EstimateList
-          items={filtered}
-          isMobile={isMobile}
-          onViewDetails={reportId => navigate(`${ROUTERS.REPORTS}/${reportId}`)}
-          t={t}
-        />
+        <EstimateList items={filtered} isMobile={isMobile} onViewDetails={handleOnViewDetails} t={t} />
       </Box>
     </PageContainer>
   );

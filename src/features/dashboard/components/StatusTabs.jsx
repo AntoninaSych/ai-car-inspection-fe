@@ -18,7 +18,7 @@ export function StatusTabs({ value, onChange, counters, t }) {
         return (
           <Chip
             key={tab.value}
-            label={`${t(`filters.${tab.i18nKey}`)} (${count})`}
+            label={`${t(tab.i18nKey)} (${count})`}
             onClick={() => onChange(tab.value)}
             variant={selected ? 'filled' : 'outlined'}
             color={selected ? 'primary' : 'default'}
