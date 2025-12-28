@@ -12,7 +12,7 @@ import { ROUTERS } from '../../constants';
 import { useCurrentTasks } from './hook/useCurrentTasks';
 import { Loader } from '../../components';
 import { PageContainer } from '../../layouts';
-import { getEstimatedCost, getEstimatedCostByTasks } from './utils/estimateCost';
+import { getEstimatedCostByTasks } from './utils/estimateCost';
 
 const DashboardPage = () => {
   const { t } = useTranslation('dashboard');
