@@ -14,12 +14,13 @@ import { createStripeCheckoutSession } from '../../api/stripeApi';
 import { createPaymentWizardSchema } from './validation/schema';
 import { DEFAULT_CURRENCY, defaultValues } from './config';
 import { PAYMENT_METHODS } from './constants';
+import { formatDate } from '../dashboard/utils/date';
 
 export const PaymentWizard = () => {
   const { taskId } = useParams();
   const [redirecting, setRedirecting] = useState(false);
   const navigate = useNavigate();
-  const { t } = useTranslation(['payment', 'common']);
+  const { t, i18n } = useTranslation(['payment', 'common']);
   const paymentWizardSchema = useMemo(() => createPaymentWizardSchema(t), [t]);
   const { data: paymentDetails, isLoading, error } = useTaskPaymentDetails(taskId);
   const methods = useForm({
@@ -128,14 +129,13 @@ export const PaymentWizard = () => {
   return (
     <>
       <Typography variant="h4" gutterBottom>
-        {t('payment:title')}
-        <br />({paymentDetails?.task?.id})
+        {t('payment:title')} {paymentDetails?.task?.id}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body1" color="text.secondary">
         {paymentDetails?.task?.brand}, {paymentDetails?.task?.model} ({paymentDetails?.task?.year})
       </Typography>
       <Typography variant="caption" color="text.secondary" mb={2}>
-        {new Date(paymentDetails?.task?.createdAt).toLocaleString()}
+        {formatDate(paymentDetails?.task?.createdAt, i18n.language)}
       </Typography>
       <Typography variant="body1" color="text.secondary" mt={3}>
         {t('payment:description')}

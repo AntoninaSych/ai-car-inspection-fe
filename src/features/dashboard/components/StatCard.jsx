@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { StyledPaper } from '../styled';
 
-export function StatCard({ icon, value, label, iconBgcolor, variant = 'default' }) {
+export function StatCard({ icon, value, label, iconBgColor, iconColor, variant = 'default' }) {
   const isGradient = variant === 'gradient';
 
   return (
@@ -21,7 +21,8 @@ export function StatCard({ icon, value, label, iconBgcolor, variant = 'default' 
             borderRadius: 2,
             display: 'grid',
             placeItems: 'center',
-            backgroundColor: isGradient ? 'rgba(255,255,255,0.2)' : iconBgcolor,
+            backgroundColor: isGradient ? 'rgba(255,255,255,0.2)' : iconBgColor,
+            color: iconColor,
           }}
         >
           {icon}

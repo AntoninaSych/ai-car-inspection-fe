@@ -83,11 +83,6 @@ export function EstimateCard({ item, onViewDetails, t }) {
             <Typography sx={{ fontWeight: 800 }}>
               {item.brand}, {item.model} ({item.year})
             </Typography>
-            {item.description && (
-              <Typography variant="body2" color="text.secondary">
-                {item.description}
-              </Typography>
-            )}
 
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1.2 }}>
               <CalendarMonthIcon fontSize="small" color="disabled" />
@@ -96,30 +91,28 @@ export function EstimateCard({ item, onViewDetails, t }) {
               </Typography>
             </Stack>
           </Box>
-          {!item.isPaid && (
-            <Button variant="contained" component={RouterLink} to={`${ROUTERS.TASKS_PAY}/${item.id}`}>
-              {t('actions.pay')}
-            </Button>
-          )}
         </Stack>
+        <>
+          <Box sx={{ mt: 1, height: '2px', backgroundColor: theme => theme.palette.neutral[200] }} />
 
-        {item.isPaid && (
-          <>
-            <Box sx={{ mt: 1, height: '2px', backgroundColor: theme => theme.palette.neutral[200] }} />
+          <Stack direction="row" alignItems="flex-end" justifyContent="space-between" sx={{ mt: 2 }}>
+            <Box>
+              <Typography variant="caption" color="text.secondary">
+                {t('card.estimatedCost')}
+              </Typography>
+              <Typography sx={{ fontSize: 20, fontWeight: 800 }}>{estimatedCost}</Typography>
+            </Box>
 
-            <Stack direction="row" alignItems="flex-end" justifyContent="space-between" sx={{ mt: 2 }}>
-              <Box>
-                <Typography variant="caption" color="text.secondary">
-                  {t('card.estimatedCost')}
-                </Typography>
-                <Typography sx={{ fontSize: 20, fontWeight: 800 }}>{estimatedCost}</Typography>
-              </Box>
-              <Button variant="contained" onClick={() => onViewDetails?.(lastReport.id)}>
-                {t('actions.viewDetails')}
+            {item.status === ESTIMATE_STATUS.COMPLETED && (
+              <Button onClick={() => onViewDetails?.(lastReport.id)}>{t('actions.viewDetails')}</Button>
+            )}
+            {item.status === ESTIMATE_STATUS.PAYMENT && (
+              <Button component={RouterLink} to={`${ROUTERS.TASKS_PAY}/${item.id}`}>
+                {t('actions.pay')}
               </Button>
-            </Stack>
-          </>
-        )}
+            )}
+          </Stack>
+        </>
       </Box>
     </StyledPaper>
   );

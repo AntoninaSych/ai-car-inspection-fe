@@ -23,7 +23,7 @@ const LogOutModal = ({ onClose }) => {
       subtitle={t('modals.logout.description')}
     >
       <Stack gap={2} width="100%" justifyContent="stretch">
-        <Button fullWidth size="medium" onClick={onClose}>
+        <Button variant="gradient" fullWidth size="medium" onClick={onClose}>
           {t('buttons.cancel', 'Cancel')}
         </Button>
         <Button fullWidth variant="outlined" size="medium" onClick={handleOnClick}>

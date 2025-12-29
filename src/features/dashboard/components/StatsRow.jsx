@@ -11,8 +11,9 @@ export function StatsRow({ totalReports, completed, processing, revenue, t }) {
     <Grid container spacing={2}>
       <Grid size={{ xs: 6, md: 3 }}>
         <StatCard
-          icon={<DescriptionIcon color="#155DFC" />}
-          iconBgcolor="#DBEAFE"
+          icon={<DescriptionIcon />}
+          iconBgColor="#DBEAFE"
+          iconColor="#155DFC"
           value={totalReports}
           label={t('stats.totalReports')}
         />
@@ -20,8 +21,9 @@ export function StatsRow({ totalReports, completed, processing, revenue, t }) {
 
       <Grid size={{ xs: 6, md: 3 }}>
         <StatCard
-          icon={<CheckCircleIcon color="#00A63E" />}
-          iconBgcolor="#DCFCE7"
+          icon={<CheckCircleIcon />}
+          iconBgColor="#DCFCE7"
+          iconColor="#00A63E"
           value={completed}
           label={t('stats.completed')}
         />
@@ -29,8 +31,9 @@ export function StatsRow({ totalReports, completed, processing, revenue, t }) {
 
       <Grid size={{ xs: 6, md: 3 }}>
         <StatCard
-          icon={<ScheduleIcon color="#E17100" />}
-          iconBgcolor="#FEF3C6"
+          icon={<ScheduleIcon />}
+          iconBgColor="#FEF3C6"
+          iconColor="#E17100"
           value={processing}
           label={t('stats.processing')}
         />

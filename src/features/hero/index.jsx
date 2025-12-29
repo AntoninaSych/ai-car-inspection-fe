@@ -113,6 +113,7 @@ export const Hero = () => {
               <Box sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
                 <Box sx={{ pt: 1 }}>
                   <Button
+                    variant="gradient"
                     onClick={handleOnClick}
                     size="large"
                     startIcon={<FileUploadOutlinedIcon />}

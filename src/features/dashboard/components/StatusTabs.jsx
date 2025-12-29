@@ -25,6 +25,9 @@ export function StatusTabs({ value, onChange, counters, t }) {
             sx={{
               borderRadius: 999,
               fontWeight: selected ? 700 : 500,
+              '&:hover': {
+                color: 'white',
+              },
               ...(selected
                 ? {
                     border: 'none',

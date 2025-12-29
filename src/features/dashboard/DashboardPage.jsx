@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { DashboardHeader } from './components/DashboardHeader';
 import { DashboardFilters } from './components/DashboardFilters';
 import { EstimateList } from './components/EstimateList';
-import { countByStatus, filterEstimates } from './utils/dashboardFilters';
+import { countByStatus, ESTIMATE_STATUS, filterEstimates } from './utils/dashboardFilters';
 import { StatsRow } from './components/StatsRow';
 import { ROUTERS } from '../../constants';
 import { useCurrentTasks } from './hook/useCurrentTasks';
@@ -20,14 +20,10 @@ const DashboardPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { tasks, isLoading, error } = useCurrentTasks();
-
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState('all');
-
   const stats = useMemo(() => countByStatus(tasks), [tasks]);
-
   const filtered = useMemo(() => filterEstimates(tasks, { query, status }), [tasks, query, status]);
-
   const totalRevenue = useMemo(() => getEstimatedCostByTasks(tasks), [tasks]);
 
   if (isLoading) {

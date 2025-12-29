@@ -13,11 +13,11 @@ export function DashboardHeader({ isMobile, onCreate, t }) {
         </Box>
 
         {isMobile ? (
-          <Button color="primary" onClick={onCreate} size="small" aria-label={t('actions.create')}>
+          <Button variant="gradient" color="primary" onClick={onCreate} size="small" aria-label={t('actions.create')}>
             <AddIcon />
           </Button>
         ) : (
-          <Button variant="contained" startIcon={<AddIcon />} size="medium" onClick={onCreate}>
+          <Button variant="gradient" startIcon={<AddIcon />} size="medium" onClick={onCreate}>
             {t('actions.create')}
           </Button>
         )}

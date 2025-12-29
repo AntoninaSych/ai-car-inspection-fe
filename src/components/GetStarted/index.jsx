@@ -22,7 +22,7 @@ export const GetStarted = () => {
 
   return (
     <Button
-      variant="contained"
+      variant="gradient"
       size="small"
       onClick={handleOnClick}
       sx={{

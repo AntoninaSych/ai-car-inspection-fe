@@ -1,6 +1,10 @@
+import { ESTIMATE_STATUS } from './dashboardFilters';
+
+const costPayload = '-';
+
 export const getEstimatedCost = (reports, returnFormatted = true) => {
   if (!reports) {
-    return '******';
+    return costPayload;
   }
 
   const list = Array.isArray(reports) ? reports : [reports];
@@ -8,7 +12,7 @@ export const getEstimatedCost = (reports, returnFormatted = true) => {
   const successfulReports = list.filter(r => r?.data?.success && r?.data?.analysis);
 
   if (!successfulReports.length) {
-    return '------';
+    return costPayload;
   }
 
   const { currency, locale } = successfulReports[0].data.analysis;
@@ -34,13 +38,13 @@ export const getEstimatedCost = (reports, returnFormatted = true) => {
 
 export const getEstimatedCostByTasks = tasks => {
   if (!tasks) {
-    return '******';
+    return costPayload;
   }
 
-  const paidTasks = tasks.filter(t => t.isPaid);
+  const paidTasks = tasks.filter(t => t.isPaid && t.reports.length > 0);
 
   if (!paidTasks.length) {
-    return '------';
+    return costPayload;
   }
 
   const { currency, locale } = paidTasks[0].reports[0].data.analysis;
