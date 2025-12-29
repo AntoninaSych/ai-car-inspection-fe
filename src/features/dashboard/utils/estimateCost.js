@@ -1,5 +1,3 @@
-import { ESTIMATE_STATUS } from './dashboardFilters';
-
 const costPayload = '-';
 
 export const getEstimatedCost = (reports, returnFormatted = true) => {
