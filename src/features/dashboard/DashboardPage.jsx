@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { DashboardHeader } from './components/DashboardHeader';
 import { DashboardFilters } from './components/DashboardFilters';
 import { EstimateList } from './components/EstimateList';
-import { countByStatus, ESTIMATE_STATUS, filterEstimates } from './utils/dashboardFilters';
+import { countByStatus, filterEstimates } from './utils/dashboardFilters';
 import { StatsRow } from './components/StatsRow';
 import { ROUTERS } from '../../constants';
 import { useCurrentTasks } from './hook/useCurrentTasks';
