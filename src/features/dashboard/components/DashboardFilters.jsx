@@ -13,12 +13,14 @@ export function DashboardFilters({ query, onQueryChange, status, onStatusChange,
           placeholder={t('search.placeholder')}
           fullWidth
           size="small"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon fontSize="small" />
-              </InputAdornment>
-            ),
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon fontSize="small" />
+                </InputAdornment>
+              ),
+            },
           }}
           sx={{
             flex: 1,

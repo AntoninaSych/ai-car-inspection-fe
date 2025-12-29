@@ -1,7 +1,20 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import { ROUTERS } from '../../../constants';
 
-export function DashboardHeader({ isMobile, onCreate, t }) {
+export const DashboardHeader = () => {
+  const { t } = useTranslation('dashboard');
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleOnCreate = () => {
+    navigate(ROUTERS.UPLOAD);
+  };
+
   return (
     <Box sx={{ position: 'relative' }}>
       <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
@@ -13,15 +26,21 @@ export function DashboardHeader({ isMobile, onCreate, t }) {
         </Box>
 
         {isMobile ? (
-          <Button variant="gradient" color="primary" onClick={onCreate} size="small" aria-label={t('actions.create')}>
+          <Button
+            variant="gradient"
+            color="primary"
+            onClick={handleOnCreate}
+            size="small"
+            aria-label={t('actions.create')}
+          >
             <AddIcon />
           </Button>
         ) : (
-          <Button variant="gradient" startIcon={<AddIcon />} size="medium" onClick={onCreate}>
+          <Button variant="gradient" startIcon={<AddIcon />} size="medium" onClick={handleOnCreate}>
             {t('actions.create')}
           </Button>
         )}
       </Stack>
     </Box>
   );
-}
+};

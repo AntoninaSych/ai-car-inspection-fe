@@ -21,6 +21,7 @@ export function filterEstimates(tasks, { query, status }) {
       item.brand.toLowerCase().includes(q) ||
       item.model.toLowerCase().includes(q) ||
       item.description?.toLowerCase().includes(q) ||
+      item.year?.toString().includes(q) ||
       item.id.toLowerCase().includes(q);
 
     const matchesStatus = status === 'all' ? true : item.status === status;
