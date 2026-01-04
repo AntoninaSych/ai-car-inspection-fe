@@ -1,1 +1,0 @@
-export { ProfilePageView } from './ProfilePageView';

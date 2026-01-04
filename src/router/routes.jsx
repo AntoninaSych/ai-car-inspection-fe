@@ -6,8 +6,9 @@ import { Layout } from '../layouts';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const UploadPage = lazy(() => import('../pages/UploadPage'));
-const ProfilePage = lazy(() => import('../pages/ProfilePage'));
-const ReportDetailsPage = lazy(() => import('../pages/ReportDetailsPage'));
+const ProfilePage = lazy(() => import('../features/profile/ProfilePage'));
+const DashboardPage = lazy(() => import('../features/dashboard/DashboardPage'));
+const ReportDetailsPage = lazy(() => import('../features/report-details/ReportDetailsPage'));
 const SuccessPage = lazy(() => import('../pages/SuccessPage'));
 const StripeStatusPage = lazy(() => import('../pages/stripe/StripeStatusPage'));
 const StripeCancelPage = lazy(() => import('../pages/stripe/StripeCancelPage'));
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
         children: [
           { path: 'upload', element: <UploadPage /> },
           { path: 'profile', element: <ProfilePage /> },
+          { path: 'dashboard', element: <DashboardPage /> },
           { path: 'reports/:reportId', element: <ReportDetailsPage /> },
           { path: 'tasks/pay/:taskId', element: <PaymentPage /> },
           { path: 'stripe/success', element: <StripeStatusPage /> },

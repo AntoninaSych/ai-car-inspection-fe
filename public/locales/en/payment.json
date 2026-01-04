@@ -1,5 +1,5 @@
 {
-  "title": "Payment",
+  "title": "Request ID:",
   "description": "Please fill in the payment details.",
   "noTaskId": "Request ID not found",
   "paid": "Thank you! Payment has already been received.",
@@ -15,6 +15,7 @@
     "processing": "Processing payment...",
     "skip": "Skip",
     "goToProfile": "Go to profile and check request status",
+    "goToDashboard": "Go to Dashboard",
     "backToProfile": "Back to profile",
     "backToHome": "Back to home page"
   },
@@ -71,8 +72,7 @@
     "paymentSuccess": {
       "title": "Payment received",
       "subtitle": "Thank you! Your payment is being processed.",
-      "body": "We’ve received your payment details and are currently preparing your report. You can check the order status on your profile page. You’ll also receive an email once the report is ready.",
-      "goToProfile": "Go to profile"
+      "body": "We’ve received your payment details and are currently preparing your report. You can check the order status on your profile page. You’ll also receive an email once the report is ready."
     },
     "paymentStatus": {
       "title": "Verifying Payment",

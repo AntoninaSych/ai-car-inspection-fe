@@ -1,7 +1,7 @@
 import { ThreeDots } from 'react-loader-spinner';
 import { Stack, useTheme } from '@mui/material';
 
-export const Loader = () => {
+export const Loader = ({ light = false }) => {
   const theme = useTheme();
   return (
     <Stack alignContent="center" direction="row" justifyContent="center">
@@ -10,9 +10,9 @@ export const Loader = () => {
         height="80"
         width="80"
         radius="9"
-        ariaLabel="three-dots-loading"
+        ariaLabel="loading..."
         wrapperStyle={{}}
-        color={theme.palette.loader}
+        color={light ? theme.palette.common.white : theme.palette.primary.main}
       />
     </Stack>
   );

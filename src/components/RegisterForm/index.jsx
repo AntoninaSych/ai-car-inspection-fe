@@ -132,7 +132,7 @@ export const RegisterForm = ({ onSuccess }) => {
             {/*  )}*/}
             {/*</Box>*/}
 
-            <SubmitButton loading={loading || isSubmitting} disabled={!canSubmit}>
+            <SubmitButton variant="gradient" loading={loading || isSubmitting} disabled={!canSubmit}>
               {t('buttons.createAccount')}
             </SubmitButton>
           </Stack>
