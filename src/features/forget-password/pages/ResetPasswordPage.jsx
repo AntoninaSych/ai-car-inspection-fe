@@ -145,7 +145,8 @@ const ResetPasswordPage = () => {
     try {
       await resetPassword({ token, password: values.password });
       setIsSuccess(true);
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       setSubmitError(t('auth:forgotPassword.errors.generic'));
     }
   };
