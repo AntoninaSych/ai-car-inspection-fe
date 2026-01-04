@@ -1,9 +1,8 @@
 import { useState, useMemo } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Link as RouterLink } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-import { InputAdornment, Stack, Link } from '@mui/material';
+import { InputAdornment, Stack } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { login } from '../../redux/auth/operations';

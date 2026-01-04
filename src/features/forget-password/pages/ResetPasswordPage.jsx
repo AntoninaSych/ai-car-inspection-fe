@@ -125,8 +125,11 @@ const ResetPasswordPage = () => {
         const resp = await validateResetToken({ token });
         const status = mapTokenResponseToStatus(resp);
         if (isMounted) setTokenStatus(status);
-      } catch (e) {
-        if (isMounted) setTokenStatus(TOKEN_STATUS.ERROR);
+      } catch (error) {
+        console.error(error);
+        if (isMounted) {
+          setTokenStatus(TOKEN_STATUS.ERROR);
+        }
       }
     };
 
