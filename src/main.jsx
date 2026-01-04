@@ -32,8 +32,6 @@ i18nPromise.then(() => {
             <DesignSystemThemeProvider>
               <Suspense fallback={<Loader />}>
                 <App />
-                <GlobalModal />
-                <Toaster position="top-right" />
               </Suspense>
             </DesignSystemThemeProvider>
           </PersistGate>

@@ -9,6 +9,7 @@ export const ROUTERS = {
   TERMS: '/agb',
   PP: '/privacy-policy',
   FAQ: '/faq',
+  FORGOT_PASSWORD: '/forgot-password',
 };
 export const ROOT_CONTAINER = '#root';
 export const ALLOWED_LANGUAGES = ['en', 'ua'];
