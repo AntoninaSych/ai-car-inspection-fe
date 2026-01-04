@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
 
-export const SubmitButton = ({ disabled, loading, children }) => {
+export const SubmitButton = ({ disabled, loading, children, ...props }) => {
   return (
-    <Button variant="contained" size="medium" type="submit" loading={loading} disabled={disabled}>
+    <Button size="medium" type="submit" loading={loading} disabled={disabled} {...props}>
       {children}
     </Button>
   );

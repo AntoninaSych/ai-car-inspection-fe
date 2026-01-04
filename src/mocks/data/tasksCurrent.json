@@ -1,0 +1,123 @@
+{
+  "ok": true,
+  "tasks": [
+    {
+      "id": "e8cb6dd1-1f0d-4ce8-833c-f08d119a99f8",
+      "brand": "Acura",
+      "model": "CDX",
+      "year": 2019,
+      "mileage": null,
+      "description": null,
+      "country_code": "pl",
+      "status": "processing",
+      "is_paid": false,
+      "images": [
+        {
+          "id": "13329881-d3cc-4c63-87f0-5b2fe89e29f2",
+          "type": "front",
+          "path": "uploads/tasks/1766882769009-720278812.jpeg",
+          "verified": false
+        }
+      ],
+      "reports": [],
+      "created_at": "2025-12-28T00:46:09.016Z",
+      "updated_at": "2025-12-28T00:46:09.016Z"
+    },
+    {
+      "id": "420f41a2-e309-4ceb-92d4-a6282abddfcf",
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2016,
+      "mileage": 152000,
+      "description": "Не працює фара",
+      "country_code": "ua",
+      "status": "payment",
+      "is_paid": false,
+      "images": [
+        {
+          "id": "dbe54716-69f5-48d6-825c-e03993e45b31",
+          "type": "front",
+          "path": "uploads/tasks/1766882660215-779696555.jpg",
+          "verified": false
+        }
+      ],
+      "reports": [],
+      "created_at": "2025-12-28T00:44:20.224Z",
+      "updated_at": "2025-12-28T00:44:20.224Z"
+    },
+    {
+      "id": "2ffef74f-507a-4a85-bf93-e1fe3e948ea4",
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2016,
+      "mileage": null,
+      "description": null,
+      "country_code": "pl",
+      "status": "completed",
+      "is_paid": true,
+      "images": [
+        {
+          "id": "16df0f8f-92ea-4026-be14-7b26a607a1d0",
+          "type": "front",
+          "path": "uploads/tasks/1766100064155-603938962.jpg",
+          "verified": false
+        }
+      ],
+      "reports": [
+        {
+          "id": "6fcd410a-2453-45b4-9c62-8d15a6a6753c",
+          "data": {
+            "success": true,
+            "analysis": {
+              "locale": "pl-PL",
+              "region": "Poland",
+              "damages": [],
+              "summary": "Na podstawie dostarczonych obrazów nie stwierdzono żadnych widocznych uszkodzeń karoserii ani felg pojazdu BMW X5 (2016). Stan wizualny zewnętrznych elementów pojazdu oceniono jako bardzo dobry. Brak widocznych zarysowań, wgnieceń czy otarć. Koszt naprawy widocznych uszkodzeń wynosi 0 PLN. Zaleca się jednak przeprowadzenie kompleksowej inspekcji technicznej, mechanicznej oraz weryfikację historii pojazdu w celu pełnej oceny jego stanu.",
+              "currency": "PLN",
+              "damage_detected": false,
+              "recommendations": [
+                "Zaleca się szczegółową weryfikację historii serwisowej pojazdu oraz przebiegu, aby potwierdzić jego autentyczność.",
+                "Należy przeprowadzić badanie grubości powłoki lakierniczej na wszystkich elementach karoserii w celu wykrycia ewentualnych wcześniejszych napraw lub kolizji, które mogły nie zostać udokumentowane.",
+                "Zalecana jest pełna diagnostyka komputerowa pojazdu, w tym sprawdzenie wszystkich systemów elektronicznych i odczytanie ewentualnych błędów.",
+                "Wskazane jest przeprowadzenie jazdy próbnej w celu oceny stanu technicznego silnika, skrzyni biegów, układu kierowniczego, hamulcowego oraz zawieszenia.",
+                "Zaleca się inspekcję podwozia pojazdu pod kątem korozji, uszkodzeń mechanicznych oraz wycieków płynów eksploatacyjnych.",
+                "Należy zweryfikować stan opon, tarcz i klocków hamulcowych oraz innych elementów eksploatacyjnych."
+              ],
+              "estimated_total_labor_cost": "0",
+              "estimated_total_parts_cost_original": "0",
+              "estimated_total_parts_cost_alternative": "0"
+            },
+            "timestamp": "2025-12-27T19:04:01.369Z",
+            "model_used": "gemini-2.5-flash"
+          },
+          "url": null,
+          "created_at": "2025-12-27T19:04:01.369Z"
+        }
+      ],
+      "created_at": "2025-12-18T23:21:04.163Z",
+      "updated_at": "2025-12-27T19:03:42.199Z"
+    },
+    {
+      "id": "7ec5146e-4883-4dea-95ad-e041a4e4076a",
+      "brand": "Abarth",
+      "model": "124 Spider",
+      "year": 2020,
+      "mileage": 152000,
+      "description": null,
+      "country_code": "pl",
+      "status": "payment",
+      "is_paid": false,
+      "images": [
+        {
+          "id": "5422a0fd-2f67-43be-aacf-9482392b8854",
+          "type": "front",
+          "path": "uploads/tasks/1766099955552-348991008.jpg",
+          "verified": false
+        }
+      ],
+      "reports": [],
+      "created_at": "2025-12-18T23:19:15.571Z",
+      "updated_at": "2025-12-18T23:19:15.571Z"
+    }
+  ]
+}

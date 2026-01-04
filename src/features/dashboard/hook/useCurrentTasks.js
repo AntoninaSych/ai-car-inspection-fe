@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchCurrentTasks } from '../../../api/tasksApi';
+import { fetchCurrentTasks } from '../api/tasksApi';
 
-export const useProfileData = () => {
+export const useCurrentTasks = () => {
   const {
     data: tasks = [],
     isLoading,

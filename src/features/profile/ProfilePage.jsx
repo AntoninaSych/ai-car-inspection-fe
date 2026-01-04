@@ -1,20 +1,20 @@
 import { Container, Typography, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Dashboard } from '../../features';
+import { Profile } from './Profile';
 
-const DashboardPage = () => {
-  const { t } = useTranslation();
+const ProfilePage = () => {
+  const { t } = useTranslation('profile');
 
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>
       <Typography variant="h1" align="center">
-        {t('dashboard-page.title')}
+        {t('title')}
       </Typography>
       <Box sx={{ mt: 4 }}>
-        <Dashboard />
+        <Profile />
       </Box>
     </Container>
   );
 };
 
-export default DashboardPage;
+export default ProfilePage;

@@ -39,6 +39,29 @@ export const baseComponents = {
       disableElevation: true,
       variant: 'contained',
     },
+    variants: [
+      {
+        props: { variant: 'gradient' },
+        style: {
+          background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
+          color: 'white',
+          boxShadow: '0 6px 8px rgba(67, 99, 255, 0.28)',
+          '&:hover': {
+            background: 'linear-gradient(90deg, rgba(57,120,255,0.95), rgba(168,74,255,0.95))',
+            boxShadow: '0 6px 8px rgba(67, 99, 255, 0.48)',
+            filter: 'brightness(1.02)',
+          },
+          '&:active': {
+            transform: 'translateY(1px)',
+          },
+          '&.Mui-disabled': {
+            color: 'rgba(255,255,255,0.75)',
+            background:
+              'linear-gradient(90deg, rgba(43,106,246,0.45) 0%, rgba(124,44,243,0.45) 70%, rgba(161,42,240,0.45) 100%)',
+          },
+        },
+      },
+    ],
     styleOverrides: {
       root: {
         borderRadius: '12px',
@@ -47,23 +70,16 @@ export const baseComponents = {
         fontWeight: 400,
       },
       contained: () => ({
-        background: 'linear-gradient(90deg, rgba(57,120,255,1), rgba(168,74,255,1))',
+        background: '#0F172B',
         color: 'white',
-        boxShadow: '0 6px 8px rgba(67, 99, 255, 0.28)',
         '&:hover': {
-          background: 'linear-gradient(90deg, rgba(57,120,255,0.95), rgba(168,74,255,0.95))',
-          boxShadow: '0 6px 8px rgba(67, 99, 255, 0.48)',
-          filter: 'brightness(1.02)',
+          background: '#334155',
         },
         '&:active': {
           transform: 'translateY(1px)',
         },
-        '&.Mui-disabled': {
-          color: 'rgba(255,255,255,0.75)',
-          background:
-            'linear-gradient(90deg, rgba(43,106,246,0.45) 0%, rgba(124,44,243,0.45) 70%, rgba(161,42,240,0.45) 100%)',
-        },
       }),
+
       sizeSmall: {
         padding: '6px 16px',
         fontSize: 14,

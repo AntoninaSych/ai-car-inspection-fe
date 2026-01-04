@@ -76,7 +76,7 @@ export const LoginForm = ({ onSuccess }) => {
               />
             </Stack>
 
-            <SubmitButton loading={loading || isSubmitting} disabled={!canSubmit}>
+            <SubmitButton variant="gradient" loading={loading || isSubmitting} disabled={!canSubmit}>
               {t('buttons.login')}
             </SubmitButton>
           </Stack>

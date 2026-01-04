@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+import tasksCurrentResponse from './data/tasksCurrent.json';
 
 export const tasksHandlers = [
   // add task
@@ -72,5 +73,16 @@ export const tasksHandlers = [
       },
       { status: 200 }
     );
+  }),
+
+  http.get(`/api/tasks/current`, async ({ request }) => {
+    const auth = request.headers.get('Authorization');
+    if (!auth || !auth.startsWith('Bearer')) {
+      return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    return HttpResponse.json(tasksCurrentResponse, { status: 200 });
   }),
 ];

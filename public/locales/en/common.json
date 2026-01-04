@@ -12,15 +12,8 @@
     "title": "Submit Vehicle Details for a Preliminary Estimate",
     "subtitle": "We use your vehicle information and photos to generate a more accurate preliminary repair estimate. Please provide the details and upload the required images."
   },
-  "profile-page": {
-    "title": "Profile Page"
-  },
   "payment-page": {
     "title": "Payment page"
-  },
-  "report-details-page": {
-    "title": "Damage Assessment Report",
-    "subtitle": "Based on the uploaded photos and information provided, we assessed the condition of the car and the preliminary cost of repairs."
   },
   "success-page": {
     "title": "Thank you for using the service."

@@ -19,9 +19,3 @@ export const fetchTaskDetails = async taskId => {
   const { data } = await api.get(`/tasks/${taskId}`);
   return formatToCamelCase(data);
 };
-
-export const fetchCurrentTasks = async () => {
-  const { data } = await api.get('/tasks/current');
-  const { tasks = [] } = data || {};
-  return formatToCamelCase(tasks);
-};
