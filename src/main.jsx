@@ -3,11 +3,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Toaster } from 'react-hot-toast';
 import { DesignSystemThemeProvider } from './design-system/theme/ThemeProvider';
 import { Loader } from './components';
 import { store, persistor } from './redux/store';
-import { GlobalModal } from './features/globalModal';
 import { setupAxiosInterceptors } from './api/axiosInstance';
 import { App } from './App';
 import './i18n';
@@ -32,8 +30,6 @@ i18nPromise.then(() => {
             <DesignSystemThemeProvider>
               <Suspense fallback={<Loader />}>
                 <App />
-                <GlobalModal />
-                <Toaster position="top-right" />
               </Suspense>
             </DesignSystemThemeProvider>
           </PersistGate>

@@ -3,6 +3,7 @@ import { Toolbar, Box } from '@mui/material';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Header, Loader, Footer } from '../components';
+import { GlobalModal } from '../features/globalModal';
 
 export const Layout = () => {
   return (
@@ -16,6 +17,7 @@ export const Layout = () => {
         </Suspense>
       </Box>
       <Toaster />
+      <GlobalModal />
       <Footer />
     </Box>
   );
