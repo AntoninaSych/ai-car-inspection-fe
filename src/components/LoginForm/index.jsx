@@ -54,8 +54,8 @@ export const LoginForm = ({ onSuccess }) => {
     <Wrapper>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2}>
-            <Stack spacing={1}>
+          <Stack gap={3}>
+            <Stack gap={1}>
               <EmailField
                 name="email"
                 placeholder={t('fields.email.placeholder')}
@@ -75,7 +75,6 @@ export const LoginForm = ({ onSuccess }) => {
                 required
               />
             </Stack>
-
             <SubmitButton variant="gradient" loading={loading || isSubmitting} disabled={!canSubmit}>
               {t('buttons.login')}
             </SubmitButton>

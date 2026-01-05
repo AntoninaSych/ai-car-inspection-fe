@@ -69,15 +69,18 @@
   },
   "validation": {
     "oneOf": "Allowed only {{value}}",
-    "required": "The field is required.",
+    "required": "The field is required",
     "email": "Invalid email format",
     "max": "Maximum {{value}}",
     "min": "Minimum {{value}}",
     "maxString": "Maximum {{value}} characters",
     "minString": "Minimum {{value}} characters",
     "number": "Enter a number",
-    "agreements": "You must agree to continue.",
-    "containsNumber": "Contains a number"
+    "agreements": "You must agree to continue",
+    "passwordMismatch": "Passwords do not match",
+    "matches": {
+      "digit": "Must contain at least one digit"
+    }
   },
   "footer": {
     "description": "AI-powered car repair cost estimation. Fast, accurate, and reliable.",

@@ -13,7 +13,7 @@ export const i18nPromise = i18n
     supportedLngs: ALLOWED_LANGUAGES,
     load: 'languageOnly',
     debug: import.meta.env.DEV,
-    ns: ['common', 'auth'],
+    ns: ['common'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false,

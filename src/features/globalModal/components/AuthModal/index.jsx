@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { Typography, Button } from '@mui/material';
-import { Trans } from 'react-i18next';
+import { Typography, Button, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Trans, useTranslation } from 'react-i18next';
 import { LoginFormModal } from '../LoginFormModal';
 import { RegisterFormModal } from '../RegisterFormModal';
+import { closeModal } from '../../slice';
+import { ROUTERS } from '../../../../constants';
 
 const LinkButton = ({ children, onClick }) => {
   return (
@@ -27,6 +31,14 @@ const LinkButton = ({ children, onClick }) => {
 
 export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
   const [mode, setMode] = useState(defaultMode);
+  const dispatch = useDispatch();
+  const { t } = useTranslation(['common', 'auth']);
+  const navigate = useNavigate();
+
+  const handleOnForgotPasswordClick = () => {
+    dispatch(closeModal());
+    navigate(ROUTERS.FORGOT_PASSWORD);
+  };
 
   switch (mode) {
     case 'login': {
@@ -35,12 +47,15 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           open={mode === 'login'}
           onClose={onClose}
           footer={
-            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
-              <Trans i18nKey="modals.login.footer">
-                Do not have an account?&html;
-                <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
-              </Trans>
-            </Typography>
+            <Stack gap={1} sx={{ mt: 2 }}>
+              <LinkButton onClick={handleOnForgotPasswordClick}>{t('auth:login.forgotPassword')}</LinkButton>
+              <Typography variant="body2" textAlign="center" color="text.secondary">
+                <Trans i18nKey="common:modals.login.footer">
+                  Do not have an account?&html;
+                  <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
+                </Trans>
+              </Typography>
+            </Stack>
           }
         />
       );
@@ -52,7 +67,7 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           onClose={onClose}
           footer={
             <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
-              <Trans i18nKey="modals.register.footer">
+              <Trans i18nKey="common:modals.register.footer">
                 Already have an account?&html;
                 <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
               </Trans>
