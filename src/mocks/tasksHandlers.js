@@ -75,7 +75,7 @@ export const tasksHandlers = [
     );
   }),
 
-  http.get(`/api/tasks/current`, async ({ request }) => {
+  http.get(`/_api/tasks/current`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
