@@ -50,7 +50,7 @@ const TokenMessage = ({ title, body, t }) => (
       <Typography variant="body1">{body}</Typography>
     </Alert>
 
-    <Button component={RouterLink} to={ROUTERS.FORGOT_PASSWORD} variant="contained" size="large">
+    <Button component={RouterLink} to={ROUTERS.FORGOT_PASSWORD} variant="contained" size="medium">
       {t('forgotPassword.token.requestNew')}
     </Button>
   </Stack>
@@ -128,8 +128,8 @@ const ResetPasswordPage = () => {
             <Typography variant="body1">{t('forgotPassword.reset.successBody')}</Typography>
           </Alert>
 
-          <Button component={RouterLink} to="/signin" variant="contained" size="large" sx={{ height: 48 }}>
-            {t('forgotPassword.reset.goToSignIn')}
+          <Button component={RouterLink} to={ROUTERS.HOME} variant="contained" size="medium">
+            {t('forgotPassword.reset.goToHome')}
           </Button>
         </Stack>
       </PageShell>

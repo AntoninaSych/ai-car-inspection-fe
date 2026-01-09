@@ -58,7 +58,7 @@ const ForgotPasswordPage = () => {
                   required
                 />
 
-                <SubmitButton variant="gradient" size="large" disabled={!canSubmit}>
+                <SubmitButton variant="gradient" disabled={!canSubmit}>
                   {t('forgotPassword.request.submit')}
                 </SubmitButton>
               </Stack>
