@@ -2,8 +2,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useTranslation } from 'react-i18next';
 import { LoginForm, Modal } from '../../../../components';
 
-export const LoginFormModal = ({ onClose, footer, open = true }) => {
+export const LoginFormModal = ({ onClose, onForgotPassword, open = true }) => {
   const { t } = useTranslation();
+
   return (
     <Modal
       open={open}
@@ -12,8 +13,7 @@ export const LoginFormModal = ({ onClose, footer, open = true }) => {
       subtitle={t('modals.login.subtitle')}
       icon={<LoginIcon />}
     >
-      <LoginForm onSuccess={onClose} />
-      {footer && <>{footer}</>}
+      <LoginForm onSuccess={onClose} onForgotPassword={onForgotPassword} />
     </Modal>
   );
 };

@@ -1,16 +1,17 @@
 import { useMemo, useState } from 'react';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import { useTranslation } from 'react-i18next';
-import { Alert, Stack, Typography } from '@mui/material';
+import { Alert, Stack, Typography, Box } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { requestPasswordReset } from '../../api/authApi';
-import { EmailField, SubmitButton } from '../../../../components';
+import { EmailField } from '../FormFields';
+import { SubmitButton } from '../SubmitButton';
 import { createSchema } from './validation/schema';
-import { errorHandler } from '../../../../utils/notification';
+import { errorHandler } from '../../utils/notification';
 import { defaultValues } from './config';
-import { PageShell } from './components';
 
-const ForgotPasswordPage = () => {
+export const ForgotPasswordForm = () => {
   const { t } = useTranslation('auth');
   const [isSuccess, setIsSuccess] = useState(false);
   const validationSchema = useMemo(() => createSchema(t), [t]);
@@ -38,16 +39,9 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <PageShell>
+    <Box maxWidth="sm" sx={{ width: '100%' }}>
       {!isSuccess ? (
         <Stack spacing={2.5}>
-          <Stack spacing={1}>
-            <Typography variant="h4">{t('forgotPassword.request.title')}</Typography>
-            <Typography variant="body1" color="text.secondary">
-              {t('forgotPassword.request.subtitle')}
-            </Typography>
-          </Stack>
-
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <Stack spacing={2.5}>
@@ -58,7 +52,7 @@ const ForgotPasswordPage = () => {
                   required
                 />
 
-                <SubmitButton variant="gradient" disabled={!canSubmit}>
+                <SubmitButton endIcon={<TelegramIcon />} variant="gradient" disabled={!canSubmit}>
                   {t('forgotPassword.request.submit')}
                 </SubmitButton>
               </Stack>
@@ -78,8 +72,6 @@ const ForgotPasswordPage = () => {
           </Typography>
         </Stack>
       )}
-    </PageShell>
+    </Box>
   );
 };
-
-export default ForgotPasswordPage;
