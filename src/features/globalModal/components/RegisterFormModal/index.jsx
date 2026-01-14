@@ -2,7 +2,7 @@ import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import { useTranslation } from 'react-i18next';
 import { RegisterForm, Modal } from '../../../../components';
 
-export const RegisterFormModal = ({ onClose, footer, open = true }) => {
+export const RegisterFormModal = ({ onClose, open = true }) => {
   const { t } = useTranslation();
 
   return (
@@ -14,7 +14,6 @@ export const RegisterFormModal = ({ onClose, footer, open = true }) => {
       icon={<AutoAwesomeOutlinedIcon />}
     >
       <RegisterForm onSuccess={onClose} />
-      {footer && <>{footer}</>}
     </Modal>
   );
 };

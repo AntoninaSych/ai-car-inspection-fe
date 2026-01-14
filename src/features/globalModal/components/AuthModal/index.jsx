@@ -1,79 +1,73 @@
 import { useState } from 'react';
-import { Typography, Button, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import LoginIcon from '@mui/icons-material/Login';
+import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
+import { Typography, Stack } from '@mui/material';
 import { Trans, useTranslation } from 'react-i18next';
-import { LoginFormModal } from '../LoginFormModal';
-import { RegisterFormModal } from '../RegisterFormModal';
-import { closeModal } from '../../slice';
-import { ROUTERS } from '../../../../constants';
-
-const LinkButton = ({ children, onClick }) => {
-  return (
-    <Button
-      variant="text"
-      size="small"
-      onClick={onClick}
-      sx={{
-        p: 0,
-        minWidth: 'auto',
-        textTransform: 'none',
-        '&:hover': {
-          textDecoration: 'underline',
-          backgroundColor: 'transparent',
-        },
-      }}
-    >
-      {children}
-    </Button>
-  );
-};
+import { LinkButton, LoginForm, Modal, RegisterForm, ForgotPasswordForm } from '../../../../components';
+import KeyIcon from '@mui/icons-material/Key';
 
 export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
+  const { t } = useTranslation();
   const [mode, setMode] = useState(defaultMode);
-  const dispatch = useDispatch();
-  const { t } = useTranslation(['common', 'auth']);
-  const navigate = useNavigate();
-
-  const handleOnForgotPasswordClick = () => {
-    dispatch(closeModal());
-    navigate(ROUTERS.FORGOT_PASSWORD);
-  };
 
   switch (mode) {
     case 'login': {
       return (
-        <LoginFormModal
+        <Modal
           open={mode === 'login'}
           onClose={onClose}
-          footer={
-            <Stack gap={1} sx={{ mt: 2 }}>
-              <LinkButton onClick={handleOnForgotPasswordClick}>{t('auth:login.forgotPassword')}</LinkButton>
-              <Typography variant="body2" textAlign="center" color="text.secondary">
-                <Trans i18nKey="common:modals.login.footer">
-                  Do not have an account?&html;
-                  <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
-                </Trans>
-              </Typography>
-            </Stack>
-          }
-        />
+          title={t('modals.login.title')}
+          subtitle={t('modals.login.subtitle')}
+          icon={<LoginIcon />}
+        >
+          <LoginForm onSuccess={onClose} onForgotPassword={() => setMode('forgot-password')} />
+          <Stack gap={1} sx={{ mt: 2 }}>
+            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+              <Trans i18nKey="common:modals.login.footer">
+                Do not have an account?&html;
+                <LinkButton onClick={() => setMode('register')}>Sign up</LinkButton>
+              </Trans>
+            </Typography>
+          </Stack>
+        </Modal>
       );
     }
     case 'register': {
       return (
-        <RegisterFormModal
+        <Modal
           open={mode === 'register'}
           onClose={onClose}
-          footer={
-            <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
-              <Trans i18nKey="common:modals.register.footer">
-                Already have an account?&html;
-                <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
-              </Trans>
-            </Typography>
-          }
-        />
+          title={t('modals.register.title')}
+          subtitle={t('modals.register.subtitle')}
+          icon={<AutoAwesomeOutlinedIcon />}
+        >
+          <RegisterForm onSuccess={onClose} />
+          <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+            <Trans i18nKey="common:modals.register.footer">
+              Already have an account?&html;
+              <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
+            </Trans>
+          </Typography>
+        </Modal>
+      );
+    }
+    case 'forgot-password': {
+      return (
+        <Modal
+          open={mode === 'forgot-password'}
+          onClose={onClose}
+          title={t('modals.forgot-password.title')}
+          subtitle={t('modals.forgot-password.subtitle')}
+          icon={<KeyIcon />}
+        >
+          <ForgotPasswordForm />
+          <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
+            <Trans i18nKey="common:modals.forgot-password.footer">
+              Back to&html;
+              <LinkButton onClick={() => setMode('login')}>Sign in</LinkButton>
+            </Trans>
+          </Typography>
+        </Modal>
       );
     }
     default:

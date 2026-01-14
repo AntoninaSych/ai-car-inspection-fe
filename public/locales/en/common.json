@@ -19,7 +19,7 @@
     "title": "Thank you for using the service."
   },
   "fields": {
-    "email": { "label": "Email", "placeholder": "your@email.com" },
+    "email": { "label": "Email Address", "placeholder": "your@email.com" },
     "password": { "label": "Password", "placeholder": "Enter your password" },
     "name": { "label": "Name" },
     "fullname": { "label": "Full Name", "placeholder": "Enter your name" }
@@ -37,7 +37,12 @@
     },
     "logout": {
       "title": "Log Out",
-      "description": "You can always log back in at any time."
+      "subtitle": "You can always log back in at any time."
+    },
+    "forgot-password": {
+      "title": "Forgot Password?",
+      "subtitle": "Don't worry, we'll send you reset instructions",
+      "footer": "Back to <1>Sign in</1>"
     }
   },
   "buttons": {
@@ -49,6 +54,7 @@
     "getStarted": "Get Started",
     "createAccount": "Create Account"
   },
+  "forgotPassword": "Forgot password?",
   "mode": {
     "switch-label": "Switch appearance",
     "dark-label": "Dark mode",

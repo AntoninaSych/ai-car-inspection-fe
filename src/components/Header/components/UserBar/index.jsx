@@ -46,14 +46,14 @@ export const UserBar = ({ onLogout }) => {
           },
         }}
       >
-        <StyledMenuItem component={Link} to={ROUTERS.PROFILE}>
-          <ListItemIcon>
-            <AccountCircle fontSize="small" />
-          </ListItemIcon>
-          Profile
-        </StyledMenuItem>
+        {/*<StyledMenuItem component={Link} to={ROUTERS.PROFILE}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <AccountCircle fontSize="small" />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  Profile*/}
+        {/*</StyledMenuItem>*/}
 
-        <Divider />
+        {/*<Divider />*/}
 
         <StyledMenuItem component={Link} to={ROUTERS.DASHBOARD}>
           <ListItemIcon>

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal } from '../../../../components';
 import { logout } from '../../../../redux/auth/operations';
 
-const LogOutModal = ({ onClose }) => {
+export const LogOutModal = ({ onClose }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const LogOutModal = ({ onClose }) => {
       onClose={onClose}
       icon={<LogoutIcon />}
       title={t('modals.logout.title')}
-      subtitle={t('modals.logout.description')}
+      subtitle={t('modals.logout.subtitle')}
     >
       <Stack gap={2} width="100%" justifyContent="stretch">
         <Button variant="gradient" fullWidth size="medium" onClick={onClose}>
@@ -33,5 +33,3 @@ const LogOutModal = ({ onClose }) => {
     </Modal>
   );
 };
-
-export default LogOutModal;

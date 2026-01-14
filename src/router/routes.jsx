@@ -17,9 +17,6 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 const PrivacyPolicyPage = lazy(() => import('../pages/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('../pages/TermsPage'));
 const CookiePolicyPage = lazy(() => import('../pages/CookiePolicyPage'));
-const ForgotPasswordPage = lazy(
-  () => import('../features/forgot-password/pages/ForgotPasswordPage/ForgotPasswordPage')
-);
 const ResetPasswordPage = lazy(() => import('../features/forgot-password/pages/ResetPasswordPage/ResetPasswordPage'));
 const FAQPage = lazy(() => import('../pages/FAQPage'));
 
@@ -48,7 +45,6 @@ export const router = createBrowserRouter([
       { path: 'privacy-policy', element: <PrivacyPolicyPage /> },
       { path: 'agb', element: <TermsPage /> },
       { path: 'cookies', element: <CookiePolicyPage /> },
-      { path: 'forgot-password', element: <ForgotPasswordPage /> },
       { path: 'reset-password', element: <ResetPasswordPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

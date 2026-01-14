@@ -37,7 +37,12 @@
     },
     "logout": {
       "title": "Вийти",
-      "description": "Ви завжди можете знову увійти будь-коли."
+      "subtitle": "Ви завжди можете знову увійти будь-коли."
+    },
+    "forgot-password": {
+      "title": "Забули пароль?",
+      "subtitle": "Don't worry, we'll send you reset instructions",
+      "footer": "Повернутись до <1>Входу</1>"
     }
   },
   "buttons": {
@@ -49,6 +54,7 @@
     "getStarted": "Почати",
     "createAccount": "Створити обліковий запис"
   },
+  "forgotPassword": "Забули пароль?",
   "mode": {
     "switch-label": "Змінити тему",
     "dark-label": "Темна тема",
