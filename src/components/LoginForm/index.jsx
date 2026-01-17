@@ -42,12 +42,6 @@ export const LoginForm = ({ onSuccess, onForgotPassword }) => {
 
   const canSubmit = !loading && !isSubmitting && isDirty;
 
-  const handleOnForgotPassword = () => {
-    if (onForgotPassword) {
-      onForgotPassword();
-    }
-  };
-
   const onSubmit = values => {
     setLoading(true);
     dispatch(login(values))
@@ -81,7 +75,7 @@ export const LoginForm = ({ onSuccess, onForgotPassword }) => {
                   <Box>
                     {t('fields.password.label')} <Typography component="span">*</Typography>
                   </Box>
-                  <LinkButton onClick={handleOnForgotPassword}>{t('forgotPassword')}</LinkButton>
+                  <LinkButton onClick={onForgotPassword}>{t('forgotPassword')}</LinkButton>
                 </FormLabel>
                 <Controller
                   name="password"
