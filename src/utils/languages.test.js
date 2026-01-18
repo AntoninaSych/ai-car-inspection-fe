@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { getNormalizedLang } from './languages';
 
-// 👉 мок констант
 vi.mock('../constants', () => ({
   ALLOWED_LANGUAGES: ['ua', 'en'],
   DEFAULT_LANGUAGE: 'en',
