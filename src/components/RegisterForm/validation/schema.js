@@ -22,7 +22,7 @@ const createValidationSchema = t => {
       .max(PASSWORD_MAX, t('common:validation.maxString', { value: PASSWORD_MAX }))
       .matches(/\d/, t('common:validation.matches.digit'))
       .required(required),
-    // agree: yup.boolean().oneOf([true], t('common:validation.agreements')).required(t('common:validation.agreements')),
+    agree: yup.boolean().oneOf([true], t('common:validation.agreements')).required(t('common:validation.agreements')),
   });
 };
 

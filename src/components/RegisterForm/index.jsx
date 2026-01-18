@@ -10,6 +10,7 @@ import { register } from '../../redux/auth/operations';
 import { errorHandler, successNotification } from '../../utils/notification';
 import { defaultValues } from './config';
 import { createValidationSchema, PASSWORD_MIN } from './validation/schema';
+import { AgreementsCheckbox } from './AgreementsCheckbox';
 import { EmailField, InputField } from '../FormFields';
 import { SubmitButton } from '../SubmitButton';
 import { Wrapper } from './styled';
@@ -34,7 +35,6 @@ export const RegisterForm = ({ onSuccess }) => {
     formState: { isSubmitting, isDirty, isValid },
   } = methods;
 
-  // const agreeValue = watch('agree');
   const canSubmit = !isSubmitting && !loading && isDirty && isValid;
 
   const onSubmit = values => {
@@ -93,28 +93,7 @@ export const RegisterForm = ({ onSuccess }) => {
                 required
                 showRules
               />
-
-              {/*<Box>*/}
-              {/*  <FormControlLabel*/}
-              {/*    sx={{ alignItems: 'center' }}*/}
-              {/*    control={<Checkbox {...formRegister('agree')} sx={{ mt: 0.2 }} />}*/}
-              {/*    label={*/}
-              {/*      <Typography sx={{ color: 'text.secondary', fontSize: '14px' }}>*/}
-              {/*        I agree to the{' '}*/}
-              {/*        <Link href={termsHref} underline="hover">*/}
-              {/*          Terms of Service*/}
-              {/*        </Link>{' '}*/}
-              {/*        and{' '}*/}
-              {/*        <Link href={privacyHref} underline="hover">*/}
-              {/*          Privacy Policy*/}
-              {/*        </Link>*/}
-              {/*      </Typography>*/}
-              {/*    }*/}
-              {/*  />*/}
-              {/*  {!!errors.agree && (*/}
-              {/*    <Typography sx={{ mt: 0.5, color: 'error.main', fontSize: 13 }}>{errors.agree.message}</Typography>*/}
-              {/*  )}*/}
-              {/*</Box>*/}
+              <AgreementsCheckbox />
             </Stack>
             <SubmitButton variant="gradient" loading={loading || isSubmitting} disabled={!canSubmit}>
               {t('buttons.createAccount')}
