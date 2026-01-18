@@ -126,5 +126,8 @@
       "linkedin": "LinkedIn",
       "instagram": "Instagram"
     }
+  },
+  "agreements": {
+    "label": "Я погоджуюсь з <terms>Умовами користування</terms> та <privacy>Політикою конфіденційності</privacy>"
   }
 }
