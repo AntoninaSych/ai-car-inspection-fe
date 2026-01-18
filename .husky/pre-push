@@ -5,7 +5,7 @@ echo "🏗️ build..."
 npm run build
 
 # echo "🧪 tests..."
-@ npm run test
+npm run test
 
 echo "🧹 lint..."
 npm run lint
