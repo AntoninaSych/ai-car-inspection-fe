@@ -8,6 +8,9 @@ export default defineConfig(({ mode }) => {
   const apiTarget = env.VITE_API_PROXY_TARGET || 'http://localhost:5001';
 
   return {
+    // test: {
+    //   globals: true,
+    // },
     plugins: [react()],
     build: {
       target: 'ES2022',
