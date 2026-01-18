@@ -11,8 +11,8 @@ import { HeroStat } from './HeroStat';
 import { openModal } from '../globalModal/slice';
 import { ROUTERS } from '../../constants';
 import { selectIsAuthorized } from '../../redux/auth/selectors';
-import heroMock1x from '@/assets/hero/hero-mock.png';
-import heroMock2x from '@/assets/hero/hero-mock@2x.png';
+import heroMock1x from '@/assets/hero/hero-mock.jpg';
+import heroMock2x from '@/assets/hero/hero-mock@2x.jpg';
 
 export const Hero = () => {
   const navigate = useNavigate();
