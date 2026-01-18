@@ -1,14 +1,14 @@
 import { useFormContext, Controller } from 'react-hook-form';
-import { FormLabel, Typography, FormControl, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
+import { FormControl, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 
 export const CheckboxField = ({
   name,
   label,
-  required = false,
-  fullWidth = true,
   helperText,
   checkboxProps,
   labelProps,
+  required = false,
+  fullWidth = true,
   ...formControlProps
 }) => {
   const {
@@ -34,6 +34,7 @@ export const CheckboxField = ({
                   {...checkboxProps}
                   id={name}
                   name={field.name}
+                  required={required}
                   inputRef={field.ref}
                   checked={Boolean(field.value)}
                   onBlur={field.onBlur}

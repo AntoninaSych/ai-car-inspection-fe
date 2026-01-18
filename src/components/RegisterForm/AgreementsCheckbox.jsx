@@ -21,5 +21,5 @@ export const AgreementsCheckbox = () => {
     </Typography>
   );
 
-  return <CheckboxField name="agree" label={label} required />;
+  return <CheckboxField name="agree" label={label} />;
 };
