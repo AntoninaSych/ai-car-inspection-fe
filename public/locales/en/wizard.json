@@ -1,7 +1,8 @@
 {
   "dragOverlay": {
     "title": "Click to upload",
-    "subtitle": "Maximum file size {{size}}MB."
+    "subtitle": "Maximum file size {{size}}MB.",
+    "or": "OR"
   },
   "steps": {
     "details": { "label": "Vehicle Information" },
@@ -50,7 +51,8 @@
     "back": "Back",
     "next": "Next",
     "sending": "Sending...",
-    "sendAiButton": "Send for AI analysis"
+    "sendAiButton": "Send for AI analysis",
+    "takePhoto": "Take Photo"
   },
   "preview": "Preview",
   "details": {
@@ -95,4 +97,5 @@
     "ro": "Romania",
     "de": "Germany"
   }
+  
 }

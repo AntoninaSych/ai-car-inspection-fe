@@ -23,14 +23,12 @@ export const DragContentInner = styled(Box)(({ theme }) => ({
 }));
 
 export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
-  // Refs для прямого доступу до input-ів
   const desktopInputRef = useRef(null);
   const cameraInputRef = useRef(null);
 
   const { setValue, watch } = useFormContext();
   const file = watch(name);
 
-  // Функція для скидання значень інпутів
   const resetInputs = () => {
     if (desktopInputRef.current) desktopInputRef.current.value = '';
     if (cameraInputRef.current) cameraInputRef.current.value = '';
@@ -62,19 +60,13 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
     resetInputs();
   };
 
-  // --- ЛОГІКА ОБРОБКИ КЛІКІВ ---
-
-  // 1. Клік по великій зоні (Desktop/Gallery)
-  const handleZoneClick = e => {
-    // Якщо клік був десь на зоні, викликаємо звичайний інпут
+  const handleZoneClick = () => {
     if (desktopInputRef.current) {
       desktopInputRef.current.click();
     }
   };
 
-  // 2. Клік по кнопці Камери (Mobile)
   const handleCameraClick = e => {
-    // Зупиняємо, щоб не спрацював handleZoneClick
     e.preventDefault();
     e.stopPropagation();
 
@@ -83,17 +75,12 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
     }
   };
 
-  // 3. "Вогняна стіна" - функція, яка вбиває будь-яку подію
-  const killEvent = e => {
+  const stopEventPropagation = e => {
     e.stopPropagation();
   };
 
   return (
     <Stack gap={2} sx={{ height: '100%' }}>
-      {/* --- ПРИХОВАНІ INPUTS --- */}
-      {/* Вони винесені сюди, щоб не залежати від верстки */}
-
-      {/* Інпут 1: Звичайний (для кліку по фону) */}
       <input
         ref={desktopInputRef}
         type="file"
@@ -102,7 +89,6 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
         style={{ display: 'none' }}
       />
 
-      {/* Інпут 2: Тільки Камера (capture="environment") */}
       <input
         ref={cameraInputRef}
         type="file"
@@ -112,15 +98,13 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
         style={{ display: 'none' }}
       />
 
-      {/* --- ВІДОБРАЖЕННЯ --- */}
-
       {previewUrl && <PhotoCard image={previewUrl} label={label} onClose={handleOnRemove} />}
 
       {!previewUrl && (
         <DragContentInner
           ref={dropRef}
           data-dragging={isDragging ? 'true' : 'false'}
-          onClick={handleZoneClick} // <--- Клік по зоні відкриває Галерею
+          onClick={handleZoneClick}
           sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
         >
           <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
@@ -135,30 +119,30 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-              {helperText || 'Upload a clear photo.'}
+              {helperText || t('dragOverlay.defaultHelper', 'Upload a clear photo.')}
             </Typography>
 
-            {/* --- КНОПКА КАМЕРИ (ІЗОЛЬОВАНА) --- */}
             <Box
-              // Цей блок - ізолятор. Він ловить всі кліки на собі і не пускає їх до DragContentInner
-              onClick={killEvent}
-              onMouseDown={killEvent}
-              onTouchStart={killEvent}
+              onClick={stopEventPropagation}
+              onMouseDown={stopEventPropagation}
+              onTouchStart={stopEventPropagation}
               sx={{
                 mt: 1,
                 width: '100%',
                 maxWidth: 200,
-                display: { xs: 'block', sm: 'none' }, // Тільки мобільні
-                zIndex: 20, // Поверх усього
+                display: { xs: 'block', sm: 'none' },
+                zIndex: 20,
                 position: 'relative',
               }}
             >
-              <Divider sx={{ my: 1, fontSize: '0.75rem', color: 'text.secondary' }}>OR</Divider>
+              <Divider sx={{ my: 1, fontSize: '0.75rem', color: 'text.secondary' }}>
+                {t('dragOverlay.or', 'OR')}
+              </Divider>
 
               <Button
                 variant="outlined"
                 startIcon={<CameraAltIcon />}
-                onClick={handleCameraClick} // Викликаємо саме камеру
+                onClick={handleCameraClick}
                 fullWidth
                 size="small"
                 sx={{
@@ -166,7 +150,7 @@ export const PhotoUploadField = ({ name, label, helperText, required, t }) => {
                   '&:hover': { backgroundColor: 'action.hover' },
                 }}
               >
-                Take Photo
+                {t('buttons.takePhoto', 'Take Photo')}
               </Button>
             </Box>
 
