@@ -11,6 +11,7 @@ export const i18nPromise = i18n
   .init({
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: ALLOWED_LANGUAGES,
+    nonExplicitSupportedLngs: true,
     load: 'languageOnly',
     debug: import.meta.env.DEV,
     ns: ['common', 'auth'],

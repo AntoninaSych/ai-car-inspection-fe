@@ -1,3 +1,5 @@
+import { formatCurrency } from '../../../utils/formatCurrency';
+
 const costPayload = '-';
 
 export const getEstimatedCost = (reports, returnFormatted = true) => {
@@ -26,12 +28,7 @@ export const getEstimatedCost = (reports, returnFormatted = true) => {
     );
   }, 0);
 
-  return returnFormatted
-    ? new Intl.NumberFormat(locale, {
-        style: 'currency',
-        currency,
-      }).format(total)
-    : total;
+  return returnFormatted ? formatCurrency(total, currency, locale) : total;
 };
 
 export const getEstimatedCostByTasks = tasks => {
@@ -51,8 +48,5 @@ export const getEstimatedCostByTasks = tasks => {
     return sum + getEstimatedCost(task.reports, false);
   }, 0);
 
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
-  }).format(total);
+  return formatCurrency(total, currency, locale);
 };

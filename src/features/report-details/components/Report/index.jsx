@@ -14,6 +14,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -21,6 +22,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import DoneIcon from '@mui/icons-material/Done';
 import { StyledCard } from '../../styled';
 import { StyledAccordion } from './styled';
+import { CostItem } from './CostItem';
+import { formatCurrency } from '../../../../utils/formatCurrency';
 
 const SEVERITY = {
   MINOR: 'minor',
@@ -57,7 +60,9 @@ const severityLabel = (severity, t) => {
   }
 };
 
-export const Report = ({ report, t }) => {
+export const Report = ({ report }) => {
+  const { i18n, t } = useTranslation('report');
+
   if (!report) {
     return (
       <Box p={3}>
@@ -73,6 +78,7 @@ export const Report = ({ report, t }) => {
     estimatedTotalLaborCost,
     estimatedTotalPartsCostOriginal,
     estimatedTotalPartsCostAlternative,
+    currency,
     damages = [],
   } = report;
 
@@ -122,7 +128,7 @@ export const Report = ({ report, t }) => {
                       {t('report:totalLabor', 'Labor')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
-                      {estimatedTotalLaborCost}
+                      {formatCurrency(estimatedTotalLaborCost, currency, i18n.language)}
                     </Typography>
                   </Box>
                 )}
@@ -133,7 +139,7 @@ export const Report = ({ report, t }) => {
                       {t('report:totalPartsOriginal', 'Parts (original)')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
-                      {estimatedTotalPartsCostOriginal}
+                      {formatCurrency(estimatedTotalPartsCostOriginal, currency, i18n.language)}
                     </Typography>
                   </Box>
                 )}
@@ -144,7 +150,7 @@ export const Report = ({ report, t }) => {
                       {t('report:totalPartsAlternative', 'Parts (alternative)')}
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
-                      {estimatedTotalPartsCostAlternative}
+                      {formatCurrency(estimatedTotalPartsCostAlternative, currency, i18n.language)}
                     </Typography>
                   </Box>
                 )}
@@ -201,30 +207,21 @@ export const Report = ({ report, t }) => {
                   </Typography>
 
                   <Grid container spacing={2}>
-                    {damage.estimatedLaborCost && (
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="caption" color="text.secondary">
-                          {t('report:damage.labor', 'Labor')}
-                        </Typography>
-                        <Typography variant="body2">{damage.estimatedLaborCost}</Typography>
-                      </Grid>
-                    )}
-                    {damage.estimatedPartsCostOriginal && (
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="caption" color="text.secondary">
-                          {t('report:damage.partsOriginal', 'Parts (original)')}
-                        </Typography>
-                        <Typography variant="body2">{damage.estimatedPartsCostOriginal}</Typography>
-                      </Grid>
-                    )}
-                    {damage.estimatedPartsCostAlternative && (
-                      <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="caption" color="text.secondary">
-                          {t('report:damage.partsAlternative', 'Parts (alternative)')}
-                        </Typography>
-                        <Typography variant="body2">{damage.estimatedPartsCostAlternative}</Typography>
-                      </Grid>
-                    )}
+                    <CostItem
+                      value={damage.estimatedLaborCost}
+                      label={t('report:damage.labor', 'Labor')}
+                      currency={currency}
+                    />
+                    <CostItem
+                      value={damage.estimatedPartsCostOriginal}
+                      label={t('report:damage.partsOriginal', 'Parts (original)')}
+                      currency={currency}
+                    />
+                    <CostItem
+                      value={damage.estimatedPartsCostAlternative}
+                      label={t('report:damage.partsAlternative', 'Parts (alternative)')}
+                      currency={currency}
+                    />
                   </Grid>
                 </Box>
               ))}

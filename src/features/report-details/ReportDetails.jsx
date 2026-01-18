@@ -32,5 +32,5 @@ export const ReportDetails = () => {
     );
   }
 
-  return <Report t={t} report={data.report?.data?.analysis} />;
+  return <Report report={data.report?.data?.analysis} />;
 };
