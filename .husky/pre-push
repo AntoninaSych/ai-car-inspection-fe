@@ -1,17 +1,16 @@
 #!/usr/bin/env sh
 set -e
 
+echo "🏗️ build..."
 npm run build
 
-check_tests () {
-  if [ $? -eq 0 ]; then
-    echo "The script ran ok"
-  else
-    echo "The script failed" >&2
-    exit 1
-  fi
-}
+# echo "🧪 tests..."
+npm run test
 
+echo "🧹 lint..."
 npm run lint
-check_tests
 
+echo "🔒 audit..."
+npm run audit
+
+echo "🚀 pre-push checks passed"
