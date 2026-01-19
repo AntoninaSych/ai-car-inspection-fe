@@ -10,7 +10,7 @@ const initialState = {
 
 const authorizationCase = (state, action) => {
   const { token, user } = action.payload;
-  if (token) {
+  if (token && user.emailVerified) {
     state.user = user;
     state.accessToken = token;
     state.isAuthorized = true;

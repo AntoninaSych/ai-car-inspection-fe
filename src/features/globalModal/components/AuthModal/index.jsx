@@ -41,7 +41,7 @@ export const AuthModal = ({ onClose, defaultMode = 'login' }) => {
           subtitle={t('modals.register.subtitle')}
           icon={<AutoAwesomeOutlinedIcon />}
         >
-          <RegisterForm onSuccess={onClose} />
+          <RegisterForm />
           <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: 2 }}>
             <Trans i18nKey="common:modals.register.footer">
               Already have an account?&html;

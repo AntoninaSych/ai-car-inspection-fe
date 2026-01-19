@@ -71,7 +71,8 @@
     "unauthorized": "Access denied. Please log in to your account.",
     "loginFailed": "Login failed. Please check your email and password and try again.",
     "registrationFailed": "Registration failed. Please check your information or try again later.",
-    "emailInUse": "This email is already in use."
+    "emailInUse": "This email is already in use.",
+    "generic": "Something went wrong. Please try again."
   },
   "validation": {
     "oneOf": "Allowed only {{value}}",

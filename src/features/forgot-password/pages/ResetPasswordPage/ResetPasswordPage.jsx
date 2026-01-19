@@ -114,7 +114,7 @@ const ResetPasswordPage = () => {
       await resetPassword({ token, password: values.password });
       setIsSuccess(true);
     } catch (error) {
-      errorHandler(error, t('forgotPassword.errors.generic'));
+      errorHandler(error, t('common:errors.generic'));
     }
   };
 
@@ -182,7 +182,7 @@ const ResetPasswordPage = () => {
   if (tokenStatus === TOKEN_STATUS.ERROR) {
     return (
       <PageShell>
-        <TokenMessage title={t('forgotPassword.errors.generic')} body={t('forgotPassword.errors.generic')} t={t} />
+        <TokenMessage title={t('common: errors.generic')} body={t('common: errors.generic')} t={t} />
       </PageShell>
     );
   }
