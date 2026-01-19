@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Stack, InputAdornment } from '@mui/material';
+import { Stack, InputAdornment, Typography, Alert } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -18,6 +18,7 @@ import { Wrapper } from './styled';
 export const RegisterForm = ({ onSuccess }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
   const validationSchema = useMemo(() => createValidationSchema(t), [t]);
 
@@ -32,7 +33,7 @@ export const RegisterForm = ({ onSuccess }) => {
   const {
     reset,
     handleSubmit,
-    formState: { isSubmitting, isDirty, isValid },
+    formState: { isSubmitting, isSubmitted, isDirty, isValid },
   } = methods;
 
   const canSubmit = !isSubmitting && !loading && isDirty && isValid;
@@ -44,6 +45,7 @@ export const RegisterForm = ({ onSuccess }) => {
       .then(() => {
         reset();
         setLoading(false);
+        setFormSubmitted(true);
         onSuccess && onSuccess();
         successNotification('Success registration');
       })
@@ -56,6 +58,17 @@ export const RegisterForm = ({ onSuccess }) => {
         }
       });
   };
+
+  if (isSubmitted || formSubmitted) {
+    return (
+      <Wrapper>
+        <Typography variant="h4">{t('auth:registerSuccess.title')}</Typography>
+        <Alert severity="success">
+          <Typography variant="body1">{t('auth:registerSuccess.subtitle')}</Typography>
+        </Alert>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>

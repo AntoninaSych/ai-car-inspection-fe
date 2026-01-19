@@ -10,7 +10,7 @@ const initialState = {
 
 const authorizationCase = (state, action) => {
   const { token, user } = action.payload;
-  if (token) {
+  if (token && user.emailVerified) {
     state.user = user;
     state.accessToken = token;
     state.isAuthorized = true;
@@ -20,7 +20,21 @@ const authorizationCase = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setSession(state, action) {
+      const { token, user } = action.payload;
+      if (token && user) {
+        state.accessToken = token;
+        state.user = user;
+        state.isAuthorized = true;
+      }
+    },
+    clearSession(state) {
+      state.accessToken = null;
+      state.user = null;
+      state.isAuthorized = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(login.fulfilled, authorizationCase)
@@ -49,4 +63,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { clearSession, setSession } = authSlice.actions;
 export const authReducer = authSlice.reducer;
