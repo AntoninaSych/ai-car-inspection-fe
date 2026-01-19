@@ -52,7 +52,8 @@
     "logout": "Log Out",
     "cancel": "Cancel",
     "getStarted": "Get Started",
-    "createAccount": "Create Account"
+    "createAccount": "Create Account",
+    "newEstimate": "New Estimate"
   },
   "forgotPassword": "Forgot password?",
   "mode": {
