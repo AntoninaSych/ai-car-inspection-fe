@@ -52,7 +52,8 @@
     "back": "Back",
     "next": "Next",
     "sending": "Sending...",
-    "sendAiButton": "Send for AI analysis"
+    "sendAiButton": "Send for AI analysis",
+    "takePhoto": "Take Photo"
   },
   "preview": "Preview",
   "details": {
@@ -97,4 +98,5 @@
     "ro": "Romania",
     "de": "Germany"
   }
+  
 }
