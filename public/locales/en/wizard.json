@@ -1,7 +1,9 @@
 {
   "dragOverlay": {
     "title": "Click to upload",
-    "subtitle": "Maximum file size {{size}}MB."
+    "subtitle": "Maximum file size {{size}}MB.",
+    "or": "OR",
+    "defaultHelper": "Upload a clear photo."
   },
   "steps": {
     "details": { "label": "Vehicle Information" },

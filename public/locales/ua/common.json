@@ -52,7 +52,8 @@
     "logout": "Вийти",
     "cancel": "Скасувати",
     "getStarted": "Почати",
-    "createAccount": "Створити обліковий запис"
+    "createAccount": "Створити обліковий запис",
+    "newEstimate": "Створити новий Кошторис"
   },
   "forgotPassword": "Забули пароль?",
   "mode": {
