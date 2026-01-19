@@ -23,7 +23,7 @@ const authSlice = createSlice({
   reducers: {
     setSession(state, action) {
       const { token, user } = action.payload;
-      if (token) {
+      if (token && user) {
         state.accessToken = token;
         state.user = user;
         state.isAuthorized = true;
