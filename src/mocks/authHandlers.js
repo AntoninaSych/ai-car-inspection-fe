@@ -1,5 +1,4 @@
 import { http, HttpResponse } from 'msw';
-import { apiPrefix } from './config';
 
 const mockedLoginResponse = {
   token: '123456',
@@ -13,7 +12,7 @@ const mockedLoginResponse = {
 };
 
 export const authHandlers = [
-  http.post(`${apiPrefix}/users/login`, async ({ request }) => {
+  http.post(`/api/users/login`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized', internalCode: 'AUTH_NOT_AUTHORIZED' }, { status: 401 });
