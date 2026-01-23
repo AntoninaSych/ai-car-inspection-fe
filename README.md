@@ -19,15 +19,17 @@ Set up Prettier and ESLint with autosave on your IDE before starting to work wit
 
 ### Environment Variables
 
-| Variable                | Description                                          |
-|-------------------------|------------------------------------------------------|
-| `VITE_API_PROXY_TARGET` | Backend API target for Vite proxy during development |
-| `VITE_CONSENT_URL`      | URL for resources like images                        |
+| Variable                | Description                               |
+|-------------------------|-------------------------------------------|
+| `VITE_API_PROXY_TARGET` | Backend API target for Vite proxy         |
+| `VITE_CONSENT_URL`      | URL for resources like images             |
+| `VITE_USE_MOCK_DATA`    | Mock API responses with MSW (only in DEV) | 
 
 Example `.env`
 ```
 VITE_API_PROXY_TARGET=http://localhost:5001
 VITE_CONSENT_URL=http://localhost:5001
+VITE_USE_MOCK_DATA=false
 ```
 
 ### Requirements
@@ -55,6 +57,7 @@ Create `.env`:
 
 ```
 VITE_API_PROXY_TARGET=http://localhost:5001
+VITE_CONSENT_URL=http://localhost:5001
 ```
 
 Run the development server:

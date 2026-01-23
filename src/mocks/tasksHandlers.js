@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import tasksCurrentResponse from './data/tasksCurrent.json';
+import { apiPrefix } from './config';
 
 export const tasksHandlers = [
   // add task
@@ -21,7 +22,7 @@ export const tasksHandlers = [
   }),
 
   // pay task
-  http.post('/_api/tasks/:taskId/pay', async ({ request }) => {
+  http.post(`${apiPrefix}/tasks/:taskId/pay`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -37,7 +38,7 @@ export const tasksHandlers = [
     );
   }),
 
-  http.get(`/_api/tasks/:taskId`, async ({ request }) => {
+  http.get(`${apiPrefix}/tasks/:taskId`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -75,7 +76,7 @@ export const tasksHandlers = [
     );
   }),
 
-  http.get(`/_api/tasks/current`, async ({ request }) => {
+  http.get(`${apiPrefix}/tasks/current`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
