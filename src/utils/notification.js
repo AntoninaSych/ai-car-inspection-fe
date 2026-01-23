@@ -22,13 +22,12 @@ const getErrorDetails = error => {
   return { data, internalCode };
 };
 
-export const globalErrorHandler = error => {
-  const translate = i18n.t.bind(i18n);
+export const globalErrorHandler = (error, { t }) => {
+  const translate = t || i18n.t.bind(i18n);
   const { internalCode } = getErrorDetails(error);
 
   if (internalCode && INTERNAL_CODE_MAP[internalCode]) {
-    const message = translate(INTERNAL_CODE_MAP[internalCode] || 'errors.unknown');
-    errorNotification(message);
+    errorNotification(translate(INTERNAL_CODE_MAP[internalCode]));
   }
 };
 

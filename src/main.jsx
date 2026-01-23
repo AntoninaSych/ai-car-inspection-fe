@@ -11,9 +11,10 @@ import { App } from './App';
 import './i18n';
 import { i18nPromise } from './i18n';
 import { ROOT_CONTAINER } from './constants';
+import { useMock } from './mocks/config';
 import './styles/index.css';
 
-if (import.meta.env.DEV) {
+if (import.meta.env.DEV && useMock) {
   const { worker } = await import('./mocks/browser');
   await worker.start();
 }

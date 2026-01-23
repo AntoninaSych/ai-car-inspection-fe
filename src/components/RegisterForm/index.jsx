@@ -18,7 +18,7 @@ import { Wrapper } from './styled';
 export const RegisterForm = ({ onSuccess }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const validationSchema = useMemo(() => createValidationSchema(t), [t]);
 
@@ -33,7 +33,7 @@ export const RegisterForm = ({ onSuccess }) => {
   const {
     reset,
     handleSubmit,
-    formState: { isSubmitting, isSubmitted, isDirty, isValid },
+    formState: { isSubmitting, isDirty, isValid },
   } = methods;
 
   const canSubmit = !isSubmitting && !loading && isDirty && isValid;
@@ -45,21 +45,17 @@ export const RegisterForm = ({ onSuccess }) => {
       .then(() => {
         reset();
         setLoading(false);
-        setFormSubmitted(true);
+        setSuccess(true);
         onSuccess && onSuccess();
         successNotification('Success registration');
       })
       .catch(error => {
         setLoading(false);
-        if (error?.message === 'Email in use') {
-          errorHandler(error, t('errors.emailInUse'));
-        } else {
-          errorHandler(error, t('errors.registrationFailed'));
-        }
+        errorHandler(error, t('errors.registrationFailed'));
       });
   };
 
-  if (isSubmitted || formSubmitted) {
+  if (success) {
     return (
       <Wrapper>
         <Typography variant="h4">{t('auth:registerSuccess.title')}</Typography>

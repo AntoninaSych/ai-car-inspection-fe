@@ -8,6 +8,8 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+const normalizeLang = lang => (lang || DEFAULT_LANGUAGE).split('-')[0];
+
 export const setupAxiosInterceptors = store => {
   api.interceptors.request.use(
     config => {
@@ -18,8 +20,7 @@ export const setupAxiosInterceptors = store => {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }
 
-      config.headers['Accept-Language'] = i18n.resolvedLanguage || DEFAULT_LANGUAGE;
-
+      config.headers['Accept-Language'] = normalizeLang(i18n.resolvedLanguage);
       return config;
     },
     error => Promise.reject(error)

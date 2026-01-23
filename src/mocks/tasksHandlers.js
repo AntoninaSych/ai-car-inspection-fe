@@ -3,7 +3,7 @@ import tasksCurrentResponse from './data/tasksCurrent.json';
 
 export const tasksHandlers = [
   // add task
-  http.post('/_api/tasks', async ({ request }) => {
+  http.post('/api/tasks', async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -21,7 +21,7 @@ export const tasksHandlers = [
   }),
 
   // pay task
-  http.post('/_api/tasks/:taskId/pay', async ({ request }) => {
+  http.post(`/api/tasks/:taskId/pay`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -37,7 +37,7 @@ export const tasksHandlers = [
     );
   }),
 
-  http.get(`/_api/tasks/:taskId`, async ({ request }) => {
+  http.get(`/api/tasks/:taskId`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -75,7 +75,7 @@ export const tasksHandlers = [
     );
   }),
 
-  http.get(`/_api/tasks/current`, async ({ request }) => {
+  http.get(`/api/tasks/current`, async ({ request }) => {
     const auth = request.headers.get('Authorization');
     if (!auth || !auth.startsWith('Bearer')) {
       return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
