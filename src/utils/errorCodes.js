@@ -10,6 +10,7 @@ export const INTERNAL_CODE_MAP = {
   AUTH_EMAIL_IN_USE: 'errors.internal.authEmailInUse',
   AUTH_TOKEN_EXPIRED: 'errors.internal.authTokenExpired',
   AUTH_TOKEN_INVALID: 'errors.internal.authTokenInvalid',
+  AUTH_TOKEN_USED: 'errors.internal.authTokenUsed',
   AUTH_EMAIL_NOT_VERIFIED: 'errors.internal.authEmailNotVerified',
   AUTH_EMAIL_ALREADY_VERIFIED: 'errors.internal.authEmailAlreadyVerified',
 

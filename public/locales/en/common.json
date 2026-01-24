@@ -70,6 +70,7 @@
       "authEmailInUse": "This email is already in use.",
       "authTokenExpired": "Your session has expired. Please sign in again.",
       "authTokenInvalid": "Invalid authentication token.",
+      "authTokenUsed": "Authentication token has already used.",
       "authEmailNotVerified": "Please verify your email address.",
       "authEmailAlreadyVerified": "This email address is already verified.",
       "validationFailed": "Validation failed.",
