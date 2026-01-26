@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { Link as RouterLink, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Alert, Button, CircularProgress, Stack, Typography } from '@mui/material';
@@ -10,7 +10,8 @@ import { EmailField, SubmitButton } from '../../../../components';
 import { ROUTERS } from '../../../../constants';
 import { defaultValues } from './config';
 import { PageShell } from './components';
-import { errorHandler } from '../../../../utils/notification';
+import { errorHandler, getErrorDetails } from '../../../../utils/notification';
+import { INTERNAL_CODES } from '../../../../utils/errorCodes';
 
 const TOKEN_STATUS = {
   CHECKING: 'CHECKING',
@@ -18,6 +19,7 @@ const TOKEN_STATUS = {
   NOT_VERIFIED: 'NOT_VERIFIED',
   ERROR: 'ERROR',
   INVALID: 'INVALID',
+  USED: 'USED',
 };
 
 const mapTokenResponseToStatus = response => {
@@ -49,6 +51,7 @@ const VerifyEmailPage = () => {
   const validationSchema = useMemo(() => createSchema(t), [t]);
   const [tokenStatus, setTokenStatus] = useState(TOKEN_STATUS.CHECKING);
   const [formSubmitted, setFormSubmitted] = useState(true);
+  const ranRef = useRef(false);
 
   const methods = useForm({
     resolver: yupResolver(validationSchema),
@@ -64,33 +67,34 @@ const VerifyEmailPage = () => {
   const canSubmit = !isSubmitting && isDirty;
 
   useEffect(() => {
-    let isMounted = true;
+    if (!token) {
+      setTokenStatus(TOKEN_STATUS.INVALID);
+      return;
+    }
+
+    if (ranRef.current) {
+      return;
+    }
+
+    ranRef.current = true;
 
     const checkToken = async () => {
-      if (!token) {
-        setTokenStatus(TOKEN_STATUS.INVALID);
-        return;
-      }
-
       setTokenStatus(TOKEN_STATUS.CHECKING);
       try {
         const response = await verifyEmail({ token });
         const status = mapTokenResponseToStatus(response);
-        if (isMounted) {
-          setTokenStatus(status);
-        }
-      } catch (_) {
-        if (isMounted) {
+        setTokenStatus(status);
+      } catch (error) {
+        const { internalCode } = getErrorDetails(error);
+        if (internalCode === INTERNAL_CODES.AUTH_TOKEN_USED) {
+          setTokenStatus(TOKEN_STATUS.USED);
+        } else {
           setTokenStatus(TOKEN_STATUS.ERROR);
         }
       }
     };
 
     checkToken();
-
-    return () => {
-      isMounted = false;
-    };
   }, [token]);
 
   const onSubmit = async values => {
@@ -107,7 +111,7 @@ const VerifyEmailPage = () => {
       <PageShell>
         <Stack spacing={2} alignItems="center">
           <CircularProgress />
-          <Typography color="text.secondary">{t('forgotPassword.token.checking')}</Typography>
+          <Typography color="text.secondary">{t('verify.token.checking')}</Typography>
         </Stack>
       </PageShell>
     );
@@ -124,11 +128,15 @@ const VerifyEmailPage = () => {
   if (tokenStatus === TOKEN_STATUS.INVALID) {
     return (
       <PageShell>
-        <TokenMessage
-          title={t('forgotPassword.token.invalidTitle')}
-          body={t('forgotPassword.token.invalidBody')}
-          t={t}
-        />
+        <TokenMessage title={t('verify.token.invalidTitle')} body={t('verify.token.invalidBody')} t={t} />
+      </PageShell>
+    );
+  }
+
+  if (tokenStatus === TOKEN_STATUS.USED) {
+    return (
+      <PageShell>
+        <TokenMessage title={t('verify.token.usedTitle')} body={t('verify.token.usedBody')} t={t} />
       </PageShell>
     );
   }

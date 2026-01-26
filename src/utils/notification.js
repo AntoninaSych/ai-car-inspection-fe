@@ -15,7 +15,7 @@ export const errorNotification = (message, options = {}) => {
   toast.error(message, { ...defaultOptions, ...options });
 };
 
-const getErrorDetails = error => {
+export const getErrorDetails = error => {
   const data = error && error.response && error.response.data;
   const internalCode = data && data.internalCode;
 
