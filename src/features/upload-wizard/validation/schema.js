@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const MAX_FILE_SIZE_MB = 2;
+export const MAX_FILE_SIZE_MB = 10;
 export const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png'];
