@@ -2,6 +2,11 @@ import { formatCurrency } from '../../../utils/formatCurrency';
 
 const costPayload = '-';
 
+const toNumber = value => {
+  const num = Number(value);
+  return Number.isFinite(num) ? num : 0;
+};
+
 export const getEstimatedCost = (reports, returnFormatted = true) => {
   if (!reports) {
     return costPayload;
@@ -20,12 +25,12 @@ export const getEstimatedCost = (reports, returnFormatted = true) => {
   const total = successfulReports.reduce((sum, report) => {
     const { analysis } = report.data;
 
-    return (
-      sum +
-      Number(analysis?.estimatedTotalLaborCost || 0) +
-      Number(analysis?.estimatedTotalPartsCostAlternative || 0) +
-      Number(analysis?.estimatedTotalPartsCostOriginal || 0)
-    );
+    const costs = analysis?.estimatedTotalPartsCostAlternative ?? analysis?.estimatedTotalPartsCostOriginal;
+
+    const laborCost = toNumber(analysis?.estimatedTotalLaborCost);
+    const partsCost = toNumber(costs);
+
+    return sum + laborCost + partsCost;
   }, 0);
 
   return returnFormatted ? formatCurrency(total, currency, locale) : total;

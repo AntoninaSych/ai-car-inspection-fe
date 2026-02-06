@@ -13,7 +13,7 @@
     "completed": "Завершено",
     "processing": "В обробці",
     "payment": "Оплата",
-    "totalRevenue": "Загальний дохід"
+    "totalRevenue": "Загальні мінімальні витрати"
   },
 
   "search": {
@@ -28,7 +28,7 @@
   },
 
   "card": {
-    "estimatedCost": "Орієнтовна вартість",
+    "estimatedCost": "Орієнтовні мінімальні витрати",
     "date": "Дата"
   },
 

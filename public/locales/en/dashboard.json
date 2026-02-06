@@ -13,7 +13,7 @@
     "completed": "Completed",
     "processing": "Processing",
     "payment": "Payment",
-    "totalRevenue": "Total Revenue"
+    "totalRevenue": "Total minimum costs"
   },
 
   "search": {
@@ -28,7 +28,7 @@
   },
 
   "card": {
-    "estimatedCost": "Estimated Cost",
+    "estimatedCost": "Estimated minimum costs",
     "date": "Date"
   },
 
